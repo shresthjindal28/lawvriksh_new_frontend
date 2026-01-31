@@ -1,0 +1,178 @@
+/* Trash Bin Container */
+.trash-bin-container {
+  width: 100%;
+  padding: 24px 16px;
+  background: #fafafa;
+  min-height: calc(100vh - 80px);
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+@media (min-width: 640px) {
+  .trash-bin-container {
+    padding: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .trash-bin-container {
+    padding: 40px 60px;
+  }
+}
+
+/* Content Constraint */
+.trash-bin-content-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Header */
+.trash-header {
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.trash-header h1 {
+  font-family: var(--font-playfair), serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0 0 8px 0;
+  letter-spacing: -0.01em;
+}
+
+@media (min-width: 640px) {
+  .trash-header h1 {
+    font-size: 32px;
+  }
+}
+
+.trash-subtitle {
+  font-size: 14px;
+  color: #666666;
+  margin: 0;
+}
+
+/* Cards Grid */
+.trash-bin-grid {
+  margin-top: 24px;
+  display: grid;
+  gap: 24px;
+  grid-template-columns: 1fr;
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  .trash-bin-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .trash-bin-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1536px) {
+  .trash-bin-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Trash Card Overlay */
+.trash-card-wrapper {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.trash-card-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  z-index: 20;
+  pointer-events: none;
+  /* Let clicks pass through initially */
+}
+
+.trash-card-wrapper:hover .trash-card-overlay {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.restore-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  background-color: #1a1a1a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.trash-card-wrapper:hover .restore-btn {
+  transform: translateY(0);
+}
+
+.restore-btn:hover {
+  background-color: #333;
+  transform: scale(1.02);
+}
+
+/* Empty State */
+.trash-empty-state {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 24px;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #f0f0f0;
+  text-align: center;
+}
+
+.trash-empty-icon {
+  margin-bottom: 16px;
+  color: #e0e0e0;
+}
+
+.trash-empty-state h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin: 0 0 8px 0;
+}
+
+.trash-empty-state p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}
+
+/* Card styling for trash view - slightly muted appearance */
+.trash-card-wrapper .project-card {
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.trash-card-wrapper:hover .project-card {
+  opacity: 1;
+}

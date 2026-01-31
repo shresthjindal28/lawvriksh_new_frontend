@@ -1,0 +1,48 @@
+name: Frontend CI
+
+on:
+  push:
+    branches: [staging, develop]
+  pull_request:
+    branches: [staging, develop]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Configure npm for Tiptap Pro
+        run: |
+          echo "@tiptap-pro:registry=https://registry.tiptap.dev/" > ~/.npmrc
+          echo "//registry.tiptap.dev/:_authToken=${TIPTAP_PRO_TOKEN}" >> ~/.npmrc
+        env:
+          TIPTAP_PRO_TOKEN: ${{ secrets.TIPTAP_PRO_TOKEN }}
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          TIPTAP_PRO_TOKEN: ${{ secrets.TIPTAP_PRO_TOKEN }}
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps
+
+      - name: Check formatting (Prettier)
+        run: npx prettier --check .
+
+      - name: Run CI checks
+        run: npm run ci
+
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.NEXT_PUBLIC_SENTRY_DSN }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}

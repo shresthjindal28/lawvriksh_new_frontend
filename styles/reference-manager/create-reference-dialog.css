@@ -1,0 +1,97 @@
+/* Overlay just to catch clicks */
+.crd-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: transparent;
+}
+
+/* Dialog box */
+.crd-dialog {
+  position: fixed;
+  width: 260px;
+  background: white;
+  padding: 8px 0;
+
+  border-radius: 8px;
+  border: 1px solid #e5e5e5;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+
+  z-index: 210;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+/* Category Group */
+.crd-category-group {
+  margin-bottom: 8px;
+}
+
+.crd-category-header {
+  font-size: 16px;
+  font-weight: 800;
+  color: #000;
+  padding: 8px 16px;
+  line-height: 1.2;
+}
+
+/* List item */
+.crd-item {
+  width: 100%;
+  padding: 8px 16px 8px 36px; /* Significantly increased left padding for tree-like indentation */
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  font-size: 14px;
+  color: #1a1a1a;
+  text-align: left;
+
+  transition: background 0.1s ease;
+  position: relative;
+}
+
+/* Indent icon (the corner arrow) */
+.crd-indent-icon {
+  color: #9ca3af;
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+}
+
+/* The actual type icon */
+.crd-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #4b5563;
+  flex-shrink: 0;
+}
+
+.crd-item-label {
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-decoration: underline; /* Always underlined */
+  text-decoration-color: #d1d5db; /* Light gray underline by default */
+}
+
+.crd-item:hover {
+  background: #e0f2fe; /* Light blue highlight */
+}
+
+.crd-item:hover .crd-item-label {
+  text-decoration-color: currentColor; /* Darker underline on hover */
+}
+
+@media (max-width: 480px) {
+  .crd-dialog {
+    width: 90vw;
+  }
+}

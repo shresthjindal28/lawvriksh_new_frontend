@@ -1,0 +1,688 @@
+.document-viewer-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #ffffff;
+}
+
+.document-viewer-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  gap: 0;
+}
+
+.document-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  border-right: 1px solid #e0e0e0;
+  overflow: hidden;
+  position: relative;
+}
+
+.document-viewer {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  padding: 0;
+  background-color: #f5f5f5;
+  width: 100%;
+  height: 100%;
+}
+
+.document-placeholder {
+  text-align: center;
+  color: #999;
+  font-size: 16px;
+}
+
+/* .info-panel-wrapper {
+    border-left: 1px solid #e0e0e0;
+    overflow: hidden;
+    display: flex;
+} */
+
+.pdf-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.document-controls {
+  position: fixed;
+  z-index: 90;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 5px;
+  background: #000000;
+  opacity: 0.8;
+  color: #ffffff;
+  border-radius: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, Helvetica, sans-serif;
+  padding-left: 12px;
+}
+
+.document-controls button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.document-controls span {
+  font-size: 14px;
+}
+
+.zoom-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.zoom-controls button {
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.text-viewer,
+.image-viewer {
+  padding: 20px;
+  background: white;
+  margin: 0;
+}
+
+.annotation-highlight {
+  transition: opacity 0.2s;
+  position: absolute;
+  opacity: 0;
+  mix-blend-mode: multiply;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 10;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.annotation-highlight:hover,
+.annotation-highlight:active {
+  opacity: 0.4;
+}
+
+.annotation-highlight.is-active {
+  opacity: 0.25;
+  outline: 1px solid rgba(37, 99, 235, 0.35);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+}
+
+.line-highlight {
+  border-radius: 2px;
+  animation: highlight-fade-in 0.15s ease-out;
+}
+
+.highlight-menu {
+  position: fixed;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transform: translate(-50%, -100%);
+  animation: highlight-pop 0.12s ease-out;
+}
+
+.highlight-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-align: left;
+}
+
+.highlight-button:hover {
+  background-color: #f5f5f4;
+}
+
+.highlight-button:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 2px;
+}
+
+.highlight-button span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: #44444b;
+}
+
+.highlight-button p {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #44444b;
+  white-space: nowrap;
+}
+
+.cancel-button {
+  padding: 8px 16px;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.highlight-popup {
+  position: absolute;
+  background: white;
+  border: 1px solid #e4e4e7;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  width: 320px;
+  max-width: 90vw;
+  overflow: hidden;
+  transform-origin: top left;
+  animation: highlight-popup-in 0.12s ease-out;
+}
+
+/* Dialog Header */
+.highlight-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 12px 16px;
+  gap: 8px;
+}
+
+.highlight-dialog-header-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.highlight-dialog-header-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.highlight-dialog-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  color: #111113;
+  flex-shrink: 0;
+}
+
+.highlight-dialog-user {
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: #111113;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.highlight-dialog-time {
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: #a1a1aa;
+  white-space: nowrap;
+}
+
+.highlight-dialog-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.highlight-dialog-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #44444b;
+  transition: background-color 0.15s;
+}
+
+.highlight-dialog-action-btn:hover {
+  background-color: #f4f4f5;
+}
+
+.highlight-dialog-close-btn {
+  color: #808080;
+}
+
+/* Color Picker Row */
+.highlight-dialog-colors {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+}
+
+.highlight-color-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  padding: 0;
+  background: none;
+  transition:
+    transform 0.15s,
+    border-color 0.15s;
+}
+
+.highlight-color-dot:hover {
+  transform: scale(1.15);
+}
+
+.highlight-color-dot:focus-visible {
+  outline: 2px solid #94a3b8;
+  outline-offset: 2px;
+}
+
+.highlight-color-dot.active {
+  border-color: #44444b;
+}
+
+/* Divider */
+.highlight-dialog-divider {
+  height: 1px;
+  background-color: #e4e4e7;
+  margin: 0;
+  border: none;
+}
+
+/* Notes Section */
+.highlight-dialog-notes {
+  padding: 12px 16px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.highlight-dialog-empty {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #71717a;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 13px;
+}
+
+.highlight-dialog-empty-icon {
+  width: 24px;
+  height: 24px;
+  color: #44444b;
+  flex-shrink: 0;
+}
+
+/* Note Item */
+.highlight-dialog-note-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e4e4e7;
+}
+
+.highlight-dialog-note-item:last-child {
+  border-bottom: none;
+}
+
+.highlight-dialog-note-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.highlight-dialog-note-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.highlight-dialog-note-author {
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #57534e;
+}
+
+.highlight-dialog-note-date {
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 11px;
+  color: #a8a29e;
+}
+
+.highlight-dialog-note-content {
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #18181b;
+  word-break: break-word;
+}
+
+.highlight-dialog-note-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: #a8a29e;
+  border-radius: 4px;
+  transition:
+    color 0.15s,
+    background-color 0.15s;
+}
+
+.highlight-dialog-note-delete:hover {
+  color: #ef4444;
+  background-color: #fef2f2;
+}
+
+.highlight-dialog-read-more {
+  display: block;
+  width: 100%;
+  padding: 8px 0;
+  background: none;
+  border: none;
+  color: #0073e6;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: center;
+  transition: color 0.15s;
+}
+
+.highlight-dialog-read-more:hover {
+  color: #005bb7;
+  text-decoration: underline;
+}
+
+/* Input Section */
+.highlight-dialog-input {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.highlight-dialog-textarea {
+  width: 100%;
+  min-height: 60px;
+  padding: 8px 12px;
+  border: 1px solid #e4e4e7;
+  border-radius: 8px;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #18181b;
+  background-color: #fcfcfd;
+  resize: none;
+  outline: none;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+}
+
+.highlight-dialog-textarea:focus {
+  border-color: #a1a1aa;
+  box-shadow: 0 0 0 2px rgba(161, 161, 170, 0.2);
+}
+
+.highlight-dialog-textarea::placeholder {
+  color: #a1a1aa;
+}
+
+.highlight-dialog-input-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.highlight-dialog-send-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border: none;
+  background: #18181b;
+  color: #fcfcfd;
+  border-radius: 6px;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    background-color 0.15s,
+    transform 0.15s ease;
+}
+
+.highlight-dialog-send-btn:hover {
+  background: #27272a;
+  transform: translateY(-1px);
+}
+
+.highlight-dialog-send-btn:disabled {
+  background: #e4e4e7;
+  color: #a1a1aa;
+  cursor: not-allowed;
+}
+
+.highlight-dialog-send-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Delete Highlight Button */
+.highlight-dialog-delete-highlight {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #ef4444;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s;
+}
+
+.highlight-dialog-delete-highlight:hover {
+  background-color: #fef2f2;
+}
+
+@keyframes highlight-pop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -100%) scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -100%) scale(1);
+  }
+}
+
+@keyframes highlight-popup-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes highlight-fade-in {
+  0% {
+    opacity: 0.65;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .highlight-menu,
+  .highlight-popup,
+  .line-highlight,
+  .highlight-dialog-send-btn,
+  .highlight-color-dot,
+  .highlight-dialog-textarea {
+    animation: none;
+    transition: none;
+  }
+}
+
+.highlight-dialog-delete-highlight svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Legacy comment editor - kept for backwards compatibility */
+.comment-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+}
+
+/* Text Layer Alignment Fixes */
+/* 
+ * CRITICAL: Do NOT use CSS width/height on canvas or CSS transform: scale() for zooming.
+ * The canvas must be sized via pdf.js viewport × devicePixelRatio for sharp rendering.
+ * The textLayer must use the same viewport instance as the canvas render.
+ * CSS-based scaling breaks the alignment between canvas pixels and text layer positioning.
+ */
+.react-pdf__Page__textContent {
+  /* Ensure text layer is positioned correctly relative to canvas */
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  /* Match canvas dimensions exactly - set by react-pdf based on viewport */
+}
+
+.react-pdf__Page__textContent span {
+  line-height: 1 !important;
+  /* Preserve the transform-origin that pdf.js sets for proper positioning */
+}
+
+.react-pdf__Page__canvas {
+  display: block !important;
+  /* Do NOT set width/height here - let pdf.js control canvas dimensions */
+  /* Canvas backing store = viewport × devicePixelRatio */
+  /* Canvas CSS size = viewport CSS pixels */
+}
+
+.react-pdf__Page {
+  /* Remove min-width that could cause layout issues */
+  position: relative;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .document-viewer {
+    padding: 0;
+  }
+
+  .pdf-container {
+    padding: 0;
+  }
+
+  .document-controls {
+    bottom: 80px;
+    /* Move up to avoid overlap with bottom navigation if any, or just to be safe */
+    padding: 8px 12px;
+    width: 90%;
+    justify-content: space-between;
+  }
+
+  .text-viewer,
+  .image-viewer {
+    margin: 0;
+    padding: 10px;
+  }
+}

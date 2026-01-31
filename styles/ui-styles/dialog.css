@@ -1,0 +1,210 @@
+/* Dialog Styles with Enhanced Animations */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  backdrop-filter: blur(4px);
+  animation: dialogOverlayFadeIn 0.3s cubic-bezier(0, 0, 0.2, 1);
+  z-index: 9998;
+}
+
+.dialog-container {
+  background: white;
+  border-radius: 12px;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.25),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: dialogSlideIn 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  z-index: 9999;
+}
+
+/* Size variants */
+.dialog-sm {
+  max-width: 384px;
+}
+
+.dialog-md {
+  max-width: 550px;
+}
+
+.dialog-lg {
+  max-width: 768px;
+}
+
+.dialog-xl {
+  max-width: 1024px;
+}
+
+/* Header */
+
+.dialog-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+  margin: 0;
+}
+
+.dialog-close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+}
+
+.dialog-close-button:hover {
+  background-color: #f3f4f6;
+  color: #374151;
+  transform: scale(1.05);
+}
+
+.dialog-close-button:active {
+  transform: scale(0.95);
+}
+
+.dialog-close-button:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
+}
+
+.dialog-content {
+  padding: 1.5rem;
+}
+
+.dialog-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e5e5e5;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* Entry animations */
+@keyframes dialogOverlayFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes dialogSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Exit animations (for JS-controlled closing) */
+.dialog-overlay[data-state='closed'],
+.dialog-overlay.closing {
+  animation: dialogOverlayFadeOut 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+.dialog-container[data-state='closed'],
+.dialog-container.closing {
+  animation: dialogSlideOut 0.2s cubic-bezier(0.4, 0, 1, 1) forwards;
+}
+
+@keyframes dialogOverlayFadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes dialogSlideOut {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.95) translateY(-10px);
+  }
+}
+
+/* Dark mode support */
+.dark .dialog-container {
+  background: #1f1f1f;
+  box-shadow:
+    0 25px 50px -12px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.dark .dialog-header {
+  border-bottom-color: #333;
+}
+
+.dark .dialog-title {
+  color: #f3f4f6;
+}
+
+.dark .dialog-close-button {
+  color: #9ca3af;
+}
+
+.dark .dialog-close-button:hover {
+  background-color: #374151;
+  color: #e5e7eb;
+}
+
+.dark .dialog-footer {
+  border-top-color: #333;
+}
+
+/* Scrollbar styling */
+.dialog-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dialog-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dialog-container::-webkit-scrollbar-thumb {
+  background: #d4d4d4;
+  border-radius: 4px;
+}
+
+.dialog-container::-webkit-scrollbar-thumb:hover {
+  background: #a3a3a3;
+}
+
+.dark .dialog-container::-webkit-scrollbar-thumb {
+  background: #525252;
+}
+
+.dark .dialog-container::-webkit-scrollbar-thumb:hover {
+  background: #737373;
+}

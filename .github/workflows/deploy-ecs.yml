@@ -1,0 +1,201 @@
+name: Deploy to AWS ECS
+
+on:
+  workflow_run:
+    workflows: ['Frontend CI']
+    types: [completed]
+    branches: [staging, develop]
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Deployment environment'
+        required: true
+        type: choice
+        options: [development, staging, production]
+
+env:
+  AWS_REGION: ap-south-1
+  ECR_REPOSITORY: lawvriksh/frontend
+  ECS_CLUSTER: lawvriksh-cluster
+  ECS_SERVICE: frontend-task-service-t1djjw0e
+  ECS_TASK_DEFINITION: .aws/task-definition.json
+  CONTAINER_NAME: ui-container
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    outputs:
+      image_tag: ${{ steps.meta.outputs.image_tag }}
+      short_sha: ${{ steps.meta.outputs.short_sha }}
+      registry: ${{ steps.login-ecr.outputs.registry }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Extract metadata for Docker
+        id: meta
+        run: |
+          BRANCH_NAME=${GITHUB_REF#refs/heads/}
+          SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)
+          TIMESTAMP=$(date +%s)
+
+          if [ "$BRANCH_NAME" == "staging" ]; then
+            IMAGE_TAG="latest"
+          else
+            IMAGE_TAG="${BRANCH_NAME}-${SHORT_SHA}-${TIMESTAMP}"
+          fi
+
+          echo "image_tag=${IMAGE_TAG}" >> $GITHUB_OUTPUT
+          echo "short_sha=${SHORT_SHA}" >> $GITHUB_OUTPUT
+
+      - name: Build Docker image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ steps.meta.outputs.image_tag }}
+        run: |
+          docker build \
+            --platform linux/arm64 \
+            --build-arg GITHUB_TOKEN=${{ secrets.GH_PAT_TOKEN }} \
+            --build-arg TIPTAP_PRO_TOKEN=${{ secrets.TIPTAP_PRO_TOKEN }} \
+            --tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+            --tag $ECR_REGISTRY/$ECR_REPOSITORY:${{ steps.meta.outputs.short_sha }} \
+            .
+          docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:latest
+
+      - name: Push Docker image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ steps.meta.outputs.image_tag }}
+        run: |
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+
+  prepare:
+    name: Prepare ECS Task Definition
+    runs-on: ubuntu-latest
+    needs: build
+    outputs:
+      task_def_file: ${{ steps.task-def.outputs.task-definition }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Use new task definition from repository
+        run: |
+          cp ${{ env.ECS_TASK_DEFINITION }} current-task-def.json
+          echo "Using the repository task definition as the new base."
+
+      - name: Remove empty tags (prevents registration error)
+        run: |
+          jq 'del(.tags)' current-task-def.json > cleaned.json
+          mv cleaned.json current-task-def.json
+
+      - name: Render new image into task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: current-task-def.json
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ needs.build.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ needs.build.outputs.image_tag }}
+
+      - name: Debug rendered task definition
+        run: |
+          echo "Rendered task definition content:"
+          cat ${{ steps.task-def.outputs.task-definition }} | jq
+
+      - name: Upload rendered task definition
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-task-def
+          path: ${{ steps.task-def.outputs.task-definition }}
+
+  deploy:
+    name: Deploy to ECS Cluster
+    runs-on: ubuntu-latest
+    needs: prepare
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Download rendered task definition
+        uses: actions/download-artifact@v4
+        with:
+          name: rendered-task-def
+          path: rendered-task-def
+
+      - name: Verify downloaded artifact
+        run: |
+          echo "Listing rendered task files..."
+          ls -l rendered-task-def
+
+      - name: Register new task definition
+        id: register
+        run: |
+          # Find the downloaded task definition file (name has random suffix)
+          TASK_DEFINITION_FILE=$(ls rendered-task-def/task-definition*.json)
+          echo "Using task definition file: ${TASK_DEFINITION_FILE}"
+
+          # Register new revision in ECS
+          TASK_DEFINITION_ARN=$(aws ecs register-task-definition \
+            --cli-input-json file://${TASK_DEFINITION_FILE} \
+            --query 'taskDefinition.taskDefinitionArn' --output text)
+
+          echo "task_definition_arn=${TASK_DEFINITION_ARN}" >> $GITHUB_OUTPUT
+          echo "Registered new task definition: ${TASK_DEFINITION_ARN}"
+
+      - name: Update ECS service
+        run: |
+          aws ecs update-service \
+            --cluster ${{ env.ECS_CLUSTER }} \
+            --service ${{ env.ECS_SERVICE }} \
+            --task-definition ${{ steps.register.outputs.task_definition_arn }} \
+            --force-new-deployment
+
+      - name: Wait for service stability
+        run: |
+          aws ecs wait services-stable \
+            --cluster ${{ env.ECS_CLUSTER }} \
+            --services ${{ env.ECS_SERVICE }}
+
+      - name: Summary
+        run: |
+          echo "### Deployment Summary :rocket:" >> $GITHUB_STEP_SUMMARY
+          echo "- **ECS Cluster**: ${{ env.ECS_CLUSTER }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Service**: ${{ env.ECS_SERVICE }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Image Tag**: ${{ needs.build.outputs.image_tag }}" >> $GITHUB_STEP_SUMMARY
+          echo "- **Task Definition ARN**: ${{ steps.register.outputs.task_definition_arn }}" >> $GITHUB_STEP_SUMMARY
+          echo "Deployment successful!" >> $GITHUB_STEP_SUMMARY

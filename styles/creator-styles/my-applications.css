@@ -1,0 +1,134 @@
+/* General container and header styles */
+.applications-container {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #333;
+}
+
+.applications-header {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+/* Styles for each application card */
+.application-card {
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease-in-out;
+}
+
+.application-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Card header with the status badge */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+  color: #000;
+}
+
+.card-title span {
+  font-weight: 400;
+  color: #888;
+  font-size: 0.9rem;
+  margin-left: 8px;
+}
+
+.card-status {
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  background-color: #f2f2f2;
+  color: #555;
+  border: 1px solid #e0e0e0;
+}
+
+/* Card body with application details */
+.card-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px 20px;
+}
+
+.detail-item {
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0;
+}
+
+.detail-item strong {
+  font-weight: 600;
+  color: #333;
+  display: block;
+  margin-bottom: 4px;
+}
+
+/* Specific item for review notes to span full width */
+.full-width {
+  grid-column: 1 / -1;
+}
+
+.no-applications {
+  text-align: center;
+  color: #888;
+  padding: 50px;
+  border: 2px dashed #e0e0e0;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .applications-container {
+    margin: 0 auto;
+    padding: 15px;
+  }
+
+  .applications-header {
+    font-size: 2rem;
+  }
+
+  /* Change the card body to a single column */
+  .card-body {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+/* Optional: Even smaller adjustments for small phones */
+@media (max-width: 480px) {
+  .applications-header {
+    font-size: 1.8rem;
+  }
+
+  .application-card {
+    padding: 16px;
+  }
+}

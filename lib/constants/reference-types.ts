@@ -1,0 +1,14 @@
+export enum ReferenceTypeValues {
+  REFERENCE_TYPE_UNSPECIFIED = 0,
+  ARTICLE = 1,
+  DOCUMENT = 2,
+  HEARING = 3,
+  LEGAL_CASE = 4,
+  LEGISLATION = 5,
+  RESEARCH_PAPER = 6,
+  THESIS = 7,
+  REGULATION = 8,
+  REPORT = 9,
+  BILL = 10,
+  BOOK = 11,
+}

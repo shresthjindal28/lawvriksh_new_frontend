@@ -1,0 +1,98 @@
+.discard-save-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+}
+
+.discard-save-modal {
+  background-color: var(--lv-bg-white);
+  border-radius: 12px;
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--lv-border-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.discard-save-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background-color: #fef2f2;
+  color: var(--lv-accent-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.discard-save-title {
+  font-family: var(--lv-font-logo);
+  font-size: 24px;
+  color: var(--lv-text-primary);
+  margin: 0 0 8px 0;
+  font-weight: 600;
+}
+
+.discard-save-message {
+  font-family: var(--lv-font-body);
+  color: var(--lv-text-secondary);
+  font-size: 15px;
+  line-height: 1.5;
+  margin: 0 0 24px 0;
+}
+
+.discard-save-actions {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+}
+
+.discard-save-btn {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+}
+
+.discard-save-btn-save {
+  background-color: var(--lv-bg-button-dark);
+  color: white;
+}
+
+.discard-save-btn-save:hover {
+  opacity: 0.9;
+}
+
+.discard-save-btn-discard {
+  background-color: white;
+  color: var(--lv-accent-red);
+  border: 1px solid var(--lv-border-primary);
+}
+
+.discard-save-btn-discard:hover {
+  background-color: #fef2f2;
+  border-color: #fca5a5;
+}
