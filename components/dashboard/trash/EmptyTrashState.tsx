@@ -3,7 +3,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { Trash2, Sparkles, CheckCircle2 } from 'lucide-react';
-import './EmptyTrashState.css';
 
 const EmptyTrashState = () => {
   const containerRef = useRef<HTMLDivElement>(null);

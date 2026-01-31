@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { ChevronsRight, X } from 'lucide-react';
-import '@/styles/common-styles/research-sidebar.css';
 import ResearchSidebarFooter from './ResearchSidebarFooter';
 import { SelectedContext } from '@/types/editor';
 

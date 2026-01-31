@@ -2,7 +2,6 @@
 
 import { useRouter } from 'next/navigation';
 import { useUsers } from '@/hooks/common/useUsers';
-import '@/styles/admin-styles/users-list.css';
 import Link from 'next/link';
 import UserModal from './UserModal';
 import { useState } from 'react';

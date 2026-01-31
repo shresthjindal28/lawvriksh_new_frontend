@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import { ChevronRight, FileText, Trash2 } from 'lucide-react';
-import '@/styles/reference-manager/referenceTable.css';
 import { useRef, useState, useEffect, useCallback } from 'react';
 import UnifiedUploadDialog from '../dialogs/UnifiedUploadDialog';
 import { ReferenceItem, Tag } from '@/types/reference-manager';

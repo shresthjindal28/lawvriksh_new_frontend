@@ -5,7 +5,6 @@ import { useAuth } from '@/lib/contexts/AuthContext';
 import { useSettings } from '@/lib/contexts/SettingsContext';
 import { useWorkspace } from '@/lib/contexts/WorkspaceContext';
 import ProjectCard from '@/components/dashboard/ProjectCard';
-import '@/styles/trash-bin/trash-bin.css';
 import { useEffect, memo, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { SkeletonLoader } from '@/components/ui/Loader';

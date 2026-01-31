@@ -2,7 +2,6 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ZoomOut, ZoomIn, ChevronDown, PanelRight } from 'lucide-react';
-import '@/styles/reference-manager/document-header.css';
 
 export const highlightColors = [
   { id: 'yellow', value: '#FEF3C7', label: 'Yellow' },

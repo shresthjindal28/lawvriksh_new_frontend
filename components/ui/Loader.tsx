@@ -2,9 +2,7 @@
 
 import type React from 'react';
 import { motion } from 'framer-motion';
-
-import '../../styles/common-styles/loader.css';
-import '@/styles/ui-styles/search-loader.css';
+import { cn } from '@/lib/utils';
 
 interface LoaderProps {
   message?: string;
@@ -12,9 +10,9 @@ interface LoaderProps {
 
 export default function Loader({ message }: LoaderProps) {
   return (
-    <div className="Loader-Container">
-      <div className="Loader"></div>
-      {message && <p className="Loader-Message">{message}</p>}
+    <div className="flex justify-center items-center h-screen gap-4">
+      <div className="border-4 border-gray-100 border-t-[--lv-accent-gold-light] rounded-full w-[50px] h-[50px] animate-spin" />
+      {message && <p className="mt-4 text-gray-900">{message}</p>}
     </div>
   );
 }
@@ -36,12 +34,11 @@ export function SkeletonLoader({
 }: SkeletonLoaderProps) {
   return (
     <motion.div
-      className={`skeleton-loader ${className}`}
+      className={cn('bg-gray-200', className)}
       style={{
         width,
         height,
         borderRadius,
-        backgroundColor: '#f0f0f0',
         ...style,
       }}
       animate={{
@@ -56,21 +53,48 @@ export function SkeletonLoader({
   );
 }
 
+// Bar animation delays for the search loader
+const barDelays = [
+  '0s',
+  '-1.1s',
+  '-1s',
+  '-0.9s',
+  '-0.8s',
+  '-0.7s',
+  '-0.6s',
+  '-0.5s',
+  '-0.4s',
+  '-0.3s',
+  '-0.2s',
+  '-0.1s',
+];
+
+const barRotations = [0, 30, 60, 90, 120, 150, 180, 210, 240, 270, 300, 330];
+
 export function SearchLoader() {
   return (
-    <div className="loader">
-      <div className="bar1"></div>
-      <div className="bar2"></div>
-      <div className="bar3"></div>
-      <div className="bar4"></div>
-      <div className="bar5"></div>
-      <div className="bar6"></div>
-      <div className="bar7"></div>
-      <div className="bar8"></div>
-      <div className="bar9"></div>
-      <div className="bar10"></div>
-      <div className="bar11"></div>
-      <div className="bar12"></div>
+    <div className="relative w-[54px] h-[54px] rounded-[10px]">
+      {barDelays.map((delay, index) => (
+        <div
+          key={index}
+          className="absolute left-1/2 top-[30%] w-[8%] h-[24%] bg-gray-500 rounded-[50px] opacity-0 shadow-[0_0_3px_rgba(0,0,0,0.2)]"
+          style={{
+            transform: `rotate(${barRotations[index]}deg) translate(0, -130%)`,
+            animation: 'fade458 1s linear infinite',
+            animationDelay: delay,
+          }}
+        />
+      ))}
+      <style jsx>{`
+        @keyframes fade458 {
+          from {
+            opacity: 1;
+          }
+          to {
+            opacity: 0.25;
+          }
+        }
+      `}</style>
     </div>
   );
 }

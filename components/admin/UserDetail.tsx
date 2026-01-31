@@ -2,8 +2,6 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import '@/styles/admin-styles/user-details.css';
-import '@/styles/admin-styles/modal.css';
 import { UserActionRequest, UserRole } from '@/types/admin';
 import { useUserDetails } from '@/hooks/common/useUserDetails';
 import VideoLoader from '../ui/VideoLoader';

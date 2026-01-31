@@ -2,7 +2,6 @@
 
 import { useState, useCallback } from 'react';
 import { Topbar } from '../layout/Topbar.client';
-import '@/styles/common-styles/library-documents.css';
 import { CircleMinus, Folder } from 'lucide-react';
 import { useLibraryDocuments } from '@/hooks/common/useLibraryDocuments';
 import { useToast } from '@/lib/contexts/ToastContext';

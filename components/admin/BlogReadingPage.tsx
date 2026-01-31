@@ -1,7 +1,6 @@
 'use client';
 
 import { useBlogs } from '@/hooks/common/useBlogs';
-import '@/styles/admin-styles/blog-reading-page.css';
 import VideoLoader from '../ui/VideoLoader';
 import { ArrowRight, Copy } from 'lucide-react';
 import { extractTableOfContents } from '@/lib/utils/editorHelper';

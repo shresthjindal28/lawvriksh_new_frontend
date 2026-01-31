@@ -5,7 +5,6 @@ import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useWindowVirtualizer } from '@tanstack/react-virtual';
-import '@/styles/common-styles/library.css';
 import { filterButtons, type FilterType } from '@/lib/constants/library';
 import ProjectCard from '@/components/dashboard/ProjectCard';
 import StudentDialog from '@/components/ui/StudentDialog';

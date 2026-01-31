@@ -1,6 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
 import { createRoot, Root } from 'react-dom/client';
-import '@/styles/ui-styles/grammer-card.css';
 
 export interface GrammarCardState {
   visible: boolean;

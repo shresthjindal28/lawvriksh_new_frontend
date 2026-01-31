@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import '@/styles/common-styles/account-settings.css';
 import Link from 'next/link';
 import { authService } from '@/lib/api/authService';
 import { useAuth } from '@/lib/contexts/AuthContext';

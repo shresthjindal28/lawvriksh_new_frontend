@@ -1,7 +1,6 @@
 'use client';
 
 import React, { Dispatch, SetStateAction, useState, useEffect } from 'react';
-import '@/styles/ui-styles/export-dialog.css';
 import { X, ChevronDown, ChevronUp, Download, Mail, ArrowLeft } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExportOptions } from '@/types/project';

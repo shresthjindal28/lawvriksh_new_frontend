@@ -1,5 +1,4 @@
 import { Book, BookOpen, Lock } from 'lucide-react';
-import '@/styles/dashboard-styles/student-project-card.css';
 import { DocumentType } from '@/types/project';
 import { Privacy } from '@/types/workspace';
 import { truncateText } from '@/lib/utils/helpers';

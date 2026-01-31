@@ -2,9 +2,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LoginForm from './LoginForm.client';
-import '../../styles/auth-styles/base.auth.css';
-import '../../styles/auth-styles/mobile.auth.css';
-import '../../styles/auth-styles/layout.auth.css';
 import { useRouter } from 'next/navigation';
 import { authService } from '@/lib/api/authService';
 import OTPForm from './OTPForm.client';

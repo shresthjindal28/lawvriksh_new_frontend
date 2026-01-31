@@ -22,7 +22,7 @@ import { useDashboardAnalytics } from '@/hooks/common/useDashboardAnalytics';
 // ✅ Phase 3: useReferenceContext removed - no longer needed for dashboard stats
 import { WorkspaceProject } from '@/types/workspace';
 import { useAuth } from '@/lib/contexts/AuthContext';
-import '@/styles/dashboard-styles/dashboard-home.css';
+// Dashboard styles now in globals.css @layer components
 import { useToast } from '@/lib/contexts/ToastContext';
 import LoadingModal from '@/components/ui/LoadingModal';
 import { ProjectCreationOptions } from '@/lib/config/projectConfig';

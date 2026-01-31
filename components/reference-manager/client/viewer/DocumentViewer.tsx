@@ -13,8 +13,7 @@ import {
 import Image from 'next/image';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
-import type { PDFDocumentProxy, PDFDocumentLoadingTask } from 'pdfjs-dist';
-import type * as PDFJS from 'pdfjs-dist';
+import type { PDFDocumentProxy } from 'pdfjs-dist';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 import { Annotation } from '@/types/reference-manager';
@@ -24,18 +23,16 @@ import { Skeleton } from '@/components/ui/skeleton';
 
 // Dynamically import react-pdf to avoid SSR issues with pdfjs-dist
 const PdfDocument = dynamic(
-  () => import('react-pdf').then((mod) => {
-    // Set worker source after module loads
-    mod.pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${mod.pdfjs.version}/build/pdf.worker.min.mjs`;
-    return mod.Document;
-  }),
+  () =>
+    import('react-pdf').then((mod) => {
+      // Set worker source after module loads
+      mod.pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${mod.pdfjs.version}/build/pdf.worker.min.mjs`;
+      return mod.Document;
+    }),
   { ssr: false }
 );
 
-const PdfPage = dynamic(
-  () => import('react-pdf').then((mod) => mod.Page),
-  { ssr: false }
-);
+const PdfPage = dynamic(() => import('react-pdf').then((mod) => mod.Page), { ssr: false });
 
 interface DocumentViewerProps {
   highlightColor?: string | null;
@@ -571,39 +568,20 @@ export function DocumentViewer({
 
   // Load PDF document proxy
   useEffect(() => {
-    if (!documentUrl) return;
-
-    let loadingTask: PDFDocumentLoadingTask | null = null;
-    let isCancelled = false;
-
-    const loadPdf = async () => {
-      try {
-        // Dynamically import pdfjs-dist to avoid SSR issues
-        const pdfjs = await import('react-pdf').then((mod) => mod.pdfjs);
-        
-        if (isCancelled) return;
-        
-        loadingTask = pdfjs.getDocument(documentUrl);
-        const pdf = await loadingTask.promise;
-        
-        if (!isCancelled) {
-          setPdfDocument(pdf);
-        }
-      } catch (err) {
-        if (!isCancelled) {
-          console.error('Error loading PDF:', err);
-        }
-      }
-    };
-
-    loadPdf();
-
-    return () => {
-      isCancelled = true;
-      if (loadingTask) {
-        loadingTask.destroy();
-      }
-    };
+    if (documentUrl) {
+      // Dynamically import pdfjs to avoid SSR issues
+      import('react-pdf').then((mod) => {
+        mod.pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${mod.pdfjs.version}/build/pdf.worker.min.mjs`;
+        const loadingTask = mod.pdfjs.getDocument(documentUrl);
+        loadingTask.promise
+          .then((pdf) => {
+            setPdfDocument(pdf);
+          })
+          .catch((err) => {
+            console.error('Error loading PDF:', err);
+          });
+      });
+    }
   }, [documentUrl]);
 
   // Update pdfPageSize when document is loaded

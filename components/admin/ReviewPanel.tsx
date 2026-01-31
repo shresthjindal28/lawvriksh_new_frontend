@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import '@/styles/admin-styles/review-panel.css';
 import {
   ApplicationStatus,
   CreatorApplication,

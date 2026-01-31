@@ -1,6 +1,5 @@
 'use client';
 
-import '@/styles/common-styles/settings-page.css';
 import { useCallback, useMemo } from 'react';
 import { LayoutDashboard, Settings2, Bot, Bell, RotateCcw } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';

@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { DocumentHeader } from '../content/DocumentHeader';
 import { DocumentViewer } from './DocumentViewer';
 import InfoPanel from '../layout/InfoPanel';
-import '@/styles/reference-manager/document-viewer.css';
 import UnifiedUploadDialog from '../dialogs/UnifiedUploadDialog';
 import { useAuth } from '@/lib/contexts/AuthContext';
 import { useToast } from '@/lib/contexts/ToastContext';

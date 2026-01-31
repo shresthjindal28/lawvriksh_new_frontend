@@ -4,7 +4,6 @@ import { FolderX, Plus, Search, X } from 'lucide-react';
 import { memo, useMemo, useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import '@/styles/common-styles/library.css';
 import { filterButtons, FilterType } from '@/lib/constants/library';
 import ProjectCard from '../dashboard/ProjectCard';
 import StudentDialog from '../ui/StudentDialog';

@@ -24,7 +24,6 @@ import { SmartSuggestionExtension } from '../extensions/SmartSuggestionExtension
 import { CitationFormatter } from '@/lib/services/citationFormatter';
 import { Sparkles, Quote } from 'lucide-react';
 import { PAGE_FORMATS, Pages } from '@tiptap-pro/extension-pages';
-import '@/styles/writing-page/tiptap-editor.css';
 
 /**
  * SlashCommandExtension - Detects '/' typed at start of empty line and triggers callback

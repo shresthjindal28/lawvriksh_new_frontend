@@ -1,5 +1,4 @@
 import React from 'react';
-import '@/styles/ui-styles/waitlist-dialog.css';
 import Link from 'next/link';
 import Image from 'next/image';
 

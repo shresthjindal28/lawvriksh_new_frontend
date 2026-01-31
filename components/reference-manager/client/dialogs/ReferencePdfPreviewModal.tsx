@@ -3,23 +3,19 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
 import { Skeleton } from '@/components/ui/skeleton';
-import 'react-pdf/dist/Page/AnnotationLayer.css';
-import 'react-pdf/dist/Page/TextLayer.css';
 
 // Dynamically import react-pdf to avoid SSR issues with pdfjs-dist
 const PdfDocument = dynamic(
-  () => import('react-pdf').then((mod) => {
-    // Set worker source after module loads
-    mod.pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${mod.pdfjs.version}/build/pdf.worker.min.mjs`;
-    return mod.Document;
-  }),
+  () =>
+    import('react-pdf').then((mod) => {
+      // Set worker source after module loads
+      mod.pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${mod.pdfjs.version}/build/pdf.worker.min.mjs`;
+      return mod.Document;
+    }),
   { ssr: false }
 );
 
-const PdfPage = dynamic(
-  () => import('react-pdf').then((mod) => mod.Page),
-  { ssr: false }
-);
+const PdfPage = dynamic(() => import('react-pdf').then((mod) => mod.Page), { ssr: false });
 
 function PdfPreview({ url }: { url: string }) {
   const containerRef = useRef<HTMLDivElement | null>(null);

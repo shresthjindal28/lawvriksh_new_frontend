@@ -1,12 +1,6 @@
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import '../../styles/auth-styles/base.auth.css';
-import '../../styles/auth-styles/mobile.auth.css';
-import '../../styles/auth-styles/layout.auth.css';
-import '../../styles/auth-styles/setup-group.auth.css';
-import '../../styles/auth-styles/auth-group.auth.css';
-import '../../styles/auth-styles/group-specific.auth.css';
 import { useRouter } from 'next/navigation';
 import ProgressBar from '../ui/ProgressBar';
 import { containerVariants, formVariants, itemVariants } from '@/lib/constants/animation-variants';

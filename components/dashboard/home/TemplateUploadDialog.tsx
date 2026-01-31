@@ -5,7 +5,25 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Upload, FileText, CheckCircle, AlertCircle } from 'lucide-react';
 import { draftingTemplateService } from '@/lib/api/draftingTemplateService';
 import { FetchClient } from '@/lib/api/fetchClient';
-import styles from './DocumentDraftingModal.module.css'; // Reusing some styles
+
+// Tailwind class mappings (converted from CSS Module)
+const styles = {
+  overlay: 'fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm',
+  modal: 'bg-white rounded-2xl w-full max-w-md max-h-[90vh] overflow-y-auto shadow-2xl',
+  header: 'flex items-center justify-between p-4 border-b border-gray-100',
+  headerLeft: 'flex items-center gap-3',
+  iconContainer: 'w-8 h-8 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600',
+  title: 'text-lg font-semibold text-gray-900',
+  closeButton:
+    'p-2 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-700 transition-colors',
+  subtitle: 'px-4 py-3 text-sm text-gray-600',
+  footer: 'flex items-center justify-end gap-3 p-4 border-t border-gray-100',
+  secondaryButton:
+    'px-4 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors',
+  primaryButton: 'px-4 py-2 text-sm font-medium rounded-lg transition-colors',
+  primaryButtonEnabled: 'bg-gray-900 text-white hover:bg-gray-800',
+  primaryButtonDisabled: 'bg-gray-300 text-gray-500 cursor-not-allowed',
+};
 
 interface TemplateUploadDialogProps {
   isOpen: boolean;

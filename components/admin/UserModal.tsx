@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import '@/styles/admin-styles/user-modal.css';
 import { UserRole } from '@/types/admin';
 
 export interface UserData {

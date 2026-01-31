@@ -14,16 +14,15 @@ import {
   RefreshCw,
   Menu,
 } from 'lucide-react';
-import '@/styles/common-styles/top-bar.css';
 import { Dispatch, SetStateAction, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ProgressBadge from '../ui/ProgressBadge';
 import { useRouter } from 'next/navigation';
 import { useToast } from '@/lib/contexts/ToastContext';
-// import { ExportDialog } from '../student/ExportDialog.tsx';
 import DropdownPortal from '../ui/dropdown-portal';
 import { DocumentType, ExportOptions } from '@/types/project';
 import Image from 'next/image';
 import { useMobileSidebar } from '@/lib/contexts/MobileSidebarContext';
+import { cn } from '@/lib/utils';
 
 type TopbarMode = 'default' | 'search';
 
@@ -62,7 +61,12 @@ function HamburgerButton() {
   const { toggle } = useMobileSidebar();
 
   return (
-    <button className="topbar-hamburger" onClick={toggle} aria-label="Toggle menu" type="button">
+    <button
+      className="hidden max-lg:flex items-center justify-center bg-transparent border border-gray-300/70 rounded-lg p-2 cursor-pointer text-gray-700 transition-all duration-200 shrink-0 mr-2 hover:bg-gray-100/95"
+      onClick={toggle}
+      aria-label="Toggle menu"
+      type="button"
+    >
       <Menu size={20} />
     </button>
   );
@@ -82,11 +86,6 @@ export function Topbar({
   showPrimaryButton = true,
   toolbar,
   onMenuAction,
-  // isExportOpen, - Removed
-  // setIsExportOpen, - Removed
-  // templateType, - Removed
-  // isExporting, - Removed
-  // handleExport, - Removed
   updateProjectData,
   onGetLatestData,
   searchPlaceholder = 'Search...',
@@ -229,84 +228,98 @@ export function Topbar({
   }
 
   return (
-    <header className="page-header-default">
-      <div className="header-content header-content-default topbar-default-layout">
-        <div className="topbar-left">
+    <header className="relative top-auto px-7 pt-4 pb-3 backdrop-blur-none bg-[--lv-bg-primary] border-b border-[--lv-border-primary]">
+      <div className="w-full grid grid-cols-[1fr_minmax(400px,4fr)_1fr] items-center gap-4 relative max-lg:flex max-lg:justify-between max-lg:gap-2">
+        <div className="flex items-center gap-[0.9rem] min-w-0 justify-self-start">
           <HamburgerButton />
-          <div className="topbar-brand">
-            <h1 className="topbar-logo">{logoText}</h1>
-            <span className="topbar-separator" aria-hidden="true" />
+          <div className="flex items-center gap-3">
+            <h1 className="font-[--lv-font-logo] text-[1.7rem] font-normal not-italic tracking-tight text-[--lv-text-secondary] m-0 border-b-2 border-[--lv-accent-gold-light] whitespace-nowrap leading-[1.17] max-lg:hidden">
+              {logoText}
+            </h1>
+            <span
+              className="w-0.5 h-8 bg-gray-300/90 rounded-full max-lg:hidden"
+              aria-hidden="true"
+            />
           </div>
         </div>
 
         {/* Center Content (Search Bar) */}
-        {centerContent && <div className="topbar-center">{centerContent}</div>}
+        {centerContent && (
+          <div className="w-full flex justify-center px-8 max-lg:flex-1 max-lg:w-auto max-lg:mx-2 max-lg:min-w-0 max-lg:px-0 max-sm:hidden">
+            {centerContent}
+          </div>
+        )}
 
-        {/* {toolbar && <div className="topbar-toolbar-slot">{toolbar}</div>} */}
-        <div className="topbar-right">
+        <div className="inline-flex items-center gap-[0.65rem] justify-self-end justify-end">
           {lastSavedTime && (
-            <div
-              className="topbar-save-status"
-              style={{
-                marginRight: '1rem',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-end',
-              }}
-            >
-              <span
-                className="topbar-auto-save-indicator"
-                style={{ fontSize: '0.7rem', color: '#6B7280' }}
-              >
+            <div className="mr-4 flex flex-col items-end">
+              <span className="text-[0.7rem] text-gray-500">
                 {autoSaveEnabled ? 'Auto-saved' : 'Saved'}
               </span>
-              <span className="topbar-save-time">
+              <span className="text-[0.7rem] text-gray-500 font-normal">
                 {lastSavedTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
               </span>
             </div>
           )}
           <button
-            className="topbar-trash-btn"
+            className="border-none bg-transparent p-[0.4rem] text-red-700 inline-flex items-center justify-center rounded-md transition-colors duration-200 hover:bg-red-500/10"
             onClick={handleTrashClick}
             aria-label="Delete"
             type="button"
           >
-            <Trash2 className="topbar-icon" />
+            <Trash2 className="w-[1.15rem] h-[1.15rem]" />
           </button>
 
           {/* AutoSave Toggle */}
           {onToggleAutoSave && (
             <button
-              className={`topbar-autosave-toggle ${autoSaveEnabled ? 'enabled' : 'disabled'}`}
+              className={cn(
+                'inline-flex items-center gap-1.5 py-1.5 px-3 rounded-[20px] border cursor-pointer text-xs font-medium whitespace-nowrap transition-all duration-200',
+                autoSaveEnabled
+                  ? 'bg-gradient-to-b from-emerald-50 to-emerald-100 border-green-500/40 text-green-700 hover:from-emerald-100 hover:to-emerald-200 hover:border-green-500/60'
+                  : 'bg-gradient-to-b from-gray-50 to-gray-100 border-gray-300/80 text-gray-500 hover:from-gray-100 hover:to-gray-200 hover:border-gray-400'
+              )}
               onClick={onToggleAutoSave}
               aria-label={autoSaveEnabled ? 'Disable auto-save' : 'Enable auto-save'}
               title={autoSaveEnabled ? 'Auto-save is ON' : 'Auto-save is OFF'}
               type="button"
             >
-              <RefreshCw size={14} className={autoSaveEnabled ? 'spinning' : ''} />
-              <span className="autosave-label">Auto Save</span>
-              <span className={`autosave-indicator ${autoSaveEnabled ? 'on' : 'off'}`} />
+              <RefreshCw size={14} />
+              <span className="text-xs max-sm:hidden">Auto Save</span>
+              <span
+                className={cn(
+                  'w-2 h-2 rounded-full transition-colors duration-200',
+                  autoSaveEnabled
+                    ? 'bg-green-500 shadow-[0_0_6px_rgba(34,197,94,0.5)]'
+                    : 'bg-gray-300'
+                )}
+              />
             </button>
           )}
 
-          <div className="topbar-save-wrapper" style={{ display: 'none' }}>
+          <div className="hidden flex-col items-start gap-1">
             <button
-              className="topbar-save-btn"
+              className="inline-flex items-center gap-[0.4rem] py-2 px-4 rounded-lg border border-green-500/30 bg-green-500/10 text-green-700 text-sm font-medium cursor-pointer transition-all duration-200 whitespace-nowrap hover:bg-green-500/20 hover:border-green-500/50 disabled:opacity-60 disabled:cursor-not-allowed"
               onClick={() => handleMenuAction('update-project-data')}
               aria-label="Save"
               type="button"
               disabled={isSaving}
               style={{ backgroundColor: '#E8E8E8', color: '#3D3D3D' }}
             >
-              <Save className="topbar-icon" />
+              <Save className="w-[1.15rem] h-[1.15rem]" />
               {isSaving ? 'Saving...' : 'Save'}
             </button>
           </div>
 
           {/* Export Dropdown */}
-          <div className="topbar-menu topbar-export-wrapper" style={{ position: 'relative' }}>
+          <div className="topbar-export-wrapper relative">
             <button
-              className={`topbar-menu-btn ${isExportDropdownOpen ? 'active' : ''}`}
+              className={cn(
+                'inline-flex items-center justify-center gap-2.5 py-2 px-4 rounded-lg border border-gray-300/85 bg-transparent cursor-pointer shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] transition-all duration-200',
+                isExportDropdownOpen &&
+                  'bg-gray-100/95 shadow-[inset_0_0_0_1px_rgba(148,163,184,0.25)]',
+                'hover:bg-gray-100/95 hover:shadow-[inset_0_0_0_1px_rgba(148,163,184,0.25)]'
+              )}
               onClick={(e) => {
                 const rect = e.currentTarget.getBoundingClientRect();
                 setExportButtonPos({ top: rect.bottom, left: rect.right - 140 }); // Align right edge
@@ -343,22 +356,10 @@ export function Topbar({
                   <button
                     onClick={() => handleExportAction('pdf')}
                     type="button"
-                    style={{
-                      width: '100%',
-                      textAlign: 'left',
-                      padding: '8px 12px',
-                      fontSize: '14px',
-                      border: 'none',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      backgroundColor:
-                        hoveredExportItem === 'pdf'
-                          ? 'var(--lv-bg-toolbar, #F2EFE9)'
-                          : 'transparent',
-                      color: 'var(--lv-text-primary, #133435)',
-                    }}
+                    className={cn(
+                      'w-full text-left py-2 px-3 text-sm border-none cursor-pointer flex items-center gap-2 text-[--lv-text-primary]',
+                      hoveredExportItem === 'pdf' ? 'bg-[--lv-bg-toolbar]' : 'bg-transparent'
+                    )}
                     onMouseEnter={() => setHoveredExportItem('pdf')}
                     onMouseLeave={() => setHoveredExportItem(null)}
                   >
@@ -367,22 +368,10 @@ export function Topbar({
                   <button
                     onClick={() => handleExportAction('docx')}
                     type="button"
-                    style={{
-                      width: '100%',
-                      textAlign: 'left',
-                      padding: '8px 12px',
-                      fontSize: '14px',
-                      border: 'none',
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      backgroundColor:
-                        hoveredExportItem === 'docx'
-                          ? 'var(--lv-bg-toolbar, #F2EFE9)'
-                          : 'transparent',
-                      color: 'var(--lv-text-primary, #133435)',
-                    }}
+                    className={cn(
+                      'w-full text-left py-2 px-3 text-sm border-none cursor-pointer flex items-center gap-2 text-[--lv-text-primary]',
+                      hoveredExportItem === 'docx' ? 'bg-[--lv-bg-toolbar]' : 'bg-transparent'
+                    )}
                     onMouseEnter={() => setHoveredExportItem('docx')}
                     onMouseLeave={() => setHoveredExportItem(null)}
                   >
@@ -394,8 +383,12 @@ export function Topbar({
           </div>
 
           {showPrimaryButton && (
-            <button className="topbar-primary-btn" onClick={onButtonClick} type="button">
-              <span className="topbar-primary-btn-text">{buttonText}</span>
+            <button
+              className="py-[0.55rem] px-6 rounded-md border border-gray-900 bg-white text-gray-900 text-[0.9rem] font-medium tracking-wide cursor-pointer transition-all duration-200 hover:bg-gray-900 hover:text-white max-md:py-2 max-md:px-4 max-md:text-[0.8125rem] max-sm:py-[0.45rem] max-sm:px-2.5 max-sm:text-xs"
+              onClick={onButtonClick}
+              type="button"
+            >
+              <span className="whitespace-nowrap">{buttonText}</span>
             </button>
           )}
         </div>

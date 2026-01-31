@@ -1,7 +1,6 @@
 'use client';
 
 import type React from 'react';
-import '@/styles/ui-styles/copilot-card.css';
 import { CircleCheck, X } from 'lucide-react';
 import { ArgumentLogic, Compliance, FactChecker } from '@/types/copilot';
 

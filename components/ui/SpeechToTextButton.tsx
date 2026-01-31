@@ -3,7 +3,18 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Mic, MicOff } from 'lucide-react';
 import { useToast } from '@/lib/contexts/ToastContext';
-import styles from './SpeechToTextButton.module.css';
+
+// Tailwind class mappings (converted from CSS Module)
+const styles = {
+  button:
+    'inline-flex items-center justify-center transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed',
+  icon: 'p-2 rounded-lg hover:bg-gray-100',
+  dock: 'px-4 py-2 rounded-full border border-gray-200 bg-white hover:bg-gray-50',
+  listening: 'text-red-500 bg-red-50 border-red-200',
+  idle: 'text-gray-600',
+  contentWrapper: 'flex items-center gap-2',
+  labelText: 'text-sm font-medium',
+};
 
 interface SpeechToTextButtonProps {
   onTranscript: (text: string, isFinal: boolean) => void;

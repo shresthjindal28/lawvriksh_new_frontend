@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import '../../styles/auth-styles/usersetup.auth.css';
 
 interface UserSetupFormProps {
   name: string;

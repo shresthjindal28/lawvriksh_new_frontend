@@ -2,7 +2,6 @@
 
 import { motion, AnimatePresence } from 'framer-motion';
 import { FileText } from 'lucide-react';
-import '@/styles/reference-manager/create-reference-dialog.css';
 import { referenceDialogOptions } from '@/lib/config/referenceConfig';
 import Image from 'next/image';
 import { JSX, useState, useEffect } from 'react';

@@ -1,5 +1,4 @@
 import type React from 'react';
-import '@/styles/ui-styles/explore-more-button.css';
 import { Compass } from 'lucide-react';
 
 export type ExploreMoreButtonProps = {
@@ -12,10 +11,12 @@ export function ExploreMoreButton({
   onClickHandler,
 }: ExploreMoreButtonProps) {
   return (
-    <div onClick={onClickHandler} className="explore-more-button">
+    <div
+      onClick={onClickHandler}
+      className="inline-flex items-center gap-2 bg-black text-white rounded-full py-1.5 pl-1.5 pr-2.5 leading-none font-sans border border-black/5 cursor-pointer max-md:w-fit"
+    >
       <Compass size={33} color="white" strokeWidth={1.4} />
-
-      <span className="progress-badge__label">{label}</span>
+      <span className="text-sm font-normal whitespace-nowrap max-md:hidden">{label}</span>
     </div>
   );
 }

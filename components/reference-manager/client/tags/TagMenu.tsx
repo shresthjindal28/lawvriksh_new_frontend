@@ -5,7 +5,6 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Edit2, Trash2 } from 'lucide-react';
-import '@/styles/reference-manager/tagMenu.css';
 import { Tag } from '@/types/reference-manager';
 
 export default function TagMenu({

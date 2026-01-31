@@ -1,5 +1,4 @@
 import React from 'react';
-import '../../styles/admin-styles/admin-panel.css';
 
 interface Stat {
   label: string;

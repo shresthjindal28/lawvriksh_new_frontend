@@ -45,9 +45,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useSettings } from '@/lib/contexts/SettingsContext';
 import UnsavedChangesModal from '@/components/ui/UnsavedChangesModal';
 import Loader from '@/components/ui/Loader';
-import '@/styles/writing-page/editor-base.css';
-import '@/styles/writing-page/tiptap-editor.css';
-import '@/styles/writing-page/ai-drafting-page.css';
 import DeleteProjectDialog from '@/components/common/DeleteProjectDialog';
 import { useDeleteModalStore } from '@/store/zustand/useDeleteModalStore';
 
@@ -74,8 +71,7 @@ const EditorSkeleton = () => (
 
 // Dynamically import TiptapEditor to avoid SSR issues with ProseMirror
 const TiptapEditor = dynamic(
-  () =>
-    import('@/components/editor/components/TiptapEditor').then((mod) => mod.TiptapEditor),
+  () => import('@/components/editor/components/TiptapEditor').then((mod) => mod.TiptapEditor),
   {
     ssr: false,
     loading: () => <EditorSkeleton />,

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import '@/styles/reference-manager/add-tag-menu.css';
 import { darken } from '@/lib/utils/helpers';
 import { Tag } from '@/types/reference-manager';
 

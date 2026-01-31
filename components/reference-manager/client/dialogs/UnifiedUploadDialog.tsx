@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import '@/styles/reference-manager/unified-dialog.css';
 import { FileUp } from 'lucide-react';
 import { primeNotificationSound } from '@/lib/utils/notificationSound';
 import { useSettings } from '@/lib/contexts/SettingsContext';

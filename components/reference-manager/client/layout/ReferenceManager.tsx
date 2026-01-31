@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import '@/styles/reference-manager/reference.base.css';
 
 // Components
 import CreateReferenceDialog from '../dialogs/CreateReferenceDialog';

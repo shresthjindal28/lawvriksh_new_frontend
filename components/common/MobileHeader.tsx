@@ -2,8 +2,6 @@
 
 import { Menu } from 'lucide-react';
 import { useMobileSidebar } from '@/lib/contexts/MobileSidebarContext';
-import '@/styles/common-styles/mobile-header.css';
-import '@/styles/common-styles/top-bar.css'; // Import top-bar styles for logo
 import { useScrollDirection } from '@/hooks/common/useScrollDirection';
 
 export function MobileHeader() {

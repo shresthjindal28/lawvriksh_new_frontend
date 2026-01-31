@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { X, Folder, ChevronRight, ArrowLeft, ChevronDown } from 'lucide-react';
-import '@/styles/reference-manager/timeline-sidebar.css';
 import { Collection, Folder as FolderType } from '@/lib/contexts/ReferenceManagerContext';
 import { ReferenceItem } from '@/types/reference-manager';
 import { referenceManagerService } from '@/lib/api/referenceManagerService';

@@ -27,8 +27,6 @@ import { RootBlockExtension } from '../extensions/RootBlockExtension';
 import BlockKeymap from '../extensions/BlockKeymap';
 import { CitationFormatter } from '@/lib/services/citationFormatter';
 import { Sparkles, Quote } from 'lucide-react';
-import '@/styles/writing-page/tiptap-editor.css';
-import '@/styles/writing-page/block-editor.css';
 
 /**
  * SlashCommandExtension - Detects '/' typed at start of empty line

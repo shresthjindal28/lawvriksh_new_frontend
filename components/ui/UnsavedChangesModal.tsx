@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { AlertTriangle, Save } from 'lucide-react';
-import '@/styles/common-styles/top-bar.css';
 
 interface UnsavedChangesModalProps {
   isOpen: boolean;

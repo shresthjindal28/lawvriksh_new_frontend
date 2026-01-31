@@ -5,7 +5,6 @@ import { Plus, FileText, Search, Filter, ChevronDown } from 'lucide-react';
 import { AnalysisDocument, DocumentType } from '@/types/analysisDocument';
 import AnalysisDocumentCard from './AnalysisDocumentCard';
 import VideoLoader from './VideoLoader';
-import '@/styles/writing-page/analysis-document-list.css';
 
 interface AnalysisDocumentListProps {
   documents: AnalysisDocument[];

@@ -19,7 +19,6 @@ import { Collection, Folder as FolderType } from '@/store/zustand/useReferenceSt
 import { Tag } from '@/types/reference-manager';
 import CreateFolderMenu from '../sidebar/CreateFolderMenu';
 import TagMenu from '../tags/TagMenu';
-import '@/styles/reference-manager/tagMenu.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ReferenceItem } from '@/types/reference-manager';
 import { darken } from '@/lib/utils/helpers';

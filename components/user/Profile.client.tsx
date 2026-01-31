@@ -2,7 +2,6 @@
 
 import { useState, useCallback, useMemo, useRef, useEffect } from 'react';
 import Image from 'next/image';
-import '../../styles/user-styles/profile-new.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useAuth } from '@/lib/contexts/AuthContext';
 import { UpdateProfileRequest, UserProfile } from '@/types';

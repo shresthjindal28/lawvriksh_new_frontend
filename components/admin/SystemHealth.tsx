@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { adminService } from '@/lib/api/adminService';
-import '@/styles/admin-styles/system-health.css';
 import { SystemCleanupResponse, SystemHealth } from '@/types/admin';
 import Link from 'next/link';
 import VideoLoader from '../ui/VideoLoader';

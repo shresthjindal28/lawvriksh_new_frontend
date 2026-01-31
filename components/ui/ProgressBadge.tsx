@@ -1,5 +1,5 @@
 import type React from 'react';
-import '@/styles/ui-styles/progress-badge.css';
+import { cn } from '@/lib/utils';
 
 export type ProgressBadgeProps = {
   value: number;
@@ -36,12 +36,25 @@ export function ProgressBadge({
   return (
     <div
       onClick={onClickHandler}
-      className={['progress-badge', className].filter(Boolean).join(' ')}
-      style={style}
+      className={cn(
+        'inline-flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-2.5 leading-none font-sans border border-black/5 cursor-pointer',
+        'bg-[#fff4d1] text-[#9a7a2a]',
+        'hover:brightness-[0.99]',
+        className
+      )}
+      style={
+        {
+          '--pb-bg': '#fff4d1',
+          '--pb-text': '#9a7a2a',
+          '--pb-ring': '#d9b44a',
+          '--pb-track': '#f3e5b3',
+          ...style,
+        } as React.CSSProperties
+      }
     >
-      <div className="progress-badge__circle" style={{ width: ringSize, height: ringSize }}>
+      <div className="relative shrink-0" style={{ width: ringSize, height: ringSize }}>
         <svg
-          className="progress-badge__svg"
+          className="block"
           width={ringSize}
           height={ringSize}
           viewBox={`0 0 ${ringSize} ${ringSize}`}
@@ -53,7 +66,7 @@ export function ProgressBadge({
         >
           {/* Track */}
           <circle
-            className="progress-badge__track"
+            className="stroke-[#f3e5b3]"
             cx={ringSize / 2}
             cy={ringSize / 2}
             r={radius}
@@ -62,7 +75,7 @@ export function ProgressBadge({
           />
           {/* Progress */}
           <circle
-            className="progress-badge__progress"
+            className="stroke-[#d9b44a]"
             cx={ringSize / 2}
             cy={ringSize / 2}
             r={radius}
@@ -74,10 +87,12 @@ export function ProgressBadge({
             transform={`rotate(-90 ${ringSize / 2} ${ringSize / 2})`}
           />
         </svg>
-        <span className="progress-badge__percent">{`${Math.round(clamped)}%`}</span>
+        <span className="absolute inset-0 grid place-items-center text-[11px] font-light text-[#9a7a2a] select-none">
+          {`${Math.round(clamped)}%`}
+        </span>
       </div>
 
-      <span className="progress-badge__label">{label}</span>
+      <span className="text-sm font-normal whitespace-nowrap max-md:hidden">{label}</span>
     </div>
   );
 }

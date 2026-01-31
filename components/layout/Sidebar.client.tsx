@@ -19,13 +19,13 @@ import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { UserProfile } from '../../types';
 import { NavigationItem } from '@/lib/config/sidebarConfig';
-import '@/styles/dashboard-styles/sidebar.css';
 import StudentDialog from '@/components/ui/StudentDialog';
 import { dmsImageService } from '@/lib/api/imageService';
 import { authService } from '@/lib/api/authService';
 import { ProjectCategory } from '@/types/project';
 import { useSidebarUIStore } from '@/store/zustand/useSidebarUIStore';
 import { useCreateProject } from '@/lib/api/queries/workspace/useCreateProject';
+import { cn } from '@/lib/utils';
 
 interface SidebarProps {
   user: UserProfile;
@@ -299,7 +299,13 @@ export default function Sidebar({
       <Link
         key={item.id}
         href={item.path}
-        className={`sidebar__nav-item ${isActive ? 'sidebar__nav-item--active' : ''} ${effectiveCollapsed ? 'sidebar__nav-item--collapsed' : ''}`}
+        className={cn(
+          'w-full h-12 px-4 rounded-xl bg-transparent border-none cursor-pointer flex items-center text-left relative font-medium',
+          'text-[--dashboard-text-secondary] hover:text-[--dashboard-text-primary] hover:bg-[--color-surface-hover]',
+          'transition-colors duration-150',
+          isActive && 'text-[--color-primary-700] bg-[--color-primary-50] font-semibold',
+          effectiveCollapsed ? 'justify-center px-0' : 'justify-start'
+        )}
         title={effectiveCollapsed ? item.label : undefined}
         onClick={handleNavClick(item.path)}
       >
@@ -310,17 +316,14 @@ export default function Sidebar({
         >
           {effectiveCollapsed ? (
             <div className="flex justify-center w-full">
-              <IconComponent
-                className="sidebar__nav-icon sidebar__nav-icon--collapsed"
-                strokeWidth={2}
-              />
+              <IconComponent className="w-6 h-6 shrink-0 opacity-100" strokeWidth={2} />
             </div>
           ) : (
-            <div className="sidebar__nav-content">
-              <div className="sidebar__nav-label">
-                <IconComponent className="sidebar__nav-icon" strokeWidth={2} />
+            <div className="flex items-center justify-between w-full h-full">
+              <div className="flex items-center gap-2 flex-1">
+                <IconComponent className="w-5 h-5 shrink-0 opacity-100" strokeWidth={2} />
                 <motion.span
-                  className="sidebar__nav-text"
+                  className="font-inherit text-[0.95rem] leading-6 whitespace-nowrap overflow-hidden text-ellipsis tracking-tight"
                   initial="hidden"
                   animate="visible"
                   variants={textVariants}
@@ -333,8 +336,7 @@ export default function Sidebar({
           {isActive && !effectiveCollapsed && (
             <motion.div
               layoutId="activeIndicator"
-              className="absolute left-[-16px] top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full"
-              style={{ backgroundColor: 'var(--sidebar-active-text)' }}
+              className="absolute left-[-16px] top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-[--color-primary-700]"
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             />
           )}
@@ -345,28 +347,40 @@ export default function Sidebar({
 
   return (
     <motion.aside
-      className={`sidebar ${effectiveCollapsed ? 'sidebar--collapsed' : 'sidebar--expanded'} ${isMobileOpen ? 'sidebar--mobile-open' : ''}`}
+      className={cn(
+        'h-screen flex flex-col fixed top-0 z-auto',
+        'border-r border-[--dashboard-border-light] shadow-[4px_0_24px_rgba(0,0,0,0.02)]',
+        'bg-[--color-surface]',
+        effectiveCollapsed ? 'w-20 p-0 z-50' : 'w-[280px] z-50',
+        isMobileOpen && 'z-50'
+      )}
       animate={effectiveCollapsed ? 'collapsed' : 'expanded'}
       variants={sidebarVariants}
     >
-      <header className="sidebar__header">
+      <header className="p-4 pt-6 mb-2">
         <div
-          className={
-            effectiveCollapsed ? 'sidebar__header-content-collapsed' : 'sidebar__header-content'
-          }
+          className={cn(
+            'flex items-center p-0',
+            effectiveCollapsed ? 'justify-center' : 'justify-start'
+          )}
         >
-          <div className="sidebar__toggle-container">
+          <div
+            className={cn(
+              'flex items-center w-full',
+              effectiveCollapsed ? 'justify-center' : 'justify-start'
+            )}
+          >
             <motion.button
-              className="sidebar__toggle-btn"
+              className="p-2 bg-transparent border-none cursor-pointer flex items-center justify-center opacity-80 rounded-lg hover:opacity-100 hover:bg-[--color-surface-hover]"
               type="button"
               onClick={handleToggleCollapse}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
               {effectiveCollapsed ? (
-                <PanelLeftOpen className="sidebar__toggle-icon" />
+                <PanelLeftOpen className="w-6 h-6 text-[--dashboard-text-secondary]" />
               ) : (
-                <PanelLeftClose className="sidebar__toggle-icon" />
+                <PanelLeftClose className="w-6 h-6 text-[--dashboard-text-secondary]" />
               )}
             </motion.button>
           </div>
@@ -374,9 +388,15 @@ export default function Sidebar({
       </header>
 
       {/* Start Writing Button */}
-      <div className="sidebar__new-project-section">
+      <div className={cn('py-3 mb-4', effectiveCollapsed ? 'px-0 flex justify-center' : 'px-4')}>
         <motion.button
-          className={`sidebar__new-project-btn ${effectiveCollapsed ? 'sidebar__new-project-btn--collapsed' : ''}`}
+          className={cn(
+            'bg-[#12271d] border-none rounded-lg flex items-center justify-center gap-2.5',
+            'text-white cursor-pointer font-["Instrument_Sans",sans-serif] font-light text-base',
+            'shadow-[0_4px_12px_rgba(0,0,0,0.1)] relative overflow-hidden',
+            'hover:shadow-[0_6px_16px_rgba(0,0,0,0.15)]',
+            effectiveCollapsed ? 'w-10 h-10 p-0 m-0 rounded-[10px]' : 'w-full h-[52px]'
+          )}
           title={effectiveCollapsed ? 'Start Writing' : ''}
           onClick={handleNewProjectClick}
           whileHover={{ scale: 1.02, boxShadow: '0 8px 15px rgba(0, 0, 0, 0.1)' }}
@@ -387,12 +407,12 @@ export default function Sidebar({
             transition={{ duration: 0.5, ease: 'easeInOut' }}
             className="flex items-center justify-center"
           >
-            <Plus className="sidebar__new-project-icon" />
+            <Plus className="w-6 h-6 shrink-0 text-white stroke-white" />
           </motion.div>
           <AnimatePresence>
             {!effectiveCollapsed && (
               <motion.span
-                className="sidebar__new-project-text"
+                className="whitespace-nowrap font-normal font-['Instrument_Sans',sans-serif]"
                 initial={{ opacity: 0, width: 0 }}
                 animate={{ opacity: 1, width: 'auto' }}
                 exit={{ opacity: 0, width: 0 }}
@@ -405,50 +425,54 @@ export default function Sidebar({
         </motion.button>
       </div>
 
-      <nav className="sidebar__nav">
-        <div className="sidebar__nav-list">{filteredNavItems.map(renderNavItem)}</div>
+      <nav className="flex-1 px-4 overflow-y-auto scrollbar-none">
+        <div className="flex flex-col gap-2">{filteredNavItems.map(renderNavItem)}</div>
       </nav>
 
-      <div className="sidebar__footer">
-        <nav className="sidebar__bottom-nav">
+      <div className="mt-auto px-4 pb-6 flex flex-col gap-4">
+        <nav className="flex flex-col gap-2 pt-4 border-t border-[--color-border]">
           {adjustedBottomNav.map(renderNavItem)}
           <motion.button
-            className={`sidebar__nav-item ${effectiveCollapsed ? 'sidebar__nav-item--collapsed' : ''} mt-2`}
+            className={cn(
+              'w-full h-12 px-4 rounded-xl bg-transparent border-none cursor-pointer flex items-center text-left relative font-medium mt-2',
+              'text-[--dashboard-text-secondary] hover:bg-[--color-surface-hover]',
+              effectiveCollapsed ? 'justify-center px-0' : ''
+            )}
             onClick={handleProfileClick}
             title={effectiveCollapsed ? user.name || user.username || 'NA' : 'Profile'}
-            whileHover={{ backgroundColor: 'var(--sidebar-hover-bg)' }}
+            whileHover={{ backgroundColor: 'var(--color-surface-hover)' }}
           >
             <motion.div
-              className={`flex items-center w-full ${effectiveCollapsed ? 'justify-center' : ''}`}
+              className={cn('flex items-center w-full', effectiveCollapsed && 'justify-center')}
               whileHover={{ x: effectiveCollapsed ? 0 : 4 }}
               transition={{ type: 'spring', stiffness: 400, damping: 20 }}
             >
               {effectiveCollapsed ? (
-                <div className="sidebar__avatar sidebar__avatar--collapsed">
+                <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 border-2 border-[--color-surface] shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
                   <Image
                     src={profileImageUrl}
                     alt={user.name || user.username || 'NA'}
-                    className="sidebar__avatar-img"
+                    className="w-full h-full rounded-full object-cover"
                     width={28}
                     height={28}
                     unoptimized
                   />
                 </div>
               ) : (
-                <div className="sidebar__nav-content">
-                  <div className="sidebar__nav-label">
-                    <div className="sidebar__avatar">
+                <div className="flex items-center justify-between w-full h-full">
+                  <div className="flex items-center gap-2 flex-1">
+                    <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 border-2 border-[--color-surface] shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
                       <Image
                         src={profileImageUrl}
                         alt={user.name || user.username || 'NA'}
-                        className="sidebar__avatar-img"
+                        className="w-full h-full rounded-full object-cover"
                         width={28}
                         height={28}
                         unoptimized
                       />
                     </div>
                     <motion.span
-                      className="sidebar__nav-text"
+                      className="font-inherit text-[0.95rem] leading-6 whitespace-nowrap overflow-hidden text-ellipsis tracking-tight"
                       initial="hidden"
                       animate="visible"
                       variants={textVariants}

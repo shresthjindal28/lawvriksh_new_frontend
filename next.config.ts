@@ -55,9 +55,8 @@ const securityHeaders = [
 const nextConfig: NextConfig = {
   output: 'standalone',
   serverExternalPackages: ['@react-pdf/renderer'],
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+  // Note: eslint config moved to CLI options in Next.js 16+
+  // Use `next lint --ignore-during-builds` or configure in .eslintrc
   images: {
     remotePatterns: [
       {

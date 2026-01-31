@@ -1,7 +1,6 @@
 'use client';
 
 import { Dispatch, SetStateAction, useState } from 'react';
-import '@/styles/common-styles/ai-copilot.css';
 import { ChevronRight, FileSearch, Shield, X } from 'lucide-react';
 import { ArgumentLogic, Compliance, FactChecker, FactCheckSummary } from '@/types/copilot';
 import { truncateText } from '@/lib/utils/helpers';

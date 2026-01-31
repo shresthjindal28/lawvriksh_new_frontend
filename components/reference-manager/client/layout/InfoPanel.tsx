@@ -17,7 +17,6 @@ import {
   ChevronUp,
   History,
 } from 'lucide-react';
-import '@/styles/reference-manager/InfoPanel.css';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 import gsap from 'gsap';

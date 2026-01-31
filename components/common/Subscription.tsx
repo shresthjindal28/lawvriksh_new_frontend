@@ -3,7 +3,6 @@ import { useCallback, useState } from 'react';
 import { motion } from 'framer-motion';
 import { plans } from '@/lib/constants/subscription';
 import SubscriptionCard from '../ui/SubscriptionCard';
-import '@/styles/common-styles/subscription.css';
 import FeedbackDialog from '../ui/feedbackDialog';
 import { useToast } from '@/lib/contexts/ToastContext';
 import { workspaceService } from '@/lib/api/workSpaceService';

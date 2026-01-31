@@ -1,6 +1,6 @@
 'use client';
 import React, { useEffect, useRef } from 'react';
-import '@/styles/ui-styles/modal.css';
+import { cn } from '@/lib/utils';
 
 interface ModalProps {
   isOpen: boolean;
@@ -39,24 +39,31 @@ export default function Modal({ isOpen, onClose, children, title }: ModalProps) 
 
   return (
     <div
-      className="modal-overlay"
+      className="fixed inset-0 bg-black/70 flex items-center justify-center z-[1000]"
       onClick={handleOverlayClick}
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
-      <div className="modal-content" ref={modalContentRef}>
-        <div className="modal-header">
+      <div
+        className="bg-white text-black p-6 rounded-lg max-w-[500px] w-[90%] shadow-[0_5px_15px_rgba(0,0,0,0.3)] relative"
+        ref={modalContentRef}
+      >
+        <div className="flex justify-between items-center border-b border-gray-200 pb-3 mb-4">
           {title && (
-            <h2 id="modal-title" className="modal-title">
+            <h2 id="modal-title" className="m-0 text-2xl font-semibold">
               {title}
             </h2>
           )}
-          <button onClick={onClose} className="close-button" aria-label="Close modal">
+          <button
+            onClick={onClose}
+            className="bg-transparent border-none text-3xl leading-none text-gray-500 cursor-pointer p-0 hover:text-black"
+            aria-label="Close modal"
+          >
             &times;
           </button>
         </div>
-        <div className="modal-body">{children}</div>
+        <div>{children}</div>
       </div>
     </div>
   );

@@ -3,7 +3,6 @@
 import React, { useRef, useState, useCallback } from 'react';
 import { UploadCloud, X } from 'lucide-react';
 import Dialog from './Dialog';
-import '@/styles/ui-styles/document-dialog.css';
 import { useToast } from '@/lib/contexts/ToastContext';
 import { referenceManagerService } from '@/lib/api/referenceManagerService';
 import { Document } from '@/types/library';

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import '../../styles/auth-styles/profession-form.auth.css';
 import { professions } from '@/lib/constants/user-setup';
 
 interface ProfessionFormProps {

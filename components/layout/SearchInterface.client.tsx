@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import '@/styles/common-styles/search-interface.css';
 import { Folder, Search, Loader2 } from 'lucide-react';
 import { SearchProject } from '@/types/project';
 import { debounce, formatTimeAgo } from '@/lib/utils/helpers';

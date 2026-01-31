@@ -1,7 +1,6 @@
 'use client';
 
 import { useAuditLogs } from '@/hooks/common/useAuditLogs';
-import '@/styles/admin-styles/audit-logs.css';
 import VideoLoader from '../ui/VideoLoader';
 import Link from 'next/link';
 import { useState } from 'react';

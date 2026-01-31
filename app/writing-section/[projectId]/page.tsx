@@ -44,9 +44,6 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { useSettings } from '@/lib/contexts/SettingsContext';
 import UnsavedChangesModal from '@/components/ui/UnsavedChangesModal';
 import Loader from '@/components/ui/Loader';
-import '@/styles/writing-page/editor-base.css';
-import '@/styles/writing-page/tiptap-editor.css';
-import '@/styles/writing-page/editor-layout.css';
 import DeleteProjectDialog from '@/components/common/DeleteProjectDialog';
 import { useDeleteModalStore } from '@/store/zustand/useDeleteModalStore';
 

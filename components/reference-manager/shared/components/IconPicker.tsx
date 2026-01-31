@@ -2,7 +2,6 @@
 
 import { SafeDynamicIcon } from './SafeDynamicIcon';
 import { useState } from 'react';
-import '@/styles/reference-manager/icon.css';
 import { allIconNames } from '@/lib/config/referenceManagerConfig';
 
 export function IconPicker({ onPick }: { onPick: (iconName: string) => void }) {

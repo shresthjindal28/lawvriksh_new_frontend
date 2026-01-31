@@ -42,3 +42,5 @@ next-env.d.ts
 
 .claude/
 .vscode/
+.env.local
+.env*.local

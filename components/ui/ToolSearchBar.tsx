@@ -7,7 +7,6 @@ import {
 } from '@/hooks/common/useToolbarActions';
 import type { AnalysisShortcutActions } from '@/types/analysis-sidebar';
 import type { Editor } from '@tiptap/react';
-import '@/styles/writing-page/tool-search-bar.css';
 import DropdownPortal from './dropdown-portal';
 
 interface ToolSearchBarProps {

@@ -1,6 +1,5 @@
 'use client';
 import { Paperclip, Globe, CircleArrowRight, X } from 'lucide-react';
-import '@/styles/common-styles/research-sidebar-footer.css';
 import { SelectedContext } from '@/types/editor';
 
 interface ResearchSidebarFooterProps {

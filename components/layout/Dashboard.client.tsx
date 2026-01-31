@@ -5,9 +5,9 @@ import Sidebar from './Sidebar.client';
 import { UserProfile } from '../../types';
 import { navigationConfigs } from '@/lib/config/sidebarConfig';
 import { MobileSidebarProvider, useMobileSidebar } from '@/lib/contexts/MobileSidebarContext';
-import '@/styles/common-styles/home.css';
 import { useAuth } from '@/lib/contexts/AuthContext';
 import VideoLoader from '@/components/ui/VideoLoader';
+import { cn } from '@/lib/utils';
 
 interface CommonDashboardProps {
   children: ReactNode;
@@ -23,9 +23,9 @@ function DashboardContent({ children, className = '', user }: CommonDashboardPro
   const bottomNavItems = navigationConfigs.bottom;
 
   return (
-    <div className={`layout ${className}`}>
+    <div className={cn('flex min-h-screen bg-[#f8fafc]', className)}>
       {/* Overlay for Mobile */}
-      {isOpen && <div className="mobile-sidebar-overlay" onClick={close} />}
+      {isOpen && <div className="fixed inset-0 bg-black/50 z-[45] md:hidden" onClick={close} />}
 
       {/* Sidebar Component */}
       <Sidebar
@@ -37,7 +37,15 @@ function DashboardContent({ children, className = '', user }: CommonDashboardPro
       />
 
       {/* Main Content Area */}
-      <main className="content">{children}</main>
+      <main
+        className={cn(
+          'flex-1 p-0 min-h-screen transition-[margin-left] duration-300 ease-in-out bg-[#fafafa]',
+          'ml-[280px]', // Default: sidebar expanded
+          'max-md:ml-0 max-md:p-0' // Mobile: no margin
+        )}
+      >
+        {children}
+      </main>
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import '../../styles/auth-styles/interest-form.auth.css';
 import { interests } from '@/lib/constants/user-setup';
 
 interface InterestsFormProps {

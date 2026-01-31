@@ -7,7 +7,6 @@ import TemplateLibraryModal from './TemplateLibraryModal';
 import SpeechToTextButton from '@/components/ui/SpeechToTextButton';
 import SequentialVideoLoader from '@/components/ui/SequentialVideoLoader';
 import TemplateUploadDialog from './TemplateUploadDialog';
-import styles from './DocumentDraftingModal.module.css';
 import { draftingService } from '@/lib/api/draftingService';
 import { draftingTemplateService } from '@/lib/api/draftingTemplateService';
 import { useAuth } from '@/lib/contexts/AuthContext';
@@ -15,7 +14,75 @@ import { FileText, X as XIcon } from 'lucide-react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useDashboardUIStore } from '@/store/zustand/useDashboardUIStore';
 
-// Removed legacy interface
+// Tailwind class mappings (converted from CSS Module)
+const styles = {
+  overlay: 'fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm',
+  modal: 'bg-white rounded-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-2xl',
+  header: 'flex items-center justify-between p-4 border-b border-gray-100',
+  headerLeft: 'flex items-center gap-3',
+  iconContainer:
+    'w-8 h-8 rounded-lg bg-gradient-to-br from-purple-100 to-blue-100 flex items-center justify-center text-purple-600',
+  title: 'text-lg font-semibold text-gray-900',
+  betaBadge: 'px-2 py-0.5 text-xs font-medium bg-purple-100 text-purple-700 rounded-full',
+  closeButton:
+    'p-2 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-700 transition-colors',
+  subtitle: 'px-4 py-3 text-sm text-gray-600',
+  formGroup: 'px-4 py-2',
+  label: 'block text-sm font-medium text-gray-700 mb-1',
+  required: 'text-red-500 ml-0.5',
+  input:
+    'w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[--lv-accent-gold] focus:border-transparent text-gray-900',
+  textareaContainer: 'relative',
+  textarea:
+    'w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[--lv-accent-gold] focus:border-transparent text-gray-900 min-h-[120px] resize-none',
+  textareaRecording: 'ring-2 ring-red-400 border-transparent',
+  charCount: 'absolute bottom-2 right-2 text-xs',
+  charCountValid: 'text-gray-400',
+  charCountInvalid: 'text-red-500',
+  metaRow: 'flex items-center gap-4 px-4 py-2',
+  dropdownWrapper: 'relative flex-1',
+  dropdownContainer: 'relative',
+  dropdownButton:
+    'w-full flex items-center justify-between px-3 py-2 border border-gray-200 rounded-lg text-sm hover:border-gray-300',
+  dropdownButtonContent: 'flex items-center gap-2',
+  chevronIcon: 'w-4 h-4 text-gray-400 transition-transform',
+  dropdownMenu:
+    'absolute top-full left-0 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-48 overflow-y-auto',
+  dropdownItem: 'px-3 py-2 text-sm cursor-pointer hover:bg-gray-50',
+  dropdownItemActive: 'bg-gray-50 text-gray-900',
+  dropdownItemInactive: 'text-gray-700',
+  attachButtonWrapper: 'flex-shrink-0',
+  attachButton:
+    'flex items-center gap-2 px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 hover:border-gray-300',
+  templatePreview: 'mx-4 p-3 bg-gray-50 rounded-lg border border-gray-200',
+  templateInfo: 'flex items-start gap-3',
+  templateIcon:
+    'w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 shrink-0',
+  templateTitle: 'font-medium text-gray-900 text-sm',
+  templateSubtitle: 'text-xs text-gray-500 mt-0.5',
+  templateCloseButton: 'p-1 rounded hover:bg-gray-200 text-gray-400 hover:text-gray-600 ml-auto',
+  footer: 'flex items-center justify-between p-4',
+  footerWithBorder: 'flex items-center justify-between p-4 border-t border-gray-100',
+  leftActions: 'flex items-center gap-3',
+  secondaryButton:
+    'px-4 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors',
+  primaryButton: 'px-4 py-2 text-sm font-medium rounded-lg transition-colors',
+  primaryButtonEnabled: 'bg-gray-900 text-white hover:bg-gray-800',
+  primaryButtonDisabled: 'bg-gray-300 text-gray-500 cursor-not-allowed',
+  questionsContainer: 'px-4 py-2 space-y-4',
+  questionItem: 'space-y-2',
+  questionText: 'flex items-center gap-2 text-sm font-medium text-gray-700',
+  skippedTag: 'px-2 py-0.5 text-xs bg-gray-100 text-gray-500 rounded',
+  questionInputWrapper: 'relative',
+  questionTextarea:
+    'w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[--lv-accent-gold] focus:border-transparent text-gray-900 min-h-[80px] resize-none',
+  skipButton: 'text-xs text-gray-500 hover:text-gray-700 underline',
+  voiceDock: 'flex items-center gap-2',
+  loaderModalWrapper: 'fixed inset-0 bg-black/50 z-50 flex items-center justify-center',
+  loaderModal: 'bg-white rounded-2xl p-8 max-w-md w-full mx-4',
+  loaderContent: 'flex flex-col items-center',
+  loaderText: 'mt-4 text-gray-600 text-center',
+};
 
 const LANGUAGES = [
   { value: 'English', label: 'English' },

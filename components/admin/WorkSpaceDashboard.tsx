@@ -7,7 +7,6 @@ import { useDialog } from '@/hooks/common/useDialog';
 import { useWorkspace } from '@/lib/contexts/WorkspaceContext';
 import { useAuth } from '@/lib/contexts/AuthContext';
 import { Topbar } from '../layout/Topbar.client';
-import '@/styles/dashboard-styles/user-dashboard.css';
 import StudentDialog from '../ui/StudentDialog';
 import StudentProjectCard from '../student/ProjectCard';
 import { ProjectCategory } from '@/types/project';
