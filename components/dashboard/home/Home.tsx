@@ -656,7 +656,7 @@ export default function Home({ categories, role }: HomeProps) {
     >
       <MobileHeader />
       <motion.div
-        className="flex w-full max-w-[1920px] min-h-auto justify-center items-start gap-[69px] bg-transparent mx-auto py-10 px-[60px] max-xl:py-10 max-xl:px-10 max-xl:gap-10 max-lg:py-6 max-lg:px-6 max-lg:gap-6 max-md:py-5 max-md:px-4 max-md:gap-8 max-md:flex-col max-md:items-stretch"
+        className="flex w-full max-w-[1920px] min-h-auto justify-center items-start gap-dashboard-lg bg-transparent mx-auto py-10 px-[60px] max-xl:py-10 max-xl:px-10 max-xl:gap-10 max-lg:py-6 max-lg:px-6 max-lg:gap-6 max-md:py-5 max-md:px-4 max-md:gap-8 max-md:flex-col max-md:items-stretch"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -716,11 +716,11 @@ export default function Home({ categories, role }: HomeProps) {
                 {stats.map((stat, index) => (
                   <div
                     key={index}
-                    className="flex min-h-[160px] w-full p-5 flex-col justify-between gap-4 rounded-[14px] border border-[rgba(19,52,53,0.06)] bg-white shadow-[0_2px_8px_rgba(19,52,53,0.04)] box-border hover:shadow-[0_4px_12px_rgba(19,52,53,0.08)] hover:-translate-y-1 transition-all duration-300 ease-out"
+                    className="flex min-h-dashboard-project-card w-full p-5 flex-col justify-between gap-4 rounded-[14px] border border-dashboard-border-lighter bg-white shadow-[0_2px_8px_rgba(19,52,53,0.04)] box-border hover:shadow-[0_4px_12px_rgba(19,52,53,0.08)] hover:-translate-y-1 transition-all duration-300 ease-out"
                   >
                     <div>
                       <h3
-                        className="text-[#133435] text-[13px] font-semibold leading-[19.5px] tracking-[1.04px] uppercase break-words"
+                        className="text-[#133435] text-dashboard-section-heading font-semibold leading-[19.5px] tracking-[1.04px] uppercase wrap-break-word"
                         style={{
                           fontFamily: "var(--font-instrument-sans), 'Instrument Sans', sans-serif",
                         }}
@@ -738,7 +738,7 @@ export default function Home({ categories, role }: HomeProps) {
                       <CountUp to={stat.value} />
                     </div>
 
-                    <div className="flex pt-3 mt-auto items-center self-stretch border-t border-[rgba(19,52,53,0.08)]">
+                    <div className="flex pt-3 mt-auto items-center self-stretch border-t border-dashboard-border-light">
                       <div className="flex justify-between items-center w-full min-w-0 gap-3">
                         <div className="flex items-center gap-1 shrink-0 [&>span]:text-[#627c7d] [&>span]:text-xs [&>span]:font-normal">
                           {stat.icon}
@@ -746,7 +746,10 @@ export default function Home({ categories, role }: HomeProps) {
                         </div>
 
                         {!stat.isStreak && stat.subtext && (
-                          <div className="text-[rgba(98,124,125,0.8)] text-[11px] italic font-normal whitespace-nowrap overflow-hidden text-ellipsis min-w-0 text-right flex-1" title={stat.subtext}>
+                          <div
+                            className="text-dashboard-text-muted text-dashboard-xs italic font-normal whitespace-nowrap overflow-hidden text-ellipsis min-w-0 text-right flex-1"
+                            title={stat.subtext}
+                          >
                             {stat.subtext}
                           </div>
                         )}
@@ -762,14 +765,14 @@ export default function Home({ categories, role }: HomeProps) {
                 className="flex flex-col items-start gap-5 self-stretch"
               >
                 <h3
-                  className="text-[#133435] text-[13px] font-semibold leading-[19.5px] tracking-[1.04px] uppercase"
+                  className="text-[#133435] text-dashboard-section-heading font-semibold leading-[19.5px] tracking-[1.04px] uppercase"
                   style={{
                     fontFamily: "var(--font-instrument-sans), 'Instrument Sans', sans-serif",
                   }}
                 >
                   START A NEW PROJECT
                 </h3>
-                <div className="grid grid-cols-4 gap-[19px] self-stretch w-full max-lg:grid-cols-2 max-md:flex max-md:flex-col max-md:gap-4">
+                <div className="grid grid-cols-4 gap-dashboard-xs self-stretch w-full max-lg:grid-cols-2 max-md:flex max-md:flex-col max-md:gap-4">
                   {ProjectCreationOptions.map((option) => {
                     const config = categoryConfig[option.id] || {
                       label: option.name,
@@ -781,7 +784,7 @@ export default function Home({ categories, role }: HomeProps) {
                       <motion.div
                         key={option.id}
                         onClick={() => handleNewProject(option.id)}
-                        className="flex h-[160px] w-full flex-col justify-center items-center gap-3 rounded-[14px] border border-[rgba(19,52,53,0.08)] bg-[#fcfcf9] cursor-pointer transition-all duration-300 hover:bg-white hover:shadow-[0_4px_12px_rgba(19,52,53,0.08)] hover:-translate-y-1 hover:border-[rgba(19,52,53,0.15)] max-sm:h-[200px] max-sm:flex-none"
+                        className="flex h-dashboard-project-card w-full flex-col justify-center items-center gap-3 rounded-[14px] border border-dashboard-border-light bg-[#fcfcf9] cursor-pointer transition-all duration-300 hover:bg-white hover:shadow-[0_4px_12px_rgba(19,52,53,0.08)] hover:-translate-y-1 hover:border-[rgba(19,52,53,0.15)] max-sm:h-[200px] max-sm:flex-none"
                         whileHover={{ y: -4 }}
                         whileTap={{ scale: 0.98 }}
                       >
@@ -807,7 +810,7 @@ export default function Home({ categories, role }: HomeProps) {
               >
                 <div className="flex justify-between items-center w-full">
                   <h3
-                    className="text-[#133435] text-[13px] font-semibold leading-[19.5px] tracking-[1.04px] uppercase"
+                    className="text-[#133435] text-dashboard-section-heading font-semibold leading-[19.5px] tracking-[1.04px] uppercase"
                     style={{
                       fontFamily: "var(--font-instrument-sans), 'Instrument Sans', sans-serif",
                     }}
@@ -867,7 +870,7 @@ export default function Home({ categories, role }: HomeProps) {
               className="flex h-auto flex-col items-start gap-2 relative top-0 w-full xl:w-[367px] xl:shrink-0 xl:sticky xl:top-6 xl:self-start xl:h-[calc(100vh-120px)] xl:max-h-[800px]"
             >
               <h3
-                className="text-[#133435] text-[13px] font-semibold leading-[19.5px] tracking-[1.04px] uppercase"
+                className="text-[#133435] text-dashboard-section-heading font-semibold leading-[19.5px] tracking-[1.04px] uppercase"
                 style={{ fontFamily: "var(--font-instrument-sans), 'Instrument Sans', sans-serif" }}
               >
                 YOUR RESEARCH HUB
@@ -880,7 +883,7 @@ export default function Home({ categories, role }: HomeProps) {
               </p>
 
               <div
-                className="flex h-[589.6px] min-w-[367px] pt-6 px-6 pb-0 flex-col justify-start items-stretch gap-0 shrink-0 self-stretch rounded-2xl border border-[rgba(19,52,53,0.06)] bg-white shadow-sm max-md:min-w-0 max-md:w-full max-md:h-auto max-md:min-h-[400px] max-md:p-4"
+                className="flex h-[589.6px] min-w-[367px] pt-6 px-6 pb-0 flex-col justify-start items-stretch gap-0 shrink-0 self-stretch rounded-2xl border border-dashboard-border-lighter bg-white shadow-sm max-md:min-w-0 max-md:w-full max-md:h-auto max-md:min-h-[400px] max-md:p-4"
                 style={{ minWidth: 'auto', width: '100%' }}
               >
                 <AnimatePresence mode="wait">
@@ -952,7 +955,7 @@ export default function Home({ categories, role }: HomeProps) {
                       {recentReferences.map((ref: any, index: number) => (
                         <motion.div
                           key={ref.id ?? `recent-ref-${index}`}
-                          className="flex h-[111px] min-w-[303px] py-4 px-2 flex-col justify-between items-start self-stretch rounded-[10px] border-b border-[rgba(19,52,53,0.06)] cursor-pointer transition-all duration-150 hover:bg-gray-50 hover:shadow-[inset_2px_0_0_rgba(37,99,235,0.2)] hover:-translate-y-px max-md:min-w-0 max-md:w-full max-md:h-auto max-md:py-3 max-md:px-2 group"
+                          className="flex h-dashboard-reference-item min-w-[303px] py-4 px-2 flex-col justify-between items-start self-stretch rounded-[10px] border-b border-dashboard-border-lighter cursor-pointer transition-all duration-150 hover:bg-gray-50 hover:shadow-[inset_2px_0_0_rgba(37,99,235,0.2)] hover:-translate-y-px max-md:min-w-0 max-md:w-full max-md:h-auto max-md:py-3 max-md:px-2 group"
                           variants={researchItemVariants}
                         >
                           <div className="flex justify-between items-start w-full mb-1">
@@ -1099,7 +1102,7 @@ export default function Home({ categories, role }: HomeProps) {
                           </p>
 
                           <div
-                            className="flex items-center gap-3 mt-2 text-[#627c7d] text-[11px] font-normal leading-[16.5px]"
+                            className="flex items-center gap-3 mt-2 text-[#627c7d] text-dashboard-xs font-normal leading-[16.5px]"
                             style={{
                               fontFamily:
                                 "var(--font-instrument-sans), 'Instrument Sans', sans-serif",
@@ -1144,7 +1147,7 @@ export default function Home({ categories, role }: HomeProps) {
 
                 {recentReferences.length > 0 && (
                   <button
-                    className="flex w-full h-12 py-3 px-5 justify-center items-center shrink-0 mt-auto border-t border-[rgba(19,52,53,0.08)] bg-transparent cursor-pointer transition-all duration-150 text-black text-center text-xs font-normal leading-[19.5px] hover:text-gray-900 hover:tracking-wider"
+                    className="flex w-full h-12 py-3 px-5 justify-center items-center shrink-0 mt-auto border-t border-dashboard-border-light bg-transparent cursor-pointer transition-all duration-150 text-black text-center text-xs font-normal leading-[19.5px] hover:text-gray-900 hover:tracking-wider"
                     onClick={() => router.push(`/dashboard/${role}/reference-manager`)}
                   >
                     View all references ({totalReferencesCount > 0 ? totalReferencesCount : '0'}) →

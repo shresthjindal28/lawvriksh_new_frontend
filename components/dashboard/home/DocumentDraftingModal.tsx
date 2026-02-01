@@ -2,7 +2,7 @@
 
 import React, { useRef, useEffect, useCallback, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Paperclip, ChevronDown, Sparkles } from 'lucide-react';
+import { X, Paperclip, ChevronDown, Sparkles, FileText, BookOpen } from 'lucide-react';
 import TemplateLibraryModal from './TemplateLibraryModal';
 import SpeechToTextButton from '@/components/ui/SpeechToTextButton';
 import SequentialVideoLoader from '@/components/ui/SequentialVideoLoader';
@@ -10,79 +10,8 @@ import TemplateUploadDialog from './TemplateUploadDialog';
 import { draftingService } from '@/lib/api/draftingService';
 import { draftingTemplateService } from '@/lib/api/draftingTemplateService';
 import { useAuth } from '@/lib/contexts/AuthContext';
-import { FileText, X as XIcon } from 'lucide-react';
 import { useMutation, useQuery } from '@tanstack/react-query';
 import { useDashboardUIStore } from '@/store/zustand/useDashboardUIStore';
-
-// Tailwind class mappings (converted from CSS Module)
-const styles = {
-  overlay: 'fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm',
-  modal: 'bg-white rounded-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-2xl',
-  header: 'flex items-center justify-between p-4 border-b border-gray-100',
-  headerLeft: 'flex items-center gap-3',
-  iconContainer:
-    'w-8 h-8 rounded-lg bg-gradient-to-br from-purple-100 to-blue-100 flex items-center justify-center text-purple-600',
-  title: 'text-lg font-semibold text-gray-900',
-  betaBadge: 'px-2 py-0.5 text-xs font-medium bg-purple-100 text-purple-700 rounded-full',
-  closeButton:
-    'p-2 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-700 transition-colors',
-  subtitle: 'px-4 py-3 text-sm text-gray-600',
-  formGroup: 'px-4 py-2',
-  label: 'block text-sm font-medium text-gray-700 mb-1',
-  required: 'text-red-500 ml-0.5',
-  input:
-    'w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[--lv-accent-gold] focus:border-transparent text-gray-900',
-  textareaContainer: 'relative',
-  textarea:
-    'w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[--lv-accent-gold] focus:border-transparent text-gray-900 min-h-[120px] resize-none',
-  textareaRecording: 'ring-2 ring-red-400 border-transparent',
-  charCount: 'absolute bottom-2 right-2 text-xs',
-  charCountValid: 'text-gray-400',
-  charCountInvalid: 'text-red-500',
-  metaRow: 'flex items-center gap-4 px-4 py-2',
-  dropdownWrapper: 'relative flex-1',
-  dropdownContainer: 'relative',
-  dropdownButton:
-    'w-full flex items-center justify-between px-3 py-2 border border-gray-200 rounded-lg text-sm hover:border-gray-300',
-  dropdownButtonContent: 'flex items-center gap-2',
-  chevronIcon: 'w-4 h-4 text-gray-400 transition-transform',
-  dropdownMenu:
-    'absolute top-full left-0 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 max-h-48 overflow-y-auto',
-  dropdownItem: 'px-3 py-2 text-sm cursor-pointer hover:bg-gray-50',
-  dropdownItemActive: 'bg-gray-50 text-gray-900',
-  dropdownItemInactive: 'text-gray-700',
-  attachButtonWrapper: 'flex-shrink-0',
-  attachButton:
-    'flex items-center gap-2 px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-700 hover:bg-gray-50 hover:border-gray-300',
-  templatePreview: 'mx-4 p-3 bg-gray-50 rounded-lg border border-gray-200',
-  templateInfo: 'flex items-start gap-3',
-  templateIcon:
-    'w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 shrink-0',
-  templateTitle: 'font-medium text-gray-900 text-sm',
-  templateSubtitle: 'text-xs text-gray-500 mt-0.5',
-  templateCloseButton: 'p-1 rounded hover:bg-gray-200 text-gray-400 hover:text-gray-600 ml-auto',
-  footer: 'flex items-center justify-between p-4',
-  footerWithBorder: 'flex items-center justify-between p-4 border-t border-gray-100',
-  leftActions: 'flex items-center gap-3',
-  secondaryButton:
-    'px-4 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors',
-  primaryButton: 'px-4 py-2 text-sm font-medium rounded-lg transition-colors',
-  primaryButtonEnabled: 'bg-gray-900 text-white hover:bg-gray-800',
-  primaryButtonDisabled: 'bg-gray-300 text-gray-500 cursor-not-allowed',
-  questionsContainer: 'px-4 py-2 space-y-4',
-  questionItem: 'space-y-2',
-  questionText: 'flex items-center gap-2 text-sm font-medium text-gray-700',
-  skippedTag: 'px-2 py-0.5 text-xs bg-gray-100 text-gray-500 rounded',
-  questionInputWrapper: 'relative',
-  questionTextarea:
-    'w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[--lv-accent-gold] focus:border-transparent text-gray-900 min-h-[80px] resize-none',
-  skipButton: 'text-xs text-gray-500 hover:text-gray-700 underline',
-  voiceDock: 'flex items-center gap-2',
-  loaderModalWrapper: 'fixed inset-0 bg-black/50 z-50 flex items-center justify-center',
-  loaderModal: 'bg-white rounded-2xl p-8 max-w-md w-full mx-4',
-  loaderContent: 'flex flex-col items-center',
-  loaderText: 'mt-4 text-gray-600 text-center',
-};
 
 const LANGUAGES = [
   { value: 'English', label: 'English' },
@@ -434,11 +363,11 @@ export default function DocumentDraftingModal({
 
   if (isGenerating) {
     return (
-      <div className={styles.loaderModalWrapper}>
-        <div className={styles.loaderModal}>
-          <div className={styles.loaderContent}>
+      <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center">
+        <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
+          <div className="flex flex-col items-center">
             <SequentialVideoLoader width={500} />
-            <p className={styles.loaderText}>Generating Draft...</p>
+            <p className="mt-4 text-gray-600 text-center">Generating Draft...</p>
           </div>
         </div>
       </div>
@@ -488,7 +417,7 @@ export default function DocumentDraftingModal({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className={styles.overlay}
+          className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4 backdrop-blur-sm"
           onClick={handleBackdropClick}
         >
           <motion.div
@@ -496,25 +425,25 @@ export default function DocumentDraftingModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
             transition={{ duration: 0.2 }}
-            className={styles.modal}
+            className="bg-white rounded-2xl w-full max-w-[35vw] max-h-[95vh] overflow-y-auto shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className={styles.header}>
-              <div className={styles.headerLeft}>
-                <div className={styles.iconContainer}>
+            <div className="flex items-center justify-between p-4 border-b border-gray-100">
+              <div className="flex items-center gap-3">
+                <div className="w-8 h-8 rounded-lg bg-[#FDF8F3] flex items-center justify-center text-[#B49265]">
                   <Sparkles size={16} />
                 </div>
-                <h2 className={styles.title}>AI Powered Draft</h2>
-                <span className={styles.betaBadge}>BETA</span>
+                <h2 className="text-lg font-semibold text-gray-900">AI Powered Draft</h2>
+                <span className="px-2 py-0.5 text-[10px] font-bold bg-[#FDF8F3] text-[#B49265] rounded border border-[#F4E4D4] tracking-wide">BETA</span>
               </div>
-              <button onClick={handleClose} className={styles.closeButton}>
+              <button onClick={handleClose} className="p-2 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-700 transition-colors">
                 <X size={20} />
               </button>
             </div>
 
             {/* Subtitle */}
-            <p className={styles.subtitle}>
+            <p className="px-4 py-3 text-sm text-gray-600">
               {step === 1
                 ? 'Generate a legal document using AI. Provide a project name and describe what you need.'
                 : 'We need a few more details to draft the perfect document for you.'}
@@ -523,9 +452,9 @@ export default function DocumentDraftingModal({
             {step === 1 ? (
               <>
                 {/* Project Name Input */}
-                <div className={styles.formGroup}>
-                  <label htmlFor="projectName" className={styles.label}>
-                    Draft Name <span className={styles.required}>*</span>
+                <div className="px-4 py-2">
+                  <label htmlFor="projectName" className="block text-[11px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">
+                    Draft Name <span className="text-red-500 ml-0.5">*</span>
                   </label>
                   <input
                     id="projectName"
@@ -534,19 +463,19 @@ export default function DocumentDraftingModal({
                     onChange={(e) => setProjectName(e.target.value)}
                     placeholder="e.g., Non-Disclosure Agreement"
                     disabled={isLoading || isGenerating}
-                    className={styles.input}
+                    className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[--lv-accent-gold] focus:border-transparent text-gray-900"
                   />
                 </div>
 
                 {/* Prompt Label */}
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>
-                    Drafting Prompt <span className={styles.required}>*</span>
+                <div className="px-4 py-2">
+                  <label className="block text-[11px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">
+                    Drafting Prompt <span className="text-red-500 ml-0.5">*</span>
                   </label>
                 </div>
 
                 {/* Textarea */}
-                <div className={styles.textareaContainer}>
+                <div className="relative group mx-4">
                   <textarea
                     value={prompt}
                     onChange={(e) => {
@@ -558,9 +487,9 @@ export default function DocumentDraftingModal({
                     }}
                     placeholder='e.g., "Draft a non-disclosure agreement between a software company and a contractor covering confidential information, intellectual property, and a 2-year term"'
                     disabled={isLoading || isGenerating}
-                    className={`${styles.textarea} ${interimTranscript ? styles.textareaRecording : ''}`}
+                    className={`w-full px-4 py-3 pb-14 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[--lv-accent-gold] focus:border-transparent text-gray-900 min-h-[140px] resize-none bg-white placeholder:text-gray-400 ${interimTranscript ? 'ring-2 ring-red-400 border-transparent' : ''}`}
                   />
-                  <div className={styles.voiceDock}>
+                  <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
                     <SpeechToTextButton
                       onTranscript={handleTranscript}
                       onStop={handleStopListening}
@@ -571,11 +500,12 @@ export default function DocumentDraftingModal({
                       iconSize={20}
                     />
                   </div>
-                  <div className={styles.attachButtonWrapper}>
+                  <div className="absolute bottom-3 right-3 z-10">
                     <button
                       onClick={() => setShowUploadDialog(true)}
-                      className={styles.attachButton}
+                      className="p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors"
                       type="button"
+                      title="Attach a file"
                     >
                       <Paperclip size={18} />
                     </button>
@@ -583,42 +513,36 @@ export default function DocumentDraftingModal({
                 </div>
 
                 {/* Language Label and Char Count Row */}
-                <div className={styles.metaRow}>
-                  <label className={styles.label}>Choose language</label>
+                <div className="flex items-center justify-between px-4 mb-2 mt-4">
+                  <label className="block text-[11px] font-bold text-gray-500 mb-1.5 uppercase tracking-wider">CHOOSE LANGUAGE</label>
 
                   <span
-                    className={`${styles.charCount} ${
-                      charCount >= minChars ? styles.charCountValid : styles.charCountInvalid
-                    }`}
+                    className={`text-[11px] font-medium ${charCount >= minChars ? 'text-gray-400' : 'text-[#ef4444]'
+                      }`}
                   >
                     {charCount}/{minChars} characters minimum
                   </span>
                 </div>
 
                 {/* Language Dropdown and Choose from Library Button Row */}
-                <div
-                  style={{
-                    display: 'flex',
-                    gap: '12px',
-                    alignItems: 'center',
-                    marginBottom: '12px',
-                  }}
-                >
+                <div className="flex items-center gap-3 mb-4 px-4">
                   {/* Language Dropdown */}
                   <div
-                    className={styles.dropdownContainer}
+                    className="relative w-full flex-1"
                     ref={dropdownRef}
-                    style={{ flex: 1, marginBottom: 0 }}
                   >
-                    <div className={styles.dropdownWrapper} style={{ width: '100%' }}>
+                    <div className="relative w-full">
                       <button
                         onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
                         type="button"
                         disabled={isLoading || isGenerating}
-                        className={styles.dropdownButton}
+                        className={`w-full flex items-center justify-between px-3 py-2 border rounded-lg text-sm text-gray-700 bg-white hover:bg-gray-50 transition-colors disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed ${isLanguageDropdownOpen
+                          ? 'border-[--lv-accent-gold] ring-1 ring-[--lv-accent-gold]'
+                          : 'border-gray-200 hover:border-gray-300'
+                          }`}
                       >
-                        <span className={styles.dropdownButtonContent}>{language}</span>
-                        <ChevronDown size={14} className={styles.chevronIcon} />
+                        <span className="flex items-center gap-2">{language}</span>
+                        <ChevronDown size={14} className={`w-4 h-4 text-gray-400 transition-transform ${isLanguageDropdownOpen ? 'rotate-180' : ''}`} />
                       </button>
 
                       <AnimatePresence>
@@ -627,25 +551,26 @@ export default function DocumentDraftingModal({
                             initial={{ opacity: 0, y: -5 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -5 }}
-                            className={styles.dropdownMenu}
+                            className="absolute top-full left-0 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-[100] max-h-60 overflow-y-auto p-1.5"
                           >
-                            {LANGUAGES.map((lang) => (
-                              <button
-                                key={lang.value}
-                                type="button"
-                                onClick={() => {
-                                  setLanguage(lang.value);
-                                  setIsLanguageDropdownOpen(false);
-                                }}
-                                className={`${styles.dropdownItem} ${
-                                  language === lang.value
-                                    ? styles.dropdownItemActive
-                                    : styles.dropdownItemInactive
-                                }`}
-                              >
-                                {lang.label}
-                              </button>
-                            ))}
+                            <div className="grid grid-cols-2 gap-1">
+                              {LANGUAGES.map((lang) => (
+                                <button
+                                  key={lang.value}
+                                  type="button"
+                                  onClick={() => {
+                                    setLanguage(lang.value);
+                                    setIsLanguageDropdownOpen(false);
+                                  }}
+                                  className={`px-3 py-2 text-sm text-left rounded-md cursor-pointer transition-colors ${language === lang.value
+                                    ? 'bg-[#FDF8F3] text-[#B49265] font-medium'
+                                    : 'text-gray-700 hover:bg-gray-50'
+                                    }`}
+                                >
+                                  {lang.label}
+                                </button>
+                              ))}
+                            </div>
                           </motion.div>
                         )}
                       </AnimatePresence>
@@ -653,54 +578,43 @@ export default function DocumentDraftingModal({
                   </div>
 
                   {/* Choose from Library Button */}
-                  <div style={{ flex: 1 }}>
+                  <div className="flex-1">
                     <button
                       type="button"
                       onClick={() => setShowTemplateLibrary(true)}
                       disabled={isLoading || isGenerating}
-                      className={styles.dropdownButton}
+                      className="w-full flex items-center justify-between px-3 py-2 border border-gray-200 rounded-lg text-sm text-gray-700 bg-white hover:border-gray-300 hover:bg-gray-50 transition-colors disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed"
                     >
-                      <span className={styles.dropdownButtonContent}>Choose from Library</span>
+                      <span className="flex items-center gap-2">
+                        <BookOpen size={16} className="text-gray-500" />
+                        Choose from Library
+                      </span>
                     </button>
                   </div>
                 </div>
 
                 {/* Uploaded Template Display Row */}
                 {(isLoadingTemplate || uploadedTemplate) && (
-                  <div style={{ marginBottom: '20px' }}>
+                  <div className="mb-5 px-4">
                     {isLoadingTemplate ? (
-                      <div
-                        style={{
-                          width: '100%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          padding: '10px 12px',
-                          backgroundColor: '#f8fafc',
-                          border: '1px solid #e2e8f0',
-                          borderRadius: '8px',
-                          minHeight: '44px',
-                        }}
-                      >
-                        <span style={{ fontSize: '12px', color: '#64748b' }}>
-                          Loading template...
-                        </span>
+                      <div className="w-full flex items-center justify-center py-2.5 px-3 bg-slate-50 border border-slate-200 rounded-lg min-h-[44px]">
+                        <span className="text-xs text-slate-500">Loading template...</span>
                       </div>
                     ) : uploadedTemplate ? (
                       <motion.div
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
-                        className={styles.templatePreview}
+                        className="mx-4 p-3 bg-gray-50 rounded-lg border border-gray-200"
                       >
-                        <div className={styles.templateIcon}>
+                        <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center text-blue-600 shrink-0">
                           <FileText size={16} color="var(--lv-bg-button-dark)" />
                         </div>
-                        <div className={styles.templateInfo}>
-                          <div className={styles.templateTitle} title={uploadedTemplate.title}>
+                        <div className="flex items-start gap-3">
+                          <div className="font-medium text-gray-900 text-sm" title={uploadedTemplate.title}>
                             {uploadedTemplate.title}
                           </div>
-                          <div className={styles.templateSubtitle}>Template attached</div>
+                          <div className="text-xs text-gray-500 mt-0.5">Template attached</div>
                         </div>
                         <button
                           type="button"
@@ -708,9 +622,9 @@ export default function DocumentDraftingModal({
                             setSelectedTemplateId(null);
                             if (onUpload) onUpload(); // Notify parent if needed
                           }}
-                          className={styles.templateCloseButton}
+                          className="p-1 rounded hover:bg-gray-200 text-gray-400 hover:text-gray-600 ml-auto"
                         >
-                          <XIcon size={16} />
+                          <X size={16} />
                         </button>
                       </motion.div>
                     ) : null}
@@ -718,15 +632,14 @@ export default function DocumentDraftingModal({
                 )}
 
                 {/* Buttons */}
-                <div className={styles.footer}>
+                <div className="flex items-center justify-end p-4 pt-2">
                   <button
                     onClick={handleInquiry}
                     disabled={!isValid || isLoading || isGenerating}
-                    className={`${styles.primaryButton} ${
-                      isValid && !isLoading && !isGenerating
-                        ? styles.primaryButtonEnabled
-                        : styles.primaryButtonDisabled
-                    }`}
+                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${isValid && !isLoading && !isGenerating
+                      ? 'bg-gray-900 text-white hover:bg-gray-800'
+                      : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      }`}
                   >
                     Continue
                   </button>
@@ -734,11 +647,11 @@ export default function DocumentDraftingModal({
               </>
             ) : (
               <>
-                <div className={styles.questionsContainer}>
+                <div className="px-4 py-2 space-y-4">
                   {questions.map((q, i) => (
-                    <div key={i} className={styles.questionItem}>
-                      <p className={styles.questionText}>{q}</p>
-                      <div className={styles.questionInputWrapper}>
+                    <div key={i} className="space-y-2">
+                      <p className="flex items-center gap-2 text-sm font-medium text-gray-700">{q}</p>
+                      <div className="relative">
                         <textarea
                           value={answers[i] || ''}
                           onChange={(e) => {
@@ -748,9 +661,9 @@ export default function DocumentDraftingModal({
                             answerBaseRefs.current[i] = val;
                           }}
                           placeholder="Write your answer here...."
-                          className={`${styles.questionTextarea} ${interimAnswers[i] ? styles.textareaRecording : ''}`}
+                          className={`w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-[--lv-accent-gold] focus:border-transparent text-gray-900 min-h-[80px] resize-none ${interimAnswers[i] ? 'ring-2 ring-red-400 border-transparent' : ''}`}
                         />
-                        <div className={styles.voiceDock}>
+                        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
                           <SpeechToTextButton
                             onTranscript={(text, isFinal) => {
                               const base = answerBaseRefs.current[i] || '';
@@ -777,22 +690,22 @@ export default function DocumentDraftingModal({
                         </div>
                       </div>
                       {skippedQuestions[i] && (
-                        <p className={styles.skippedTag}>Question skipped (using prompt text)</p>
+                        <p className="px-2 py-0.5 text-xs bg-gray-100 text-gray-500 rounded">Question skipped (using prompt text)</p>
                       )}
                     </div>
                   ))}
                 </div>
                 {/* Buttons */}
-                <div className={styles.footerWithBorder}>
-                  <div className={styles.leftActions}>
-                    <button onClick={() => setStep(1)} className={styles.secondaryButton}>
+                <div className="flex items-center justify-between p-4 border-t border-gray-100">
+                  <div className="flex items-center gap-3">
+                    <button onClick={() => setStep(1)} className="px-4 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors">
                       Back
                     </button>
                     <button
                       type="button"
                       onClick={handleSkipQuestions}
                       disabled={skipButtonDisabled}
-                      className={`${styles.secondaryButton} ${styles.skipButton}`}
+                      className={`px-4 py-2 text-sm text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors text-xs text-gray-500 hover:text-gray-700 underline`}
                     >
                       Skip questions
                     </button>
@@ -800,11 +713,10 @@ export default function DocumentDraftingModal({
                   <button
                     onClick={(e) => handleGenerate(e, false)}
                     disabled={generateButtonDisabled}
-                    className={`${styles.primaryButton} ${
-                      generateButtonDisabled
-                        ? styles.primaryButtonDisabled
-                        : styles.primaryButtonEnabled
-                    }`}
+                    className={`px-4 py-2 text-sm font-medium rounded-lg transition-colors ${generateButtonDisabled
+                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      : 'bg-gray-900 text-white hover:bg-gray-800'
+                      }`}
                     title={generateButtonTitle}
                   >
                     {isGenerating ? 'Generating...' : 'Generate Draft'}
