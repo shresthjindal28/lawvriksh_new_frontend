@@ -991,13 +991,13 @@ export default function AnalysisSidebar({
       if (isHighlight) {
         const span =
           target.matches('.analysis-highlight') ||
-          target.matches('.fact-underline') ||
-          target.matches('.compliance-underline') ||
-          target.matches('.argument-highlight')
+            target.matches('.fact-underline') ||
+            target.matches('.compliance-underline') ||
+            target.matches('.argument-highlight')
             ? target
             : ((target.closest('.analysis-highlight') ||
-                target.closest('.fact-underline') ||
-                target.closest('.compliance-underline')) as HTMLElement);
+              target.closest('.fact-underline') ||
+              target.closest('.compliance-underline')) as HTMLElement);
         if (!span) return;
 
         let type = span.getAttribute('data-highlight-type');
@@ -1572,88 +1572,145 @@ export default function AnalysisSidebar({
     }
   };
 
-  // ========== RENDER ==========
 
   if (isCollapsed) {
     return (
-      <div className="analysis-sidebar-collapsed">
-        <button className="collapse-btn collapsed" onClick={handleCollapse}>
-          <ChevronLeft size={16} />
+      <div className="h-full flex flex-col w-[80px] items-center py-4 bg-white border-l border-gray-200 relative shadow-sm z-50">
+        <button
+          className="w-10 h-10 rounded-lg flex items-center justify-center text-gray-400 hover:text-gray-900 hover:bg-gray-100 transition-colors mb-6"
+          onClick={handleCollapse}
+        >
+          <ChevronLeft size={20} className="rotate-180" />
         </button>
-        <div className="analysis-sidebar-header-collapsed">
-          <Image src={'/assets/svgs/analysis.svg'} alt="analysis" width={22} height={22} />
-          <Search size={22} />
-          <Image src={'/assets/svgs/file-2.svg'} alt="discover" width={22} height={22} />
-          <Copy size={22} />
+        <div className="flex flex-col gap-6 items-center w-full">
+          <div
+            className="p-2 rounded-lg text-gray-400 hover:text-lv-accent-gold transition-colors cursor-pointer"
+            title="Analysis"
+          >
+            <Sparkles size={22} strokeWidth={1.5} />
+          </div>
+          <div
+            className="p-2 rounded-lg text-gray-400 hover:text-lv-accent-gold transition-colors cursor-pointer"
+            title="Discover"
+          >
+            <Search size={22} strokeWidth={1.5} />
+          </div>
+          <div
+            className="p-2 rounded-lg text-gray-400 hover:text-lv-accent-gold transition-colors cursor-pointer"
+            title="AI"
+          >
+            <Image
+              src={'/assets/svgs/analysis.svg'}
+              alt="AI"
+              width={22}
+              height={22}
+              className="opacity-60"
+            />
+          </div>
+          <div
+            className="p-2 rounded-lg text-gray-400 hover:text-lv-accent-gold transition-colors cursor-pointer"
+            title="Documents"
+          >
+            <Copy size={22} strokeWidth={1.5} />
+          </div>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="analysis-sidebar">
+    <div className="h-full flex flex-col bg-white border-l border-gray-200 overflow-hidden shadow-lg shadow-black/5">
       {/* Header with main tabs */}
-      <div className="analysis-sidebar-header">
-        <div className={`main-tabs ${isAIDrafting ? 'drafting-mode' : ''}`}>
+      <div className="px-5 pt-4 pb-0 bg-white border-b border-gray-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)] z-10">
+        <div className={`flex items-center gap-7 ${isAIDrafting ? 'justify-between' : ''}`}>
           <button
-            className={`main-tab ${mainTab === 'analysis' ? 'active' : 'inactive'}`}
+            className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${mainTab === 'analysis'
+              ? 'text-gray-900 font-semibold'
+              : 'text-gray-500 hover:text-gray-700'
+              }`}
             onClick={() => setMainTab('analysis')}
           >
-            <Sparkles size={16} strokeWidth={1.5} />
+            <Sparkles
+              size={16}
+              strokeWidth={1.5}
+              className={mainTab === 'analysis' ? 'text-lv-accent-gold' : ''}
+            />
             <span>Analysis</span>
             {mainTab === 'analysis' && (
               <motion.div
                 layoutId="activeTab"
-                className="absolute -bottom-[2px] left-0 right-0 h-0.5 bg-[#b48612]"
+                className="absolute bottom-0 left-0 right-0 h-[2px] bg-lv-accent-gold rounded-t-full"
                 initial={false}
                 transition={{ type: 'spring', stiffness: 500, damping: 30 }}
               />
             )}
           </button>
+
           <button
-            className={`main-tab ${mainTab === 'discover' ? 'active' : 'inactive'}`}
+            className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${mainTab === 'discover'
+              ? 'text-gray-900 font-semibold'
+              : 'text-gray-500 hover:text-gray-700'
+              }`}
             onClick={() => setMainTab('discover')}
           >
-            <Search size={16} strokeWidth={1.5} />
+            <Search
+              size={16}
+              strokeWidth={1.5}
+              className={mainTab === 'discover' ? 'text-lv-accent-gold' : ''}
+            />
             <span>Discover</span>
             {mainTab === 'discover' && (
               <motion.div
                 layoutId="activeTab"
-                className="absolute -bottom-0.5 left-0 right-0 h-0.5 bg-[#b48612]"
+                className="absolute bottom-0 left-0 right-0 h-[2px] bg-lv-accent-gold rounded-t-full"
                 initial={false}
                 transition={{ type: 'spring', stiffness: 500, damping: 30 }}
               />
             )}
           </button>
+
           <button
-            className={`main-tab ${mainTab === 'ai' ? 'active' : 'inactive'}`}
+            className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${mainTab === 'ai' ? 'text-gray-900 font-semibold' : 'text-gray-500 hover:text-gray-700'
+              }`}
             onClick={() => setMainTab('ai')}
           >
-            <Sparkles size={18} strokeWidth={1.5} />
+            <Sparkles
+              size={16}
+              strokeWidth={1.5}
+              className={mainTab === 'ai' ? 'text-lv-accent-gold' : ''}
+            />
             <span>AI</span>
             {mainTab === 'ai' && (
               <motion.div
                 layoutId="activeTab"
-                className="absolute -bottom-[2px] left-0 right-0 h-0.5 bg-[#b48612]"
+                className="absolute bottom-0 left-0 right-0 h-[2px] bg-lv-accent-gold rounded-t-full"
                 initial={false}
                 transition={{ type: 'spring', stiffness: 500, damping: 30 }}
               />
             )}
           </button>
+
           {!isAIDrafting && (
             <button
-              className={`main-tab ${mainTab === 'plagiarism' ? 'active' : 'inactive'}`}
+              className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${mainTab === 'plagiarism'
+                ? 'text-gray-900 font-semibold'
+                : 'text-gray-500 hover:text-gray-700'
+                }`}
               onClick={() => {
                 setMainTab('plagiarism');
                 setPlagiarismView('ai-detection');
               }}
             >
-              <ShieldAlert size={16} strokeWidth={1.5} />
-              <span>AI detections</span>
+              <ShieldAlert
+                size={16}
+                strokeWidth={1.5}
+                className={mainTab === 'plagiarism' ? 'text-lv-accent-gold' : ''}
+              />
+              <span>Detections</span>
               {mainTab === 'plagiarism' && (
                 <motion.div
                   layoutId="activeTab"
-                  className="absolute -bottom-[2px] left-0 right-0 h-0.5 bg-[#b48612]"
+                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-lv-accent-gold rounded-t-full"
                   initial={false}
                   transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                 />
@@ -1664,7 +1721,7 @@ export default function AnalysisSidebar({
       </div>
 
       {/* Scrollable content area */}
-      <div className="analysis-sidebar-content">
+      <div className="flex-1 overflow-y-auto bg-[#fafafa]/50">
         {mainTab === 'analysis' && (
           <AnalysisTab
             analysisSubTab={analysisSubTab}
@@ -1744,7 +1801,7 @@ export default function AnalysisSidebar({
             plagiarismView={plagiarismView}
             setPlagiarismView={setPlagiarismView}
             wordCount={wordCount}
-            handleClear={onClear || (() => {})}
+            handleClear={onClear || (() => { })}
             showPlagiarismResults={showPlagiarismResults}
             plagiarismLoading={plagiarismLoading}
             plagiarismScore={plagiarismScore}

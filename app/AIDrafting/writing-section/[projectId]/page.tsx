@@ -50,21 +50,21 @@ import { useDeleteModalStore } from '@/store/zustand/useDeleteModalStore';
 
 // Editor Skeleton Component
 const EditorSkeleton = () => (
-  <div className="ai-drafting-skeleton-container">
-    <div className="ai-drafting-skeleton-section ai-drafting-skeleton-section--header">
-      <Skeleton style={{ height: '48px', width: '75%' }} />
-      <Skeleton style={{ height: '16px', width: '50%' }} />
+  <div className="w-full max-w-4xl mx-auto p-12 space-y-12 animate-pulse">
+    <div className="space-y-4">
+      <Skeleton style={{ height: '48px', width: '75%' }} className="bg-gray-200 rounded-lg" />
+      <Skeleton style={{ height: '16px', width: '50%' }} className="bg-gray-100 rounded" />
     </div>
-    <div className="ai-drafting-skeleton-section ai-drafting-skeleton-section--content">
-      <Skeleton style={{ height: '16px', width: '100%' }} />
-      <Skeleton style={{ height: '16px', width: '100%' }} />
-      <Skeleton style={{ height: '16px', width: '100%' }} />
-      <Skeleton style={{ height: '16px', width: '83%' }} />
+    <div className="space-y-2">
+      <Skeleton style={{ height: '16px', width: '100%' }} className="bg-gray-100 rounded" />
+      <Skeleton style={{ height: '16px', width: '100%' }} className="bg-gray-100 rounded" />
+      <Skeleton style={{ height: '16px', width: '100%' }} className="bg-gray-100 rounded" />
+      <Skeleton style={{ height: '16px', width: '83%' }} className="bg-gray-100 rounded" />
     </div>
-    <div className="ai-drafting-skeleton-section ai-drafting-skeleton-section--content">
-      <Skeleton style={{ height: '16px', width: '100%' }} />
-      <Skeleton style={{ height: '16px', width: '100%' }} />
-      <Skeleton style={{ height: '16px', width: '80%' }} />
+    <div className="space-y-2">
+      <Skeleton style={{ height: '16px', width: '100%' }} className="bg-gray-100 rounded" />
+      <Skeleton style={{ height: '16px', width: '100%' }} className="bg-gray-100 rounded" />
+      <Skeleton style={{ height: '16px', width: '80%' }} className="bg-gray-100 rounded" />
     </div>
   </div>
 );
@@ -643,7 +643,7 @@ export default function TemplateEditorPage() {
 
   // Handle content change from editor
   // Use a ref to store the triggerDebouncedSave function to avoid declaration order issues
-  const triggerDebouncedSaveRef = useRef<() => void>(() => {});
+  const triggerDebouncedSaveRef = useRef<() => void>(() => { });
 
   const handleContentChange = useCallback((content: string) => {
     setEditorContent(content);
@@ -960,8 +960,8 @@ export default function TemplateEditorPage() {
         // Query page elements from the container or document if container not found
         const pageElements: Element[] = Array.from(
           documentContainer?.querySelectorAll('.tiptap-page-break') ||
-            document.querySelectorAll('.tiptap-page-break') ||
-            []
+          document.querySelectorAll('.tiptap-page-break') ||
+          []
         );
 
         // Get existing citations to preserve page numbers when DOM detection fails
@@ -1408,10 +1408,10 @@ export default function TemplateEditorPage() {
         />
       </div>
 
-      <div className="ai-drafting-layout">
-        <div className="ai-drafting-content-wrapper">
+      <div className="flex flex-col h-screen overflow-hidden bg-white">
+        <div className="flex-1 flex overflow-hidden">
           {/* Toolbar - Global */}
-          <div className="ai-drafting-toolbar">
+          <div className="w-full border-b border-gray-100 bg-white px-4 py-2 flex items-center justify-between z-20 flex-none shadow-sm h-14">
             <EditorToolbar
               editor={editorInstance}
               onCite={handleCite}
@@ -1435,31 +1435,34 @@ export default function TemplateEditorPage() {
           </div>
 
           {/* Main Content */}
-          <div className="ai-drafting-main-content">
+          <div className="flex flex-1 overflow-hidden relative">
             {/* Left Sidebar - Variable Input Fields */}
             <aside
-              className={`ai-drafting-left-sidebar ${isLeftSidebarOpen ? 'ai-drafting-left-sidebar--open' : 'ai-drafting-left-sidebar--closed'}`}
+              className={`h-full bg-[#fcfcf9] border-r border-gray-200 overflow-y-auto transition-all duration-300 ease-spring flex-none relative ${isLeftSidebarOpen ? 'w-[320px] opacity-100 translate-x-0' : 'w-0 opacity-0 -translate-x-4'
+                }`}
               style={{
                 width: isLeftSidebarOpen ? `${leftSidebarWidth}px` : '0px',
               }}
             >
               {isLeftSidebarOpen && (
-                <div className="ai-drafting-left-sidebar-content">
-                  <h2 className="ai-drafting-left-sidebar-title">
-                    <span className="ai-drafting-left-sidebar-title-icon">(x)</span>
+                <div className="p-5 h-full overflow-y-auto custom-scrollbar">
+                  <h2 className="text-sm font-semibold text-gray-900 border-b border-gray-100 pb-3 mb-4 flex items-center gap-2">
+                    <span className="text-xs font-mono text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded border border-gray-200">
+                      {'(x)'}
+                    </span>
                     Template Fields
                   </h2>
-                  <p className="ai-drafting-left-sidebar-description">
-                    Fill in the required details for your legal document.
+                  <p className="text-xs text-gray-500 mb-6 leading-relaxed">
+                    Fill in the required details for your legal document. Changes will update automatically.
                   </p>
 
                   {/* Editable Fields */}
-                  <div className="ai-drafting-variables-section">
+                  <div className="space-y-5">
                     {editableVariables.map((variable) => (
-                      <div key={variable.name} className="ai-drafting-variable-group">
+                      <div key={variable.name} className="flex flex-col gap-1.5 group">
                         <label
                           htmlFor={`variable-input-${variable.name}`}
-                          className="ai-drafting-variable-label"
+                          className="text-xs font-medium text-gray-700 uppercase tracking-wide group-focus-within:text-lv-accent-gold transition-colors"
                         >
                           {variable.label}:
                         </label>
@@ -1469,7 +1472,7 @@ export default function TemplateEditorPage() {
                           value={variable.value}
                           onChange={(e) => handleVariableChange(variable.name, e.target.value)}
                           placeholder={`Enter ${variable.label.toLowerCase()}...`}
-                          className="ai-drafting-variable-input"
+                          className="w-full px-3 py-2.5 bg-white border border-gray-200 rounded-lg text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-lv-accent-gold focus:border-lv-accent-gold transition-all shadow-sm"
                         />
                       </div>
                     ))}
@@ -1478,16 +1481,20 @@ export default function TemplateEditorPage() {
                   {/* Read-only Fields */}
                   {readonlyVariables.length > 0 && (
                     <>
-                      <h3 className="ai-drafting-readonly-section-title">Read-only Fields</h3>
-                      <div className="ai-drafting-readonly-fields">
+                      <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mt-8 mb-3">
+                        Read-only Fields
+                      </h3>
+                      <div className="space-y-4 opacity-75">
                         {readonlyVariables.map((variable) => (
-                          <div key={variable.name} className="ai-drafting-variable-group">
-                            <label className="ai-drafting-readonly-label">{variable.label}:</label>
+                          <div key={variable.name} className="flex flex-col gap-1.5">
+                            <label className="text-xs font-medium text-gray-500">
+                              {variable.label}:
+                            </label>
                             <input
                               type="text"
                               value={variable.value}
                               disabled
-                              className="ai-drafting-readonly-input"
+                              className="w-full px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-500 cursor-not-allowed"
                             />
                           </div>
                         ))}
@@ -1495,11 +1502,11 @@ export default function TemplateEditorPage() {
                     </>
                   )}
 
-                  {/* Help Section - Updated to theme colors */}
-                  <div className="ai-drafting-help-section">
-                    <h4 className="ai-drafting-help-title">
+                  {/* Help Section */}
+                  <div className="mt-8 p-4 bg-orange-50/50 rounded-xl border border-orange-100">
+                    <h4 className="text-sm font-semibold text-orange-900 flex items-center gap-2 mb-2">
                       <svg
-                        className="ai-drafting-help-icon"
+                        className="w-4 h-4 text-orange-500"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -1509,13 +1516,21 @@ export default function TemplateEditorPage() {
                         <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
                         <line x1="12" y1="17" x2="12.01" y2="17" />
                       </svg>
-                      Tips
+                      Quick Tips
                     </h4>
-                    <ul className="ai-drafting-help-list">
-                      <li>• Edit text directly in the document</li>
-                      <li>• Use the toolbar for formatting</li>
-                      <li>• Changes in sidebar update the document</li>
-                      <li>• Click Save to preserve your changes</li>
+                    <ul className="space-y-1.5 text-xs text-orange-800/80 pl-1">
+                      <li className="flex items-start gap-1.5">
+                        <span className="mt-1 block w-1 h-1 rounded-full bg-orange-400 shrink-0" />{' '}
+                        Edit text directly in the document
+                      </li>
+                      <li className="flex items-start gap-1.5">
+                        <span className="mt-1 block w-1 h-1 rounded-full bg-orange-400 shrink-0" />{' '}
+                        Use the toolbar for formatting
+                      </li>
+                      <li className="flex items-start gap-1.5">
+                        <span className="mt-1 block w-1 h-1 rounded-full bg-orange-400 shrink-0" />{' '}
+                        Changes in sidebar update the document
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -1526,7 +1541,8 @@ export default function TemplateEditorPage() {
             {isLeftSidebarOpen && (
               <div
                 onMouseDown={handleLeftResizeStart}
-                className={`ai-drafting-resize-handle ${isLeftResizing ? 'ai-drafting-resize-handle--active' : ''}`}
+                className={`absolute top-0 bottom-0 w-1 cursor-col-resize hover:bg-blue-400 z-50 transition-colors opacity-0 hover:opacity-100 ${isLeftResizing ? 'bg-blue-500 opacity-100' : ''
+                  }`}
                 style={{ left: `${leftSidebarWidth}px` }}
                 role="separator"
                 aria-label="Resize left sidebar"
@@ -1535,22 +1551,24 @@ export default function TemplateEditorPage() {
             )}
 
             {/* Document Editor Section */}
-            <main className="ai-drafting-editor-section">
+            <main className="flex-1 relative flex flex-col h-full overflow-hidden bg-white">
               {/* AI Popup Backdrop - Blur effect when AI is centered (no text selected) */}
-              {isAIPopupVisible && isCentered && <div className="ai-drafting-popup-backdrop" />}
+              {isAIPopupVisible && isCentered && (
+                <div className="absolute inset-0 bg-white/60 backdrop-blur-[2px] z-40 transition-all duration-300" />
+              )}
               {/* Translation Loader Overlay */}
               {isTranslating && (
-                <div
-                  className="ai-drafting-translation-overlay"
-                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-                >
-                  <Loader message="Translating..." />
+                <div className="absolute inset-0 flex items-center justify-center bg-white/80 z-50 backdrop-blur-sm">
+                  <Loader message="Translating document..." />
                 </div>
               )}
               {isProjectLoading ? (
                 <EditorSkeleton />
               ) : (
-                <div ref={editorScrollRef} className="ai-drafting-editor-scroll">
+                <div
+                  ref={editorScrollRef}
+                  className="w-full flex-1 overflow-y-auto overflow-x-hidden custom-scrollbar scroll-smooth p-8 pb-32"
+                >
                   <TiptapEditor
                     ref={editorRef}
                     templateData={{ ...templateData, content: templateData.content || '<p></p>' }}
@@ -1567,26 +1585,27 @@ export default function TemplateEditorPage() {
                     zoomLevel={zoomLevel}
                   />
                   {/* ReferencesSection placed at end of scrollable content */}
-                  <ReferencesSection
-                    editor={editorInstance}
-                    references={workspaceReferences}
-                    citations={blockCitations}
-                    onDeleteReference={deleteWorkspaceReference}
-                    citationStyle={citationStyle}
-                    onStyleChange={setCitationStyle}
-                    onCiteReference={handleCiteFromReferences}
-                  />
+                  <div className="max-w-[850px] mx-auto mt-12 pb-12 border-t border-gray-100 pt-8">
+                    <ReferencesSection
+                      editor={editorInstance}
+                      references={workspaceReferences}
+                      citations={blockCitations}
+                      onDeleteReference={deleteWorkspaceReference}
+                      citationStyle={citationStyle}
+                      onStyleChange={setCitationStyle}
+                      onCiteReference={handleCiteFromReferences}
+                    />
+                  </div>
+
                   {/* AI Draft Prompt - triggered by / command */}
                   {isDraftPromptOpen && draftPromptPosition && (
                     <div
                       ref={draftPromptRef}
-                      className="ai-draft-popup-wrapper"
+                      className="fixed z-1000 shadow-2xl rounded-xl overflow-hidden animate-in fade-in zoom-in-95 duration-200"
                       style={{
-                        position: 'fixed',
                         top: draftPromptPosition.top,
                         left: window.innerWidth < 800 ? '50%' : draftPromptPosition.left,
                         transform: window.innerWidth < 800 ? 'translateX(-50%)' : 'none',
-                        zIndex: 1000,
                         width: window.innerWidth < 800 ? '80%' : 'min(550px, calc(100vw - 40px))',
                         maxWidth: '600px',
                       }}
@@ -1604,17 +1623,15 @@ export default function TemplateEditorPage() {
               )}
 
               {/* Draft Action Card (Accept/Discard) - Fixed position outside scrollable area */}
-              {/* DraftActionCard - Rendered in a fixed full-screen overlay for correct positioning and drag */}
               {isDraftPending && draftActionPosition && (
                 <div
                   style={{
                     position: 'fixed',
                     inset: 0,
-                    pointerEvents: 'none', // Allow clicks to pass through wrapper
+                    pointerEvents: 'none',
                     zIndex: 1000,
                   }}
                 >
-                  {/* Container for pointer events auto */}
                   <div style={{ pointerEvents: 'auto' }}>
                     <DraftActionCard
                       onAccept={handleAcceptDraft}
@@ -1629,34 +1646,18 @@ export default function TemplateEditorPage() {
               {/* Mobile Floating Buttons */}
               <button
                 onClick={() => setIsMobileLeftSidebarOpen(!isMobileLeftSidebarOpen)}
-                className="ai-drafting-mobile-btn ai-drafting-mobile-btn--left"
+                className="fixed bottom-6 left-6 w-12 h-12 bg-gray-900 text-white rounded-full shadow-lg flex items-center justify-center lg:hidden z-50 hover:bg-gray-800 transition-colors"
                 aria-label="Toggle variables panel"
               >
-                <div className="ai-drafting-mobile-btn-icon">(x)</div>
+                <div className="font-mono text-sm font-bold opacity-80">(x)</div>
               </button>
               <button
                 onClick={() => setIsMobileRightSidebarOpen(!isMobileRightSidebarOpen)}
-                className="ai-drafting-mobile-btn ai-drafting-mobile-btn--right"
+                className="fixed bottom-6 right-6 w-12 h-12 bg-gray-900 text-white rounded-full shadow-lg flex items-center justify-center lg:hidden z-50 hover:bg-gray-800 transition-colors"
                 aria-label="Toggle analysis panel"
               >
-                <ShieldCheck size={24} />
+                <ShieldCheck size={20} />
               </button>
-              {/* Translation Loader Overlay */}
-              {isTranslating && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    zIndex: 50,
-                    backgroundColor: 'white',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Loader message="Translating..." />
-                </div>
-              )}
             </main>
           </div>
         </div>
@@ -1664,9 +1665,9 @@ export default function TemplateEditorPage() {
         {/* Right Sidebar Resize Handle */}
         <div
           onMouseDown={handleResizeStart}
-          className={`ai-drafting-resize-handle-right ${
-            isResizing ? 'ai-drafting-resize-handle-right--active' : ''
-          }`}
+          className={`absolute top-0 bottom-0 w-1 cursor-col-resize hover:bg-blue-400 z-50 transition-colors opacity-0 hover:opacity-100 right-[${isSidebarCollapsed ? 80 : sidebarWidth}px] ${isResizing ? 'bg-blue-500 opacity-100' : ''
+            }`}
+          style={{ right: isSidebarCollapsed ? '80px' : `${sidebarWidth}px` }}
           role="separator"
           aria-label="Resize right sidebar"
           aria-orientation="vertical"
@@ -1674,11 +1675,9 @@ export default function TemplateEditorPage() {
 
         {/* Right Sidebar - Analysis (Desktop) */}
         <aside
-          className="ai-drafting-right-sidebar"
+          className="bg-white border-l border-gray-200 transition-[width] duration-300 ease-spring h-full overflow-hidden flex-none z-30 shadow-[-4px_0_24px_rgba(0,0,0,0.02)]"
           style={{
-            width: isSidebarCollapsed ? 60 : sidebarWidth,
-            borderLeft: '1px solid var(--lv-border-primary, #E3E3E3)',
-            backgroundColor: 'var(--lv-bg-white, #FFFFFF)',
+            width: isSidebarCollapsed ? 80 : sidebarWidth,
           }}
         >
           <AnalysisSidebar
@@ -1712,26 +1711,26 @@ export default function TemplateEditorPage() {
         {isMobileLeftSidebarOpen && (
           <>
             <div
-              className="fixed inset-0 bg-black/50 z-90 lg:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-90 lg:hidden animate-in fade-in duration-200"
               onClick={() => setIsMobileLeftSidebarOpen(false)}
             />
-            <div className="fixed bottom-0 right-0 left-0 top-20 bg-white z-100 lg:hidden overflow-y-auto">
-              <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
-                <h2 className="text-lg font-semibold">Template Fields</h2>
+            <div className="fixed bottom-0 right-0 left-0 top-20 bg-white z-100 lg:hidden overflow-y-auto rounded-t-2xl shadow-xl animate-in slide-in-from-bottom duration-300">
+              <div className="sticky top-0 bg-white/95 backdrop-blur border-b border-gray-100 p-4 flex justify-between items-center z-10">
+                <h2 className="text-lg font-semibold text-gray-900">Template Fields</h2>
                 <button
                   onClick={() => setIsMobileLeftSidebarOpen(false)}
-                  className="text-gray-600 hover:text-gray-900 text-2xl leading-none"
+                  className="p-2 -mr-2 text-gray-400 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-all"
                 >
-                  <X size={24} />
+                  <X size={20} />
                 </button>
               </div>
-              <div className="p-4">
-                <div className="space-y-3">
+              <div className="p-6">
+                <div className="space-y-4">
                   {editableVariables.map((variable) => (
-                    <div key={variable.name} className="flex flex-col gap-1">
+                    <div key={variable.name} className="flex flex-col gap-2">
                       <label
                         htmlFor={`mobile-${variable.name}`}
-                        className="text-xs font-medium text-gray-600"
+                        className="text-xs font-semibold text-gray-500 uppercase tracking-wide"
                       >
                         {variable.label}:
                       </label>
@@ -1741,7 +1740,7 @@ export default function TemplateEditorPage() {
                         value={variable.value}
                         onChange={(e) => handleVariableChange(variable.name, e.target.value)}
                         placeholder={`Enter ${variable.label.toLowerCase()}...`}
-                        className="px-3 py-2 text-sm border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        className="px-4 py-3 text-base border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:outline-none focus:ring-2 focus:ring-lv-accent-gold focus:border-lv-accent-gold transition-colors"
                       />
                     </div>
                   ))}
@@ -1755,44 +1754,46 @@ export default function TemplateEditorPage() {
         {isMobileRightSidebarOpen && (
           <>
             <div
-              className="fixed inset-0 bg-black/50 z-90 lg:hidden"
+              className="fixed inset-0 bg-black/60 backdrop-blur-sm z-90 lg:hidden animate-in fade-in duration-200"
               onClick={() => setIsMobileRightSidebarOpen(false)}
             />
-            <div className="fixed bottom-0 right-0 left-0 top-20 bg-white z-100 lg:hidden overflow-y-auto">
-              <div className="sticky top-0 bg-white border-b border-gray-200 p-4 flex justify-between items-center">
-                <h2 className="text-lg font-semibold">Analysis</h2>
+            <div className="fixed bottom-0 right-0 left-0 top-20 bg-white z-100 lg:hidden overflow-hidden rounded-t-2xl shadow-xl animate-in slide-in-from-bottom duration-300 flex flex-col">
+              <div className="sticky top-0 bg-white/95 backdrop-blur border-b border-gray-100 p-4 flex justify-between items-center z-10 shrink-0">
+                <h2 className="text-lg font-semibold text-gray-900">Analysis</h2>
                 <button
                   onClick={() => setIsMobileRightSidebarOpen(false)}
-                  className="text-gray-600 hover:text-gray-900 text-2xl leading-none"
+                  className="p-2 -mr-2 text-gray-400 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-all"
                 >
-                  <X size={24} />
+                  <X size={20} />
                 </button>
               </div>
-              <AnalysisSidebar
-                projectId={projectId}
-                wordCount={wordCount}
-                percentage={copilotData?.Analysispercentage || 0}
-                fact={copilotData?.fact}
-                compliance={copilotData?.compliance}
-                argumentLogic={copilotData?.argumentLogic}
-                factSummary={copilotData?.factSummary}
-                expandedSections={expandedSections}
-                setExpandedSections={setExpandedSections}
-                toggleSection={toggleSection}
-                isCollapsed={false}
-                setIsCollapsed={() => {}}
-                setIsCopilotOpen={setIsCopilotOpen}
-                setCopilotData={setCopilotData}
-                onGetLatestData={onGetLatestData}
-                uploadDataForAnalysis={uploadDataForAnalysis}
-                editorRef={editorRef}
-                tiptapEditor={editorInstance}
-                documentsLoading={false}
-                factScore={copilotData?.factScore}
-                complianceScore={copilotData?.complianceScore}
-                argumentScore={copilotData?.argumentScore}
-                analysisActionsRef={analysisActionsRef}
-              />
+              <div className="flex-1 overflow-hidden relative">
+                <AnalysisSidebar
+                  projectId={projectId}
+                  wordCount={wordCount}
+                  percentage={copilotData?.Analysispercentage || 0}
+                  fact={copilotData?.fact}
+                  compliance={copilotData?.compliance}
+                  argumentLogic={copilotData?.argumentLogic}
+                  factSummary={copilotData?.factSummary}
+                  expandedSections={expandedSections}
+                  setExpandedSections={setExpandedSections}
+                  toggleSection={toggleSection}
+                  isCollapsed={false}
+                  setIsCollapsed={() => { }}
+                  setIsCopilotOpen={setIsCopilotOpen}
+                  setCopilotData={setCopilotData}
+                  onGetLatestData={onGetLatestData}
+                  uploadDataForAnalysis={uploadDataForAnalysis}
+                  editorRef={editorRef}
+                  tiptapEditor={editorInstance}
+                  documentsLoading={false}
+                  factScore={copilotData?.factScore}
+                  complianceScore={copilotData?.complianceScore}
+                  argumentScore={copilotData?.argumentScore}
+                  analysisActionsRef={analysisActionsRef}
+                />
+              </div>
             </div>
           </>
         )}
