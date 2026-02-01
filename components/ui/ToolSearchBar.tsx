@@ -78,20 +78,22 @@ function ToolSearchBar({
     const resultsStyle =
       variant === 'header' && dropdownPosition
         ? {
-            position: 'fixed' as const,
-            top: dropdownPosition.top,
-            left: dropdownPosition.left,
-            width: dropdownPosition.width,
-            maxHeight: '400px',
-            zIndex: 99999,
-            marginTop: 0,
-          }
+          position: 'fixed' as const,
+          top: dropdownPosition.top,
+          left: dropdownPosition.left,
+          width: dropdownPosition.width,
+          maxHeight: '400px',
+          zIndex: 99999,
+        }
         : undefined;
+
+    // Common Tailwind classes for the results container
+    const containerClasses = "bg-white border border-slate-200 rounded-lg shadow-xl overflow-y-auto overflow-x-hidden animate-in fade-in zoom-in-95 duration-100 max-h-[400px]";
 
     if (!hasActions) {
       const emptyContent = (
-        <div className="tool-search-bar__results" style={resultsStyle}>
-          <p className="tool-search-bar__empty">No matching tools found.</p>
+        <div className={containerClasses} style={resultsStyle}>
+          <p className="p-8 text-center text-sm text-slate-500">No matching tools found.</p>
         </div>
       );
 
@@ -102,31 +104,39 @@ function ToolSearchBar({
     }
 
     const content = (
-      <div className="tool-search-bar__results" style={resultsStyle}>
+      <div className={containerClasses} style={resultsStyle}>
         {(Object.keys(CATEGORY_LABELS) as ToolbarActionCategory[]).map((category) => {
           const actions = groupedActions[category];
           if (!actions || actions.length === 0) {
             return null;
           }
           return (
-            <section key={category} className="tool-search-bar__category">
-              <p className="tool-search-bar__category-label">{CATEGORY_LABELS[category]}</p>
-              <div className="tool-search-bar__category-actions">
+            <section key={category} className="border-b border-slate-100 last:border-0">
+              <p className="px-3 py-1.5 text-[10px] font-bold text-slate-400 bg-slate-50/50 uppercase tracking-wider">
+                {CATEGORY_LABELS[category]}
+              </p>
+              <div className="p-1.5 grid gap-0.5">
                 {actions.map((action) => (
                   <button
                     key={action.id}
                     type="button"
-                    className="tool-search-bar__action"
+                    className="w-full flex items-start gap-3 p-2 rounded-md hover:bg-slate-100 hover:text-slate-900 text-left transition-colors group"
                     onClick={(e) => {
                       // @ts-ignore
                       action.action(e);
                       setSearchQuery('');
                     }}
                   >
-                    <span className="tool-search-bar__action-icon">{action.icon}</span>
-                    <div>
-                      <p className="tool-search-bar__action-label">{action.label}</p>
-                      <p className="tool-search-bar__action-description">{action.description}</p>
+                    <span className="mt-0.5 text-slate-400 group-hover:text-slate-600 transition-colors">
+                      {action.icon}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-sm font-medium text-slate-700 group-hover:text-slate-900">
+                        {action.label}
+                      </p>
+                      <p className="text-xs text-slate-500 line-clamp-1 opacity-90">
+                        {action.description}
+                      </p>
                     </div>
                   </button>
                 ))}
@@ -151,16 +161,20 @@ function ToolSearchBar({
   return (
     <div
       ref={containerRef}
-      className={`tool-search-bar ${variant === 'header' ? 'tool-search-bar--header' : ''} ${className || ''}`}
+      className={`relative w-full ${variant === 'header' ? 'max-w-3xl' : ''} ${className || ''}`}
     >
-      <div className="tool-search-bar__input" ref={inputRef}>
-        <Search size={16} color="#94a3b8" />
+      <div
+        className="flex items-center gap-2.5 px-3.5 py-2 bg-slate-50/80 border border-slate-200/80 rounded-lg transition-all duration-200 hover:bg-slate-100 hover:border-slate-300 focus-within:bg-white focus-within:border-slate-300 focus-within:ring-2 focus-within:ring-slate-100 focus-within:shadow-sm"
+        ref={inputRef}
+      >
+        <Search size={17} className="text-slate-400 shrink-0" />
         <input
           type="search"
           value={searchQuery}
           onChange={(event) => setSearchQuery(event.target.value)}
           placeholder="Search tools..."
           aria-label="Search tools"
+          className="flex-1 w-full bg-transparent border-none outline-none text-sm text-slate-700 placeholder:text-slate-400 h-full py-1"
         />
       </div>
 

@@ -228,18 +228,18 @@ export function Topbar({
   }
 
   return (
-    <header className="relative top-auto px-7 pt-4 pb-3 backdrop-blur-none bg-[--lv-bg-primary] border-b border-[--lv-border-primary]">
+    <header className="relative top-auto px-7 pt-4 pb-4 backdrop-blur-none bg-[--lv-bg-primary] border-b border-[--lv-border-primary]">
       <div className="w-full grid grid-cols-[1fr_minmax(400px,4fr)_1fr] items-center gap-4 relative max-lg:flex max-lg:justify-between max-lg:gap-2">
         <div className="flex items-center gap-[0.9rem] min-w-0 justify-self-start">
           <HamburgerButton />
-          <div className="flex items-center gap-3">
-            <h1 className="font-[--lv-font-logo] text-[1.7rem] font-normal not-italic tracking-tight text-[--lv-text-secondary] m-0 border-b-2 border-[--lv-accent-gold-light] whitespace-nowrap leading-[1.17] max-lg:hidden">
-              {logoText}
-            </h1>
-            <span
-              className="w-0.5 h-8 bg-gray-300/90 rounded-full max-lg:hidden"
-              aria-hidden="true"
-            />
+          <div className="flex items-center gap-4 max-lg:hidden">
+            <div className="relative">
+              <h1 className="font-[--lv-font-logo] text-[1.8rem] font-normal leading-none text-slate-800 tracking-tight">
+                {logoText}
+              </h1>
+              <div className="mt-1 h-[3px] w-full bg-[#D4AF37] rounded-full" />
+            </div>
+            <div className="h-8 w-[1.5px] bg-slate-300/80 rounded-full" />
           </div>
         </div>
 
@@ -276,8 +276,8 @@ export function Topbar({
               className={cn(
                 'inline-flex items-center gap-1.5 py-1.5 px-3 rounded-[20px] border cursor-pointer text-xs font-medium whitespace-nowrap transition-all duration-200',
                 autoSaveEnabled
-                  ? 'bg-gradient-to-b from-emerald-50 to-emerald-100 border-green-500/40 text-green-700 hover:from-emerald-100 hover:to-emerald-200 hover:border-green-500/60'
-                  : 'bg-gradient-to-b from-gray-50 to-gray-100 border-gray-300/80 text-gray-500 hover:from-gray-100 hover:to-gray-200 hover:border-gray-400'
+                  ? 'bg-linear-to-b from-emerald-50 to-emerald-100 border-green-500/40 text-green-700 hover:from-emerald-100 hover:to-emerald-200 hover:border-green-500/60'
+                  : 'bg-linear-to-b from-gray-50 to-gray-100 border-gray-300/80 text-gray-500 hover:from-gray-100 hover:to-gray-200 hover:border-gray-400'
               )}
               onClick={onToggleAutoSave}
               aria-label={autoSaveEnabled ? 'Disable auto-save' : 'Enable auto-save'}
@@ -317,7 +317,7 @@ export function Topbar({
               className={cn(
                 'inline-flex items-center justify-center gap-2.5 py-2 px-4 rounded-lg border border-gray-300/85 bg-transparent cursor-pointer shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] transition-all duration-200',
                 isExportDropdownOpen &&
-                  'bg-gray-100/95 shadow-[inset_0_0_0_1px_rgba(148,163,184,0.25)]',
+                'bg-gray-100/95 shadow-[inset_0_0_0_1px_rgba(148,163,184,0.25)]',
                 'hover:bg-gray-100/95 hover:shadow-[inset_0_0_0_1px_rgba(148,163,184,0.25)]'
               )}
               onClick={(e) => {

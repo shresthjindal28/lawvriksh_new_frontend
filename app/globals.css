@@ -327,7 +327,7 @@
   --lv-accent-red: #d00000;
   --lv-icon-default: #3f3f46;
   --lv-icon-dark: #133435;
-  --lv-font-logo: var(--font-instrument-serif), 'Instrument Serif', serif;
+  --lv-font-logo: var(--font-playfair), 'Playfair Display', serif;
   --lv-font-body: var(--font-instrument-sans), 'Instrument Sans', Arial, sans-serif;
 
   /* Gray palette */

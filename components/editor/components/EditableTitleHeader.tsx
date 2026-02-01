@@ -89,10 +89,7 @@ export default function EditableTitleHeader({
             {isSaving ? (
               'Saving...'
             ) : (
-              <>
-                Edited{' '}
-                {project?.updated_at ? formatTimeAgo(project.updated_at) : 'just now'}
-              </>
+              <>Edited {project?.updated_at ? formatTimeAgo(project.updated_at) : 'just now'}</>
             )}
           </p>
         </div>

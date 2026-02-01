@@ -271,15 +271,19 @@ export default function PlagiarismTab({
     <>
       {plagiarismView === 'ai-detection' ? (
         !showAiDetectionResults ? (
-          <>
-            <div className="current-doc-card">
-              <div className="current-doc-info">
-                <p className="current-doc-title">Current Document</p>
-                <p className="current-doc-subtitle">The entire document content will be analyzed</p>
-              </div>
-              <div className="current-doc-stats-container">
-                <p className="current-doc-count">{wordCount}</p>
-                <p className="current-doc-unit">words</p>
+          <div className="flex flex-col flex-1">
+            <div className="bg-[#F5F5F7] rounded-xl p-5 flex flex-col mb-4">
+              <div className="flex items-center justify-between w-full text-left">
+                <div className="flex flex-col items-start max-w-[70%]">
+                  <p className="text-[17px] font-bold text-gray-900 leading-tight">Current Document</p>
+                  <p className="text-dashboard-section-heading text-gray-500 mt-1 leading-normal">
+                    The entire document content will be analyzed
+                  </p>
+                </div>
+                <div className="flex flex-col items-end shrink-0">
+                  <p className="text-[28px] font-bold text-gray-900 leading-none">{wordCount}</p>
+                  <p className="text-dashboard-section-heading text-gray-500 font-medium mt-1">words</p>
+                </div>
               </div>
             </div>
 
@@ -289,22 +293,23 @@ export default function PlagiarismTab({
               </div>
             )}
 
-            <div className="sidebar-divider" />
-
-            <div className="action-btns-container">
-              <button onClick={() => handleClear()} className="action-btn-clear">
-                <X size={16} />
+            <div className="mt-auto flex gap-3 pt-6 border-t border-gray-100">
+              <button
+                onClick={() => handleClear()}
+                className="flex-1 h-[48px] px-4 rounded-xl border border-gray-200 text-gray-700 text-sm font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 bg-white"
+              >
+                <X size={18} />
                 <span>Clear</span>
               </button>
               <button
-                className={`action-btn-analyze ${aiDetectionLoading ? 'loading' : 'active'}`}
+                className={`flex-[1.2] h-[48px] px-4 rounded-xl text-white text-sm font-semibold transition-all flex items-center justify-center gap-2 ${aiDetectionLoading ? 'bg-black/80 cursor-wait' : 'bg-black hover:bg-black/90'}`}
                 disabled={aiDetectionLoading}
                 onClick={() => handleAnalyze('ai-detection')}
               >
                 {aiDetectionLoading ? 'Analyzing...' : 'Analyze Document'}
               </button>
             </div>
-          </>
+          </div>
         ) : (
           <div className="flex-1 min-h-0 overflow-y-auto analysis-tab-content">
             <AnalysisScoreCard
@@ -351,15 +356,19 @@ export default function PlagiarismTab({
           </div>
         )
       ) : !showPlagiarismResults ? (
-        <>
-          <div className="current-doc-card">
-            <div className="current-doc-info">
-              <p className="current-doc-title">Current Document</p>
-              <p className="current-doc-subtitle">The entire document content will be analyzed</p>
-            </div>
-            <div className="current-doc-stats-container">
-              <p className="current-doc-count">{wordCount}</p>
-              <p className="current-doc-unit">words</p>
+        <div className="flex flex-col flex-1">
+          <div className="bg-[#F5F5F7] rounded-xl p-5 flex flex-col mb-4">
+            <div className="flex items-center justify-between w-full text-left">
+              <div className="flex flex-col items-start max-w-[70%]">
+                <p className="text-[17px] font-bold text-gray-900 leading-tight">Current Document</p>
+                <p className="text-dashboard-section-heading text-gray-500 mt-1 leading-normal">
+                  The entire document content will be analyzed
+                </p>
+              </div>
+              <div className="flex flex-col items-end shrink-0">
+                <p className="text-[28px] font-bold text-gray-900 leading-none">{wordCount}</p>
+                <p className="text-dashboard-section-heading text-gray-500 font-medium mt-1">words</p>
+              </div>
             </div>
           </div>
 
@@ -369,22 +378,23 @@ export default function PlagiarismTab({
             </div>
           )}
 
-          <div className="sidebar-divider" />
-
-          <div className="action-btns-container">
-            <button onClick={() => handleClear()} className="action-btn-clear">
-              <X size={16} />
+          <div className="mt-auto flex gap-3 pt-6 border-t border-gray-100">
+            <button
+              onClick={() => handleClear()}
+              className="flex-1 h-[48px] px-4 rounded-xl border border-gray-200 text-gray-700 text-sm font-semibold hover:bg-gray-50 transition-colors flex items-center justify-center gap-2 bg-white"
+            >
+              <X size={18} />
               <span>Clear</span>
             </button>
             <button
-              className={`action-btn-analyze ${plagiarismLoading ? 'loading' : 'active'}`}
+              className={`flex-[1.2] h-[48px] px-4 rounded-xl text-white text-sm font-semibold transition-all flex items-center justify-center gap-2 ${plagiarismLoading ? 'bg-black/80 cursor-wait' : 'bg-black hover:bg-black/90'}`}
               disabled={plagiarismLoading}
               onClick={() => handleAnalyze('plagiarism')}
             >
               {plagiarismLoading ? 'Analyzing...' : 'Analyze Document'}
             </button>
           </div>
-        </>
+        </div>
       ) : (
         <div className="flex-1 min-h-0 overflow-y-auto analysis-tab-content">
           <AnalysisScoreCard

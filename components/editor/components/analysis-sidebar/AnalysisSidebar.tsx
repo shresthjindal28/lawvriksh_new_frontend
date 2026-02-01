@@ -74,7 +74,7 @@ export default function AnalysisSidebar({
   const isAIDrafting = pathname?.includes('/AIDrafting') || false;
 
   // Debug: Log tiptapEditor availability
-  console.log('[AnalysisSidebar] tiptapEditor available:', !!tiptapEditor, tiptapEditor);
+  console.log('[AnalysisSidebar] tiptapEditor available:', !!tiptapEditor);
 
   // Normalize data
   const facts = useMemo(() => (fact ? (Array.isArray(fact) ? fact : [fact]) : []), [fact]);
