@@ -61,65 +61,40 @@ export default function EditableTitleHeader({
   };
 
   return (
-    <div
-      className="page-header-default sticky-header"
-      style={{ paddingLeft: '20px', paddingRight: '20px' }}
-    >
-      <div
-        className="header-content"
-        style={{
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          width: '100%',
-          maxWidth: '100%',
-          margin: 0,
-          gap: '1rem',
-        }}
-      >
-        <div className="topbar-left" style={{ minWidth: 0, flex: 1, paddingRight: 0 }}>
-          <div className="topbar-brand" style={{ width: '100%' }}>
-            <Link
-              href="/dashboard"
-              className="topbar-brand"
-              style={{ textDecoration: 'none', color: 'inherit', flexShrink: 0 }}
-            >
-              <ArrowLeft size={16} />
-            </Link>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => {
-                setTitle(e.target.value);
-                setIsEditing(true);
-              }}
-              onBlur={handleBlur}
-              onKeyDown={handleKeyDown}
-              className="topbar-title bg-transparent border-none outline-none focus:ring-0 p-0 m-0"
-              style={{
-                fontSize: '18px',
-                fontWeight: 500,
-                color: '#111827',
-                flex: 1,
-                minWidth: 0,
-                width: '100%',
-                textOverflow: 'ellipsis',
-              }}
-              placeholder="Untitled Document"
-              aria-label="Document Title"
-            />
-          </div>
+    <div className="sticky top-0 z-40 w-full bg-white border-b border-gray-200">
+      <div className="h-14 px-5 flex items-center justify-between gap-4">
+        <div className="flex items-center gap-3 flex-1 min-w-0">
+          <Link
+            href="/dashboard"
+            className="text-gray-500 hover:text-gray-900 transition-colors shrink-0 p-1 rounded-md hover:bg-gray-100"
+          >
+            <ArrowLeft size={18} />
+          </Link>
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => {
+              setTitle(e.target.value);
+              setIsEditing(true);
+            }}
+            onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
+            className="flex-1 min-w-0 bg-transparent border-none outline-none text-base font-semibold text-gray-900 placeholder:text-gray-400 focus:ring-0 p-0"
+            placeholder="Untitled Document"
+            aria-label="Document Title"
+          />
         </div>
-        <div className="topbar-right" style={{ flexShrink: 0 }}>
-          <div className="topbar-brand">
-            <p className="topbar-save-text" style={{ whiteSpace: 'nowrap' }}>
-              {isSaving ? (
-                'Saving...'
-              ) : (
-                <>Edited {project?.updated_at ? formatTimeAgo(project.updated_at) : 'just now'}</>
-              )}
-            </p>
-          </div>
+        <div className="shrink-0">
+          <p className="text-xs text-gray-500 font-medium whitespace-nowrap">
+            {isSaving ? (
+              'Saving...'
+            ) : (
+              <>
+                Edited{' '}
+                {project?.updated_at ? formatTimeAgo(project.updated_at) : 'just now'}
+              </>
+            )}
+          </p>
         </div>
       </div>
     </div>

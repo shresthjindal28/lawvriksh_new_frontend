@@ -643,7 +643,7 @@ export default function TemplateEditorPage() {
 
   // Handle content change from editor
   // Use a ref to store the triggerDebouncedSave function to avoid declaration order issues
-  const triggerDebouncedSaveRef = useRef<() => void>(() => { });
+  const triggerDebouncedSaveRef = useRef<() => void>(() => {});
 
   const handleContentChange = useCallback((content: string) => {
     setEditorContent(content);
@@ -960,8 +960,8 @@ export default function TemplateEditorPage() {
         // Query page elements from the container or document if container not found
         const pageElements: Element[] = Array.from(
           documentContainer?.querySelectorAll('.tiptap-page-break') ||
-          document.querySelectorAll('.tiptap-page-break') ||
-          []
+            document.querySelectorAll('.tiptap-page-break') ||
+            []
         );
 
         // Get existing citations to preserve page numbers when DOM detection fails
@@ -1438,8 +1438,11 @@ export default function TemplateEditorPage() {
           <div className="flex flex-1 overflow-hidden relative">
             {/* Left Sidebar - Variable Input Fields */}
             <aside
-              className={`h-full bg-[#fcfcf9] border-r border-gray-200 overflow-y-auto transition-all duration-300 ease-spring flex-none relative ${isLeftSidebarOpen ? 'w-[320px] opacity-100 translate-x-0' : 'w-0 opacity-0 -translate-x-4'
-                }`}
+              className={`h-full bg-[#fcfcf9] border-r border-gray-200 overflow-y-auto transition-all duration-300 ease-spring flex-none relative ${
+                isLeftSidebarOpen
+                  ? 'w-[320px] opacity-100 translate-x-0'
+                  : 'w-0 opacity-0 -translate-x-4'
+              }`}
               style={{
                 width: isLeftSidebarOpen ? `${leftSidebarWidth}px` : '0px',
               }}
@@ -1453,7 +1456,8 @@ export default function TemplateEditorPage() {
                     Template Fields
                   </h2>
                   <p className="text-xs text-gray-500 mb-6 leading-relaxed">
-                    Fill in the required details for your legal document. Changes will update automatically.
+                    Fill in the required details for your legal document. Changes will update
+                    automatically.
                   </p>
 
                   {/* Editable Fields */}
@@ -1541,8 +1545,9 @@ export default function TemplateEditorPage() {
             {isLeftSidebarOpen && (
               <div
                 onMouseDown={handleLeftResizeStart}
-                className={`absolute top-0 bottom-0 w-1 cursor-col-resize hover:bg-blue-400 z-50 transition-colors opacity-0 hover:opacity-100 ${isLeftResizing ? 'bg-blue-500 opacity-100' : ''
-                  }`}
+                className={`absolute top-0 bottom-0 w-1 cursor-col-resize hover:bg-blue-400 z-50 transition-colors opacity-0 hover:opacity-100 ${
+                  isLeftResizing ? 'bg-blue-500 opacity-100' : ''
+                }`}
                 style={{ left: `${leftSidebarWidth}px` }}
                 role="separator"
                 aria-label="Resize left sidebar"
@@ -1665,8 +1670,9 @@ export default function TemplateEditorPage() {
         {/* Right Sidebar Resize Handle */}
         <div
           onMouseDown={handleResizeStart}
-          className={`absolute top-0 bottom-0 w-1 cursor-col-resize hover:bg-blue-400 z-50 transition-colors opacity-0 hover:opacity-100 right-[${isSidebarCollapsed ? 80 : sidebarWidth}px] ${isResizing ? 'bg-blue-500 opacity-100' : ''
-            }`}
+          className={`absolute top-0 bottom-0 w-1 cursor-col-resize hover:bg-blue-400 z-50 transition-colors opacity-0 hover:opacity-100 right-[${isSidebarCollapsed ? 80 : sidebarWidth}px] ${
+            isResizing ? 'bg-blue-500 opacity-100' : ''
+          }`}
           style={{ right: isSidebarCollapsed ? '80px' : `${sidebarWidth}px` }}
           role="separator"
           aria-label="Resize right sidebar"
@@ -1780,7 +1786,7 @@ export default function TemplateEditorPage() {
                   setExpandedSections={setExpandedSections}
                   toggleSection={toggleSection}
                   isCollapsed={false}
-                  setIsCollapsed={() => { }}
+                  setIsCollapsed={() => {}}
                   setIsCopilotOpen={setIsCopilotOpen}
                   setCopilotData={setCopilotData}
                   onGetLatestData={onGetLatestData}

@@ -1572,7 +1572,6 @@ export default function AnalysisSidebar({
     }
   };
 
-
   if (isCollapsed) {
     return (
       <div className="h-full flex flex-col w-[80px] items-center py-4 bg-white border-l border-gray-200 relative shadow-sm z-50">
@@ -1625,8 +1624,8 @@ export default function AnalysisSidebar({
         <div className={`flex items-center gap-7 ${isAIDrafting ? 'justify-between' : ''}`}>
           <button
             className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${mainTab === 'analysis'
-              ? 'text-gray-900 font-semibold'
-              : 'text-gray-500 hover:text-gray-700'
+                ? 'text-gray-900 font-semibold'
+                : 'text-gray-500 hover:text-gray-700'
               }`}
             onClick={() => setMainTab('analysis')}
           >
@@ -1648,8 +1647,8 @@ export default function AnalysisSidebar({
 
           <button
             className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${mainTab === 'discover'
-              ? 'text-gray-900 font-semibold'
-              : 'text-gray-500 hover:text-gray-700'
+                ? 'text-gray-900 font-semibold'
+                : 'text-gray-500 hover:text-gray-700'
               }`}
             onClick={() => setMainTab('discover')}
           >
@@ -1690,33 +1689,31 @@ export default function AnalysisSidebar({
             )}
           </button>
 
-          {!isAIDrafting && (
-            <button
-              className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${mainTab === 'plagiarism'
+          <button
+            className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${mainTab === 'plagiarism'
                 ? 'text-gray-900 font-semibold'
                 : 'text-gray-500 hover:text-gray-700'
-                }`}
-              onClick={() => {
-                setMainTab('plagiarism');
-                setPlagiarismView('ai-detection');
-              }}
-            >
-              <ShieldAlert
-                size={16}
-                strokeWidth={1.5}
-                className={mainTab === 'plagiarism' ? 'text-lv-accent-gold' : ''}
+              }`}
+            onClick={() => {
+              setMainTab('plagiarism');
+              setPlagiarismView('ai-detection');
+            }}
+          >
+            <ShieldAlert
+              size={16}
+              strokeWidth={1.5}
+              className={mainTab === 'plagiarism' ? 'text-lv-accent-gold' : ''}
+            />
+            <span>AI detections</span>
+            {mainTab === 'plagiarism' && (
+              <motion.div
+                layoutId="activeTab"
+                className="absolute bottom-0 left-0 right-0 h-[2px] bg-lv-accent-gold rounded-t-full"
+                initial={false}
+                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
               />
-              <span>Detections</span>
-              {mainTab === 'plagiarism' && (
-                <motion.div
-                  layoutId="activeTab"
-                  className="absolute bottom-0 left-0 right-0 h-[2px] bg-lv-accent-gold rounded-t-full"
-                  initial={false}
-                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                />
-              )}
-            </button>
-          )}
+            )}
+          </button>
         </div>
       </div>
 

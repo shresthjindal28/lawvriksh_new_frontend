@@ -367,7 +367,9 @@ export default function DocumentDraftingModal({
         <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
           <div className="flex flex-col items-center">
             <SequentialVideoLoader width={500} />
-            <p className="mt-6 text-gray-600 font-medium text-center animate-pulse">Drafting your document...</p>
+            <p className="mt-6 text-gray-600 font-medium text-center animate-pulse">
+              Drafting your document...
+            </p>
           </div>
         </div>
       </div>
@@ -424,7 +426,7 @@ export default function DocumentDraftingModal({
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: "spring", duration: 0.4, bounce: 0.3 }}
+            transition={{ type: 'spring', duration: 0.4, bounce: 0.3 }}
             className="bg-white rounded-2xl w-full max-w-2xl max-h-[85vh] overflow-y-auto shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] flex flex-col relative"
             onClick={(e) => e.stopPropagation()}
           >
@@ -438,9 +440,13 @@ export default function DocumentDraftingModal({
                   <Sparkles size={18} />
                 </div>
                 <div>
-                  <h2 className="text-lg font-bold text-gray-900 leading-tight">AI Drafting Assistant</h2>
+                  <h2 className="text-lg font-bold text-gray-900 leading-tight">
+                    AI Drafting Assistant
+                  </h2>
                   <div className="flex items-center gap-2 mt-0.5">
-                    <span className="text-xs text-gray-500 font-medium tracking-wide">POWERED BY LAWVRIKSH AI</span>
+                    <span className="text-xs text-gray-500 font-medium tracking-wide">
+                      POWERED BY LAWVRIKSH AI
+                    </span>
                     <span className="px-1.5 py-0.5 text-dashboard-badge font-bold bg-orange-50 text-lv-accent-gold rounded border border-orange-100 tracking-wider">
                       BETA
                     </span>
@@ -542,8 +548,9 @@ export default function DocumentDraftingModal({
                             Language
                           </label>
                           <span
-                            className={`text-dashboard-badge font-medium transition-colors ${charCount >= minChars ? 'text-green-600' : 'text-gray-400'
-                              }`}
+                            className={`text-dashboard-badge font-medium transition-colors ${
+                              charCount >= minChars ? 'text-green-600' : 'text-gray-400'
+                            }`}
                           >
                             {charCount}/{minChars} chars
                           </span>
@@ -554,10 +561,11 @@ export default function DocumentDraftingModal({
                             onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
                             type="button"
                             disabled={isLoading || isGenerating}
-                            className={`w-full flex items-center justify-between px-4 py-2.5 border rounded-xl text-sm font-medium bg-white transition-all ${isLanguageDropdownOpen
-                              ? 'border-lv-accent-gold ring-1 ring-lv-accent-gold text-gray-900'
-                              : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50/50'
-                              }`}
+                            className={`w-full flex items-center justify-between px-4 py-2.5 border rounded-xl text-sm font-medium bg-white transition-all ${
+                              isLanguageDropdownOpen
+                                ? 'border-lv-accent-gold ring-1 ring-lv-accent-gold text-gray-900'
+                                : 'border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50/50'
+                            }`}
                           >
                             <span className="flex items-center gap-2">{language}</span>
                             <ChevronDown
@@ -583,13 +591,16 @@ export default function DocumentDraftingModal({
                                         setLanguage(lang.value);
                                         setIsLanguageDropdownOpen(false);
                                       }}
-                                      className={`px-3 py-2 text-sm text-left rounded-lg transition-colors flex items-center justify-between ${language === lang.value
-                                        ? 'bg-orange-50 text-lv-accent-gold font-medium'
-                                        : 'text-gray-700 hover:bg-gray-50'
-                                        }`}
+                                      className={`px-3 py-2 text-sm text-left rounded-lg transition-colors flex items-center justify-between ${
+                                        language === lang.value
+                                          ? 'bg-orange-50 text-lv-accent-gold font-medium'
+                                          : 'text-gray-700 hover:bg-gray-50'
+                                      }`}
                                     >
                                       {lang.label}
-                                      {language === lang.value && <div className="w-1.5 h-1.5 rounded-full bg-lv-accent-gold" />}
+                                      {language === lang.value && (
+                                        <div className="w-1.5 h-1.5 rounded-full bg-lv-accent-gold" />
+                                      )}
                                     </button>
                                   ))}
                                 </div>
@@ -611,7 +622,10 @@ export default function DocumentDraftingModal({
                           className="w-full flex items-center justify-between px-4 py-2.5 border border-gray-200 rounded-xl text-sm font-medium text-gray-700 bg-white hover:border-gray-300 hover:bg-gray-50/50 transition-all group"
                         >
                           <span className="flex items-center gap-2">
-                            <BookOpen size={16} className="text-gray-400 group-hover:text-lv-accent-gold transition-colors" />
+                            <BookOpen
+                              size={16}
+                              className="text-gray-400 group-hover:text-lv-accent-gold transition-colors"
+                            />
                             Browse Library
                           </span>
                         </button>
@@ -623,7 +637,9 @@ export default function DocumentDraftingModal({
                       <div className="pt-2">
                         {isLoadingTemplate ? (
                           <div className="w-full flex items-center justify-center py-3 px-4 bg-gray-50 border border-gray-100 rounded-xl animate-pulse">
-                            <span className="text-xs text-gray-400 font-medium">Processing template...</span>
+                            <span className="text-xs text-gray-400 font-medium">
+                              Processing template...
+                            </span>
                           </div>
                         ) : uploadedTemplate ? (
                           <motion.div
@@ -642,7 +658,9 @@ export default function DocumentDraftingModal({
                               >
                                 {uploadedTemplate.title}
                               </div>
-                              <div className="text-xs text-blue-600/70 font-medium mt-0.5">Template Selected</div>
+                              <div className="text-xs text-blue-600/70 font-medium mt-0.5">
+                                Template Selected
+                              </div>
                             </div>
                             <button
                               type="button"
@@ -663,7 +681,10 @@ export default function DocumentDraftingModal({
                   // Step 2: Clarification Questions
                   <div className="space-y-6">
                     {questions.map((q, i) => (
-                      <div key={i} className="space-y-3 p-5 rounded-2xl border border-gray-100 bg-gray-50/30">
+                      <div
+                        key={i}
+                        className="space-y-3 p-5 rounded-2xl border border-gray-100 bg-gray-50/30"
+                      >
                         <div className="flex gap-3">
                           <div className="w-6 h-6 rounded-full bg-lv-accent-gold/10 text-lv-accent-gold flex items-center justify-center text-xs font-bold shrink-0 mt-0.5">
                             {i + 1}
@@ -731,10 +752,11 @@ export default function DocumentDraftingModal({
                   <button
                     onClick={handleInquiry}
                     disabled={!isValid || isLoading || isGenerating}
-                    className={`px-8 py-3 text-sm font-semibold rounded-xl shadow-lg shadow-gray-200 transition-all transform hover:-translate-y-0.5 ${isValid && !isLoading && !isGenerating
-                      ? 'bg-gray-900 text-white hover:bg-gray-800 hover:shadow-gray-300'
-                      : 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
-                      }`}
+                    className={`px-8 py-3 text-sm font-semibold rounded-xl shadow-lg shadow-gray-200 transition-all transform hover:-translate-y-0.5 ${
+                      isValid && !isLoading && !isGenerating
+                        ? 'bg-gray-900 text-white hover:bg-gray-800 hover:shadow-gray-300'
+                        : 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
+                    }`}
                   >
                     Continue to Details
                   </button>
@@ -761,10 +783,11 @@ export default function DocumentDraftingModal({
                   <button
                     onClick={(e) => handleGenerate(e, false)}
                     disabled={generateButtonDisabled}
-                    className={`px-8 py-3 text-sm font-semibold rounded-xl shadow-lg shadow-gray-200 transition-all transform hover:-translate-y-0.5 ${generateButtonDisabled
-                      ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
-                      : 'bg-gray-900 text-white hover:bg-gray-800 hover:shadow-gray-300'
-                      }`}
+                    className={`px-8 py-3 text-sm font-semibold rounded-xl shadow-lg shadow-gray-200 transition-all transform hover:-translate-y-0.5 ${
+                      generateButtonDisabled
+                        ? 'bg-gray-200 text-gray-400 cursor-not-allowed shadow-none'
+                        : 'bg-gray-900 text-white hover:bg-gray-800 hover:shadow-gray-300'
+                    }`}
                     title={generateButtonTitle}
                   >
                     {isGenerating ? (
@@ -772,7 +795,9 @@ export default function DocumentDraftingModal({
                         <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                         Generating...
                       </span>
-                    ) : 'Generate Document'}
+                    ) : (
+                      'Generate Document'
+                    )}
                   </button>
                 </div>
               )}
