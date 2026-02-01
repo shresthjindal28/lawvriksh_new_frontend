@@ -709,9 +709,15 @@ export default function Home({ categories, role }: HomeProps) {
             {/* Left Column: Stats + Projects */}
             <div className="flex flex-col gap-12 w-full xl:flex-1 xl:min-w-[600px]">
               {/* Summary Stats Grid */}
-              <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 self-stretch w-full">
+              <motion.div
+                variants={itemVariants}
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 self-stretch w-full"
+              >
                 {stats.map((stat, index) => (
-                  <div key={index} className="flex min-h-[160px] w-full p-5 flex-col justify-between gap-4 rounded-[14px] border border-[rgba(19,52,53,0.06)] bg-white shadow-[0_2px_8px_rgba(19,52,53,0.04)] box-border hover:shadow-[0_4px_12px_rgba(19,52,53,0.08)] hover:-translate-y-1 transition-all duration-300 ease-out">
+                  <div
+                    key={index}
+                    className="flex min-h-[160px] w-full p-5 flex-col justify-between gap-4 rounded-[14px] border border-[rgba(19,52,53,0.06)] bg-white shadow-[0_2px_8px_rgba(19,52,53,0.04)] box-border hover:shadow-[0_4px_12px_rgba(19,52,53,0.08)] hover:-translate-y-1 transition-all duration-300 ease-out"
+                  >
                     <div>
                       <h3
                         className="text-[#133435] text-[13px] font-semibold leading-[19.5px] tracking-[1.04px] uppercase break-words"
@@ -724,7 +730,7 @@ export default function Home({ categories, role }: HomeProps) {
                     </div>
 
                     <div
-                      className="self-stretch text-[#133435] text-right text-[50px] font-normal leading-[26px] max-md:text-[40px]"
+                      className="self-stretch text-[#133435] text-right text-dashboard-stat-value font-normal leading-[26px] max-md:text-[40px]"
                       style={{
                         fontFamily: "var(--font-instrument-serif), 'Instrument Serif', serif",
                       }}
@@ -732,15 +738,15 @@ export default function Home({ categories, role }: HomeProps) {
                       <CountUp to={stat.value} />
                     </div>
 
-                    <div className="flex h-[29px] mt-2.5 pt-[11px] items-center self-stretch border-t border-[rgba(19,52,53,0.08)]">
-                      <div className="flex h-[18px] justify-between items-center flex-1">
-                        <div className="flex w-auto min-w-0 max-w-[140px] h-[18px] items-center gap-1 [&>span]:text-[#627c7d] [&>span]:text-xs [&>span]:font-normal [&>span]:leading-[18px]">
+                    <div className="flex pt-3 mt-auto items-center self-stretch border-t border-[rgba(19,52,53,0.08)]">
+                      <div className="flex justify-between items-center w-full min-w-0 gap-3">
+                        <div className="flex items-center gap-1 shrink-0 [&>span]:text-[#627c7d] [&>span]:text-xs [&>span]:font-normal">
                           {stat.icon}
                           <span>{stat.trend}</span>
                         </div>
 
                         {!stat.isStreak && stat.subtext && (
-                          <div className="text-[rgba(98,124,125,0.8)] text-[11px] italic font-normal leading-[16.5px] whitespace-nowrap overflow-hidden text-ellipsis max-w-[130px] min-w-0">
+                          <div className="text-[rgba(98,124,125,0.8)] text-[11px] italic font-normal whitespace-nowrap overflow-hidden text-ellipsis min-w-0 text-right flex-1" title={stat.subtext}>
                             {stat.subtext}
                           </div>
                         )}
