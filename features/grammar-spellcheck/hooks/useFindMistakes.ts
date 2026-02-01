@@ -3,11 +3,7 @@ import EditorJS from '@editorjs/editorjs';
 import { useCallback, useRef, useEffect, useState, useMemo } from 'react';
 import nspell from 'nspell';
 import { extractTextFromBlock, stripHtml } from '@/lib/utils/helpers';
-import {
-  CorrectedGrammerMistake,
-  CorrectedMistake,
-  GrammerCheckRequest,
-} from '@/types/spellcheck';
+import { CorrectedGrammerMistake, CorrectedMistake, GrammerCheckRequest } from '@/types/spellcheck';
 import GrammerSpellCheckService from '@/lib/api/grammerSpellCheckService';
 import { EditorStats } from '@/types/editor';
 import stringSimilarity from 'string-similarity';

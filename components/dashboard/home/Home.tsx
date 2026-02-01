@@ -644,22 +644,40 @@ export default function Home({ categories, role }: HomeProps) {
   }
 
   return (
-    <main className="dashboard-main" style={{ position: 'relative' }}>
+    <main
+      className="flex-1 overflow-y-auto overflow-x-hidden w-full relative bg-[#fafafa]"
+      style={{
+        backgroundImage: "url('/assets/images/dashboard/LawVriksh%201.png')",
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center center',
+        backgroundSize: 'auto 100vh',
+        backgroundAttachment: 'fixed',
+      }}
+    >
       <MobileHeader />
       <motion.div
-        className="dashboard-content"
+        className="flex w-full max-w-[1920px] min-h-auto justify-center items-start gap-[69px] bg-transparent mx-auto py-10 px-[60px] max-xl:py-10 max-xl:px-10 max-xl:gap-10 max-lg:py-6 max-lg:px-6 max-lg:gap-6 max-md:py-5 max-md:px-4 max-md:gap-8 max-md:flex-col max-md:items-stretch"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        <div className="dashboard-content-inner">
+        <div className="flex w-full max-w-[1790px] flex-col justify-start items-center gap-12 shrink-0">
           {/* Header Row - Welcome + Search */}
-          <motion.div variants={itemVariants} className="dashboard-header">
-            <div className="dashboard-welcome-container">
-              <h2 className="dashboard-welcome-title">
+          <motion.div
+            variants={itemVariants}
+            className="flex justify-between items-start self-stretch max-md:flex-col max-md:gap-5 max-md:items-stretch"
+          >
+            <div className="flex w-[292.288px] flex-col items-start gap-1 max-md:w-full">
+              <h2
+                className="text-[#133435] text-4xl font-normal leading-[45px] m-0 font-serif max-md:text-[28px] max-md:leading-normal"
+                style={{ fontFamily: "var(--font-instrument-serif), 'Instrument Serif', serif" }}
+              >
                 Welcome back, {profile?.name?.split(' ')[0] || profile?.username || 'User'}
               </h2>
-              <p className="dashboard-welcome-subtitle">
+              <p
+                className="text-[#627c7d] text-sm font-normal leading-[21px]"
+                style={{ fontFamily: "var(--font-instrument-sans), 'Instrument Sans', sans-serif" }}
+              >
                 {new Date().toLocaleDateString('en-US', {
                   weekday: 'long',
                   month: 'long',
@@ -670,45 +688,61 @@ export default function Home({ categories, role }: HomeProps) {
             </div>
 
             {/* Search Bar */}
-            <div className="dashboard-search">
-              <div className="dashboard-search-icon-left">
+            <div className="relative w-[494px] max-lg:w-[350px] max-md:w-full">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none z-10">
                 <Search size={16} />
               </div>
               <input
                 type="text"
                 placeholder="Search shortcuts or projects..."
-                className="dashboard-search-input"
+                className="flex w-full h-10 py-2.5 px-3 items-center rounded-[10px] border border-gray-200 bg-white pl-10 pr-10 text-sm text-gray-900 transition-all duration-200 focus:outline-none focus:border-gray-400 focus:shadow-[0_0_0_1px_#e5e7eb] max-md:h-9 max-md:text-[0.8125rem]"
               />
-              <div className="dashboard-search-shortcut">
-                <span className="dashboard-search-shortcut-label">⌘K</span>
+              <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                <span className="text-xs text-gray-400 bg-gray-50 py-0.5 px-1.5 rounded-full border border-gray-200">
+                  ⌘K
+                </span>
               </div>
             </div>
           </motion.div>
 
-          <div className="dashboard-main-grid">
+          <div className="flex flex-wrap items-start gap-8 w-full">
             {/* Left Column: Stats + Projects */}
-            <div className="dashboard-left-column">
+            <div className="flex flex-col gap-12 w-full xl:flex-1 xl:min-w-[600px]">
               {/* Summary Stats Grid */}
-              <motion.div variants={itemVariants} className="dashboard-stats-grid">
+              <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 self-stretch w-full">
                 {stats.map((stat, index) => (
-                  <div key={index} className="dashboard-stat-card">
+                  <div key={index} className="flex min-h-[160px] w-full p-5 flex-col justify-between gap-4 rounded-[14px] border border-[rgba(19,52,53,0.06)] bg-white shadow-[0_2px_8px_rgba(19,52,53,0.04)] box-border hover:shadow-[0_4px_12px_rgba(19,52,53,0.08)] hover:-translate-y-1 transition-all duration-300 ease-out">
                     <div>
-                      <h3 className="dashboard-stat-label">{stat.label}</h3>
+                      <h3
+                        className="text-[#133435] text-[13px] font-semibold leading-[19.5px] tracking-[1.04px] uppercase break-words"
+                        style={{
+                          fontFamily: "var(--font-instrument-sans), 'Instrument Sans', sans-serif",
+                        }}
+                      >
+                        {stat.label}
+                      </h3>
                     </div>
 
-                    <div className="dashboard-stat-value">
+                    <div
+                      className="self-stretch text-[#133435] text-right text-[50px] font-normal leading-[26px] max-md:text-[40px]"
+                      style={{
+                        fontFamily: "var(--font-instrument-serif), 'Instrument Serif', serif",
+                      }}
+                    >
                       <CountUp to={stat.value} />
                     </div>
 
-                    <div className="dashboard-stat-footer">
-                      <div className="dashboard-footer-inner">
-                        <div className="dashboard-stat-trend">
+                    <div className="flex h-[29px] mt-2.5 pt-[11px] items-center self-stretch border-t border-[rgba(19,52,53,0.08)]">
+                      <div className="flex h-[18px] justify-between items-center flex-1">
+                        <div className="flex w-auto min-w-0 max-w-[140px] h-[18px] items-center gap-1 [&>span]:text-[#627c7d] [&>span]:text-xs [&>span]:font-normal [&>span]:leading-[18px]">
                           {stat.icon}
                           <span>{stat.trend}</span>
                         </div>
 
                         {!stat.isStreak && stat.subtext && (
-                          <div className="dashboard-stat-subtext">{stat.subtext}</div>
+                          <div className="text-[rgba(98,124,125,0.8)] text-[11px] italic font-normal leading-[16.5px] whitespace-nowrap overflow-hidden text-ellipsis max-w-[130px] min-w-0">
+                            {stat.subtext}
+                          </div>
                         )}
                       </div>
                     </div>
@@ -717,9 +751,19 @@ export default function Home({ categories, role }: HomeProps) {
               </motion.div>
 
               {/* Start a New Project */}
-              <motion.div variants={itemVariants} className="dashboard-new-project-section">
-                <h3 className="dashboard-section-heading">START A NEW PROJECT</h3>
-                <div className="dashboard-new-project-grid">
+              <motion.div
+                variants={itemVariants}
+                className="flex flex-col items-start gap-5 self-stretch"
+              >
+                <h3
+                  className="text-[#133435] text-[13px] font-semibold leading-[19.5px] tracking-[1.04px] uppercase"
+                  style={{
+                    fontFamily: "var(--font-instrument-sans), 'Instrument Sans', sans-serif",
+                  }}
+                >
+                  START A NEW PROJECT
+                </h3>
+                <div className="grid grid-cols-4 gap-[19px] self-stretch w-full max-lg:grid-cols-2 max-md:flex max-md:flex-col max-md:gap-4">
                   {ProjectCreationOptions.map((option) => {
                     const config = categoryConfig[option.id] || {
                       label: option.name,
@@ -731,14 +775,19 @@ export default function Home({ categories, role }: HomeProps) {
                       <motion.div
                         key={option.id}
                         onClick={() => handleNewProject(option.id)}
-                        className="dashboard-new-project-card"
+                        className="flex h-[160px] w-full flex-col justify-center items-center gap-3 rounded-[14px] border border-[rgba(19,52,53,0.08)] bg-[#fcfcf9] cursor-pointer transition-all duration-300 hover:bg-white hover:shadow-[0_4px_12px_rgba(19,52,53,0.08)] hover:-translate-y-1 hover:border-[rgba(19,52,53,0.15)] max-sm:h-[200px] max-sm:flex-none"
                         whileHover={{ y: -4 }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <div className="dashboard-new-project-icon">
+                        <div className="flex w-12 h-12 pt-3 px-3 flex-col items-start shrink-0 rounded-full bg-white">
                           <Icon size={24} strokeWidth={1.5} />
                         </div>
-                        <span className="dashboard-new-project-label">{config.label}</span>
+                        <span
+                          className="text-sm font-medium text-[#133435] pb-0.5 border-b border-gray-400 transition-colors duration-150 group-hover:border-[#1a2e29]"
+                          style={{ fontFamily: "var(--font-playfair), 'Playfair Display', serif" }}
+                        >
+                          {config.label}
+                        </span>
                       </motion.div>
                     );
                   })}
@@ -746,28 +795,38 @@ export default function Home({ categories, role }: HomeProps) {
               </motion.div>
 
               {/* Most Recent Section */}
-              <motion.div variants={itemVariants} className="dashboard-recent-section">
-                <div className="dashboard-recent-header">
-                  <h3 className="dashboard-section-heading">Recent Projects</h3>
+              <motion.div
+                variants={itemVariants}
+                className="flex flex-col items-start gap-[21px] self-stretch"
+              >
+                <div className="flex justify-between items-center w-full">
+                  <h3
+                    className="text-[#133435] text-[13px] font-semibold leading-[19.5px] tracking-[1.04px] uppercase"
+                    style={{
+                      fontFamily: "var(--font-instrument-sans), 'Instrument Sans', sans-serif",
+                    }}
+                  >
+                    Recent Projects
+                  </h3>
                   {isLoading && !hasFetched.current && (
-                    <span className="dashboard-recent-sync">Syncing...</span>
+                    <span className="text-xs text-gray-400 animate-pulse">Syncing...</span>
                   )}
                 </div>
 
                 {isLoading && !hasFetched.current ? (
                   renderLoadingState()
                 ) : !displayProjects || displayProjects.length === 0 ? (
-                  <div className="dashboard-recent-empty">
-                    <div className="dashboard-recent-empty-icon">
+                  <div className="flex flex-col items-center justify-center py-16 px-6 rounded-[14px] border border-dashed border-[rgba(19,52,53,0.15)] bg-[rgba(19,52,53,0.02)] w-full">
+                    <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-4">
                       <Plus size={20} />
                     </div>
-                    <h3 className="dashboard-recent-empty-title">No projects yet</h3>
-                    <p className="dashboard-recent-empty-text">
+                    <h3 className="text-sm font-semibold text-gray-900 mb-1">No projects yet</h3>
+                    <p className="text-sm text-gray-500 max-w-[280px] text-center mb-6">
                       Create your first project to get started with LawVriksh.
                     </p>
                     <button
                       onClick={handleCreateFromScratch}
-                      className="dashboard-recent-empty-button"
+                      className="inline-flex items-center gap-2 py-2 px-4 rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-700 shadow-sm transition-all duration-150 hover:bg-gray-50 hover:border-gray-300 hover:shadow-md"
                     >
                       <Plus size={16} />
                       <span>Create Empty Project</span>
@@ -775,7 +834,7 @@ export default function Home({ categories, role }: HomeProps) {
                   </div>
                 ) : (
                   <motion.div
-                    className="dashboard-projects-grid"
+                    className="grid grid-cols-3 gap-5 self-stretch w-full max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-4 max-sm:gap-3"
                     variants={containerVariants}
                     initial="hidden"
                     animate="visible"
@@ -797,30 +856,46 @@ export default function Home({ categories, role }: HomeProps) {
             </div>
 
             {/* Right Column: Research Hub */}
-            <motion.div variants={itemVariants} className="dashboard-right-column">
-              <h3 className="dashboard-section-heading">YOUR RESEARCH HUB</h3>
-              <p className="dashboard-research-subtitle">Recently Active References</p>
+            <motion.div
+              variants={itemVariants}
+              className="flex h-auto flex-col items-start gap-2 relative top-0 w-full xl:w-[367px] xl:shrink-0 xl:sticky xl:top-6 xl:self-start xl:h-[calc(100vh-120px)] xl:max-h-[800px]"
+            >
+              <h3
+                className="text-[#133435] text-[13px] font-semibold leading-[19.5px] tracking-[1.04px] uppercase"
+                style={{ fontFamily: "var(--font-instrument-sans), 'Instrument Sans', sans-serif" }}
+              >
+                YOUR RESEARCH HUB
+              </h3>
+              <p
+                className="text-[#627c7d] text-xs font-normal leading-[18px]"
+                style={{ fontFamily: "var(--font-instrument-sans), 'Instrument Sans', sans-serif" }}
+              >
+                Recently Active References
+              </p>
 
               <div
-                className="dashboard-research-container"
+                className="flex h-[589.6px] min-w-[367px] pt-6 px-6 pb-0 flex-col justify-start items-stretch gap-0 shrink-0 self-stretch rounded-2xl border border-[rgba(19,52,53,0.06)] bg-white shadow-sm max-md:min-w-0 max-md:w-full max-md:h-auto max-md:min-h-[400px] max-md:p-4"
                 style={{ minWidth: 'auto', width: '100%' }}
               >
                 <AnimatePresence mode="wait">
                   {isAnalyticsLoading ? (
                     <motion.div
                       key="research-loading"
-                      className="dashboard-research-list"
+                      className="flex flex-col items-start self-stretch flex-1 overflow-y-auto"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
                     >
-                      <div className="dashboard-research-skeleton">
+                      <div className="w-full">
                         {[0, 1, 2].map((index) => (
-                          <div key={`ref-skeleton-${index}`} className="dashboard-ref-skeleton-row">
-                            <div className="dashboard-ref-skeleton-avatar" />
-                            <div className="dashboard-ref-skeleton-lines">
-                              <div className="dashboard-ref-skeleton-line-primary" />
-                              <div className="dashboard-ref-skeleton-line-secondary" />
+                          <div
+                            key={`ref-skeleton-${index}`}
+                            className="flex items-center gap-3 py-3 border-b border-gray-100 last:border-0"
+                          >
+                            <div className="w-10 h-10 rounded-full bg-gray-100 animate-pulse" />
+                            <div className="flex-1 flex flex-col gap-2">
+                              <div className="h-3 w-3/4 bg-gray-100 rounded animate-pulse" />
+                              <div className="h-2 w-1/2 bg-gray-100 rounded animate-pulse" />
                             </div>
                           </div>
                         ))}
@@ -829,20 +904,32 @@ export default function Home({ categories, role }: HomeProps) {
                   ) : recentReferences.length === 0 ? (
                     <motion.div
                       key="research-empty"
-                      className="dashboard-research-empty-state"
+                      className="flex flex-col items-center justify-center py-12 px-6 flex-1 w-full text-center"
                       initial={{ opacity: 0, y: 6 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
                     >
-                      <div className="dashboard-research-empty-icon">
+                      <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mb-4 text-gray-400">
                         <BookOpen size={24} strokeWidth={1.5} />
                       </div>
-                      <h3 className="dashboard-research-empty-title">No recent references</h3>
-                      <p className="dashboard-research-empty-text">
+                      <h3
+                        className="text-sm font-semibold text-gray-900 mb-1"
+                        style={{
+                          fontFamily: "var(--font-instrument-sans), 'Instrument Sans', sans-serif",
+                        }}
+                      >
+                        No recent references
+                      </h3>
+                      <p
+                        className="text-sm text-gray-500 max-w-[240px] mb-6 leading-relaxed"
+                        style={{
+                          fontFamily: "var(--font-instrument-sans), 'Instrument Sans', sans-serif",
+                        }}
+                      >
                         Your research hub is waiting. Add references to get started.
                       </p>
                       <button
-                        className="dashboard-research-empty-button"
+                        className="inline-flex items-center justify-center py-2 px-4 rounded-lg bg-[#133435] text-white text-sm font-medium border-none cursor-pointer transition-all duration-200 hover:bg-[#0d2526] hover:-translate-y-px hover:shadow-lg"
                         onClick={() => router.push(`/dashboard/${role}/reference-manager`)}
                       >
                         <span>Create Your First Reference</span>
@@ -851,7 +938,7 @@ export default function Home({ categories, role }: HomeProps) {
                   ) : (
                     <motion.div
                       key="research-list"
-                      className="dashboard-research-list"
+                      className="flex flex-col items-start self-stretch flex-1 overflow-y-auto"
                       variants={researchListVariants}
                       initial="hidden"
                       animate="visible"
@@ -859,12 +946,12 @@ export default function Home({ categories, role }: HomeProps) {
                       {recentReferences.map((ref: any, index: number) => (
                         <motion.div
                           key={ref.id ?? `recent-ref-${index}`}
-                          className="dashboard-reference-item"
+                          className="flex h-[111px] min-w-[303px] py-4 px-2 flex-col justify-between items-start self-stretch rounded-[10px] border-b border-[rgba(19,52,53,0.06)] cursor-pointer transition-all duration-150 hover:bg-gray-50 hover:shadow-[inset_2px_0_0_rgba(37,99,235,0.2)] hover:-translate-y-px max-md:min-w-0 max-md:w-full max-md:h-auto max-md:py-3 max-md:px-2 group"
                           variants={researchItemVariants}
                         >
-                          <div className="dashboard-reference-row">
-                            <div className="dashboard-reference-main">
-                              <div className="dashboard-reference-icon">
+                          <div className="flex justify-between items-start w-full mb-1">
+                            <div className="flex items-start gap-3 flex-1 min-w-0">
+                              <div className="mt-0.5 text-gray-400 transition-colors duration-150 shrink-0 group-hover:text-gray-500">
                                 <svg
                                   xmlns="http://www.w3.org/2000/svg"
                                   width="20"
@@ -909,14 +996,21 @@ export default function Home({ categories, role }: HomeProps) {
                                   />
                                 </svg>
                               </div>
-                              <div className="dashboard-reference-title-wrapper">
-                                <h4 className="dashboard-reference-title" title={ref.title}>
+                              <div className="flex-1 min-w-0 overflow-hidden">
+                                <h4
+                                  className="text-[#133435] text-sm font-semibold leading-[21px] transition-colors duration-150 overflow-hidden text-ellipsis whitespace-nowrap group-hover:text-blue-600"
+                                  title={ref.title}
+                                  style={{
+                                    fontFamily:
+                                      "var(--font-instrument-sans), 'Instrument Sans', sans-serif",
+                                  }}
+                                >
                                   {ref.title || 'Untitled reference'}
                                 </h4>
                                 {/* Tags display - Final Redesign */}
                                 {ref.tags && ref.tags.length > 0 && (
                                   <div
-                                    className="dashboard-reference-tags"
+                                    className="flex items-center gap-2 mt-2 min-h-[24px]"
                                     style={{ marginTop: '0px', flexShrink: 0 }}
                                   >
                                     <div
@@ -982,17 +1076,31 @@ export default function Home({ categories, role }: HomeProps) {
                               </div>
                             </div>
 
-                            <span className={`dashboard-reference-badge ${ref.statusColor}`}>
+                            <span
+                              className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-medium ${ref.statusColor}`}
+                            >
                               {ref.status}
                             </span>
                           </div>
-                          <p className="dashboard-reference-meta">
+                          <p
+                            className="mt-0.5 text-[#627c7d] text-xs font-normal leading-[18px]"
+                            style={{
+                              fontFamily:
+                                "var(--font-instrument-sans), 'Instrument Sans', sans-serif",
+                            }}
+                          >
                             By: {ref.author} • Uploaded: {ref.uploaded}
                           </p>
 
-                          <div className="dashboard-reference-stats">
+                          <div
+                            className="flex items-center gap-3 mt-2 text-[#627c7d] text-[11px] font-normal leading-[16.5px]"
+                            style={{
+                              fontFamily:
+                                "var(--font-instrument-sans), 'Instrument Sans', sans-serif",
+                            }}
+                          >
                             <div
-                              className="dashboard-reference-stat"
+                              className="flex items-center gap-1"
                               style={{
                                 cursor:
                                   ref.s3_key || ref.file_url || ref.web_url ? 'pointer' : 'default',
@@ -1015,7 +1123,7 @@ export default function Home({ categories, role }: HomeProps) {
                                 {ref.annotations === 1 ? 'annotation' : 'annotations'}
                               </span>
                             </div>
-                            <div className="dashboard-reference-stat">
+                            <div className="flex items-center gap-1">
                               <Bookmark size={12} />
                               <span>
                                 {ref.notes} {ref.notes === 1 ? 'note' : 'notes'}
@@ -1030,7 +1138,7 @@ export default function Home({ categories, role }: HomeProps) {
 
                 {recentReferences.length > 0 && (
                   <button
-                    className="dashboard-research-footer"
+                    className="flex w-full h-12 py-3 px-5 justify-center items-center shrink-0 mt-auto border-t border-[rgba(19,52,53,0.08)] bg-transparent cursor-pointer transition-all duration-150 text-black text-center text-xs font-normal leading-[19.5px] hover:text-gray-900 hover:tracking-wider"
                     onClick={() => router.push(`/dashboard/${role}/reference-manager`)}
                   >
                     View all references ({totalReferencesCount > 0 ? totalReferencesCount : '0'}) →

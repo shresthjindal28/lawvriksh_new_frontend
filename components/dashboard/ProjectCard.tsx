@@ -175,17 +175,17 @@ function ProjectCard({
         stiffness: 400,
         damping: 30,
       }}
-      className="project-card-container"
+      className="flex h-full w-full pt-[22px] pb-[16.92px] px-[22px] flex-col items-start gap-4 rounded-[14px] bg-white text-left relative overflow-hidden box-border border border-[rgba(19,52,53,0.08)] shadow-[0_2px_4px_rgba(0,0,0,0.02)] transition-shadow duration-300"
       onClick={handleCardClick}
     >
       {/* Three-dot menu */}
-      <div className="project-card-menu" ref={menuRef}>
+      <div className="absolute top-4 right-3 z-20" ref={menuRef}>
         <button
           onClick={(e) => {
             e.stopPropagation();
             setIsMenuOpen(!isMenuOpen);
           }}
-          className="project-card-menu-btn"
+          className="p-1.5 rounded-full text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
         >
           <MoreVertical size={16} />
         </button>
@@ -198,7 +198,7 @@ function ProjectCard({
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -5 }}
               transition={{ duration: 0.15, ease: 'easeOut' }}
-              className="project-card-dropdown"
+              className="absolute right-0 top-8 w-40 bg-white rounded-lg shadow-xl border border-gray-100 py-1 z-30 flex flex-col overflow-hidden [&>button]:flex [&>button]:items-center [&>button]:gap-2 [&>button]:px-3 [&>button]:py-2 [&>button]:text-sm [&>button]:text-gray-600 [&>button]:hover:bg-gray-50 [&>button]:w-full [&>button]:text-left [&>button]:transition-colors"
             >
               {isTrashView ? (
                 <>
@@ -215,7 +215,7 @@ function ProjectCard({
                       e.stopPropagation();
                       handleMenuAction(handleDelete);
                     }}
-                    className="delete-btn"
+                    className="text-red-600 hover:bg-red-50"
                   >
                     <Trash2 size={14} /> Delete Forever
                   </button>
@@ -244,7 +244,7 @@ function ProjectCard({
                       e.stopPropagation();
                       handleMenuAction(handleDelete);
                     }}
-                    className="delete-btn"
+                    className="text-red-600 hover:bg-red-50"
                   >
                     <Trash2 size={14} /> Delete
                   </button>
@@ -256,47 +256,24 @@ function ProjectCard({
       </div>
 
       {/* Title */}
-      <h3 className="project-card-title">{project.title}</h3>
-
-      {/* Gold divider */}
-      <div className="project-card-divider" />
-
-      {/* Authors Section */}
-      <div className="project-card-authors">
-        <p className="authors-label">Authors:</p>
-        <div className="authors-avatars">
-          {authors.slice(0, 3).map((author: string, idx: number) => (
-            <motion.div
-              key={idx}
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2 + idx * 0.1, type: 'spring' }}
-              className="author-avatar"
-              style={{ backgroundColor: authorAvatarColors[idx % authorAvatarColors.length] }}
-            >
-              {getAuthorInitials(author)}
-            </motion.div>
-          ))}
-          {authors.length > 3 && (
-            <div
-              className="author-avatar author-overflow"
-              style={{ backgroundColor: authorAvatarColors[3] }}
-            >
-              +{authors.length - 3}
-            </div>
-          )}
-        </div>
-      </div>
+      <h3
+        className="w-full text-[#133435] text-[18px] font-normal leading-tight overflow-hidden text-ellipsis line-clamp-2 min-h-[44px]"
+        style={{ fontFamily: "var(--font-instrument-serif), 'Instrument Serif', serif" }}
+      >
+        {project.title}
+      </h3>
 
       {/* Footer: Template Type & Last Edited */}
-      <div className="project-card-footer">
+      <div className="flex justify-between items-center self-stretch pt-3 mt-auto border-t border-[rgba(19,52,53,0.06)] gap-2">
         <span
-          className="template-badge"
+          className="px-2.5 py-1 rounded-full text-[11px] font-medium tracking-wide whitespace-nowrap shrink-0 transition-colors duration-200"
           style={{ backgroundColor: categoryStyle.bg, color: categoryStyle.text }}
         >
           {formatCategory(project.category)}
         </span>
-        <p className="last-edited">Last edited: {formatRelativeTime(project.updated_at)}</p>
+        <p className="text-[#b7b7b7] text-[10px] italic whitespace-nowrap shrink-0">
+          Last edited: {formatRelativeTime(project.updated_at)}
+        </p>
       </div>
     </motion.div>
   );

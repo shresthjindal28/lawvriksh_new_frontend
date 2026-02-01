@@ -8,6 +8,7 @@ import { MobileSidebarProvider, useMobileSidebar } from '@/lib/contexts/MobileSi
 import { useAuth } from '@/lib/contexts/AuthContext';
 import VideoLoader from '@/components/ui/VideoLoader';
 import { cn } from '@/lib/utils';
+import { useSidebarUIStore } from '@/store/zustand/useSidebarUIStore';
 
 interface CommonDashboardProps {
   children: ReactNode;
@@ -17,6 +18,7 @@ interface CommonDashboardProps {
 
 function DashboardContent({ children, className = '', user }: CommonDashboardProps) {
   const { isOpen, close } = useMobileSidebar();
+  const isCollapsed = useSidebarUIStore((state) => state.isCollapsed);
 
   const mainNavItems =
     navigationConfigs[user.role as keyof typeof navigationConfigs] || navigationConfigs.student;
@@ -39,8 +41,8 @@ function DashboardContent({ children, className = '', user }: CommonDashboardPro
       {/* Main Content Area */}
       <main
         className={cn(
-          'flex-1 p-0 min-h-screen transition-[margin-left] duration-300 ease-in-out bg-[#fafafa]',
-          'ml-[280px]', // Default: sidebar expanded
+          'flex-1 p-0 min-h-screen transition-all duration-300 ease-in-out bg-[#fafafa]',
+          isCollapsed ? 'ml-20' : 'ml-[280px]', // Adjust margin based on collapsed state
           'max-md:ml-0 max-md:p-0' // Mobile: no margin
         )}
       >

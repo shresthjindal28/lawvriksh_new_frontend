@@ -301,9 +301,9 @@ export default function Sidebar({
         href={item.path}
         className={cn(
           'w-full h-12 px-4 rounded-xl bg-transparent border-none cursor-pointer flex items-center text-left relative font-medium',
-          'text-[--dashboard-text-secondary] hover:text-[--dashboard-text-primary] hover:bg-[--color-surface-hover]',
+          'text-[#627c7d] hover:text-[#133435] hover:bg-[#f5f5f5]',
           'transition-colors duration-150',
-          isActive && 'text-[--color-primary-700] bg-[--color-primary-50] font-semibold',
+          isActive && 'text-brand-700 bg-brand-50 font-semibold',
           effectiveCollapsed ? 'justify-center px-0' : 'justify-start'
         )}
         title={effectiveCollapsed ? item.label : undefined}
@@ -336,7 +336,7 @@ export default function Sidebar({
           {isActive && !effectiveCollapsed && (
             <motion.div
               layoutId="activeIndicator"
-              className="absolute left-[-16px] top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-[--color-primary-700]"
+              className="absolute left-[-16px] top-1/2 -translate-y-1/2 w-1 h-6 rounded-r-full bg-brand-700"
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
             />
           )}
@@ -349,9 +349,9 @@ export default function Sidebar({
     <motion.aside
       className={cn(
         'h-screen flex flex-col fixed top-0 z-auto',
-        'border-r border-[--dashboard-border-light] shadow-[4px_0_24px_rgba(0,0,0,0.02)]',
-        'bg-[--color-surface]',
-        effectiveCollapsed ? 'w-20 p-0 z-50' : 'w-[280px] z-50',
+        'border-r border-dashboard-border-light shadow-sidebar',
+        'bg-[#fafafa]',
+        effectiveCollapsed ? 'w-20 p-0 z-50' : 'w-sidebar-expanded z-50',
         isMobileOpen && 'z-50'
       )}
       animate={effectiveCollapsed ? 'collapsed' : 'expanded'}
@@ -371,16 +371,16 @@ export default function Sidebar({
             )}
           >
             <motion.button
-              className="p-2 bg-transparent border-none cursor-pointer flex items-center justify-center opacity-80 rounded-lg hover:opacity-100 hover:bg-[--color-surface-hover]"
+              className="p-2 bg-transparent border-none cursor-pointer flex items-center justify-center opacity-80 rounded-lg hover:opacity-100 hover:bg-[#f5f5f5]"
               type="button"
               onClick={handleToggleCollapse}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
             >
               {effectiveCollapsed ? (
-                <PanelLeftOpen className="w-6 h-6 text-[--dashboard-text-secondary]" />
+                <PanelLeftOpen className="w-6 h-6 text-[#627c7d]" />
               ) : (
-                <PanelLeftClose className="w-6 h-6 text-[--dashboard-text-secondary]" />
+                <PanelLeftClose className="w-6 h-6 text-[#627c7d]" />
               )}
             </motion.button>
           </div>
@@ -391,7 +391,7 @@ export default function Sidebar({
       <div className={cn('py-3 mb-4', effectiveCollapsed ? 'px-0 flex justify-center' : 'px-4')}>
         <motion.button
           className={cn(
-            'bg-[#12271d] border-none rounded-lg flex items-center justify-center gap-2.5',
+            'bg-lv-bg-button-dark border-none rounded-lg flex items-center justify-center gap-2.5',
             'text-white cursor-pointer font-["Instrument_Sans",sans-serif] font-light text-base',
             'shadow-[0_4px_12px_rgba(0,0,0,0.1)] relative overflow-hidden',
             'hover:shadow-[0_6px_16px_rgba(0,0,0,0.15)]',
@@ -430,17 +430,17 @@ export default function Sidebar({
       </nav>
 
       <div className="mt-auto px-4 pb-6 flex flex-col gap-4">
-        <nav className="flex flex-col gap-2 pt-4 border-t border-[--color-border]">
+        <nav className="flex flex-col gap-2 pt-4 border-t border-[#e5e5e5]">
           {adjustedBottomNav.map(renderNavItem)}
           <motion.button
             className={cn(
               'w-full h-12 px-4 rounded-xl bg-transparent border-none cursor-pointer flex items-center text-left relative font-medium mt-2',
-              'text-[--dashboard-text-secondary] hover:bg-[--color-surface-hover]',
+              'text-[#627c7d] hover:bg-[#f5f5f5]',
               effectiveCollapsed ? 'justify-center px-0' : ''
             )}
             onClick={handleProfileClick}
             title={effectiveCollapsed ? user.name || user.username || 'NA' : 'Profile'}
-            whileHover={{ backgroundColor: 'var(--color-surface-hover)' }}
+            whileHover={{ backgroundColor: '#f5f5f5' }}
           >
             <motion.div
               className={cn('flex items-center w-full', effectiveCollapsed && 'justify-center')}
@@ -448,7 +448,7 @@ export default function Sidebar({
               transition={{ type: 'spring', stiffness: 400, damping: 20 }}
             >
               {effectiveCollapsed ? (
-                <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 border-2 border-[--color-surface] shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
+                <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 border-2 border-[#fafafa] shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
                   <Image
                     src={profileImageUrl}
                     alt={user.name || user.username || 'NA'}
@@ -461,7 +461,7 @@ export default function Sidebar({
               ) : (
                 <div className="flex items-center justify-between w-full h-full">
                   <div className="flex items-center gap-2 flex-1">
-                    <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 border-2 border-[--color-surface] shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
+                    <div className="w-8 h-8 rounded-full overflow-hidden shrink-0 border-2 border-[#fafafa] shadow-[0_2px_4px_rgba(0,0,0,0.05)]">
                       <Image
                         src={profileImageUrl}
                         alt={user.name || user.username || 'NA'}

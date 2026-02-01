@@ -4,11 +4,7 @@ import { useMemo } from 'react';
 import AdminPanel from '@/components/admin/AdminPanel';
 import VideoLoader from '@/components/ui/VideoLoader';
 import { useAdminDashboard } from '@/hooks/common/useAdminDashboard';
-import {
-  AdminInfoTransformer,
-  StatsBuilder,
-  ActionsBuilder,
-} from '@/lib/utils/adminPanel';
+import { AdminInfoTransformer, StatsBuilder, ActionsBuilder } from '@/lib/utils/adminPanel';
 
 export default function AdminDashboardPage() {
   const { dashboardData, systemStats, isLoading, error } = useAdminDashboard();
