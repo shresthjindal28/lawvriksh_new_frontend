@@ -1,6 +1,6 @@
 'use client';
 import { motion } from 'framer-motion';
-
+import '@/styles/creator-styles/creator-form.css';
 interface CreatorApplicationFormProps {
   title: string;
   fieldName: string;

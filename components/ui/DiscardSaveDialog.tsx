@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { AlertCircle, Save, Trash2 } from 'lucide-react';
-
+import './DiscardSaveDialog.css';
 interface DiscardSaveDialogProps {
   isOpen: boolean;
   onSave: () => void;

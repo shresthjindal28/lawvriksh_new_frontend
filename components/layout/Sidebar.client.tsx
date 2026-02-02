@@ -26,7 +26,7 @@ import { ProjectCategory } from '@/types/project';
 import { useSidebarUIStore } from '@/store/zustand/useSidebarUIStore';
 import { useCreateProject } from '@/lib/api/queries/workspace/useCreateProject';
 import { cn } from '@/lib/utils';
-
+import '@/styles/dashboard-styles/sidebar.css';
 interface SidebarProps {
   user: UserProfile;
   navigationItems: NavigationItem[];

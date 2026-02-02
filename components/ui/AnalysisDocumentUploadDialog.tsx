@@ -5,7 +5,7 @@ import { UploadCloud, X, FileText, ShieldCheck, ChevronDown, Loader2 } from 'luc
 import Dialog from './Dialog';
 import { useToast } from '@/lib/contexts/ToastContext';
 import { DocumentType } from '@/types/analysisDocument';
-
+import '@/styles/ui-styles/document-dialog.css';
 interface AnalysisDocumentUploadDialogProps {
   isOpen: boolean;
   onClose: () => void;

@@ -2,7 +2,7 @@
 import { useAuth } from '@/lib/contexts/AuthContext';
 import Profile from '@/components/user/Profile.client';
 import { SkeletonLoader } from '@/components/ui/Loader';
-
+import '@/styles/user-styles/user-profile-page.css';
 export default function StudentProfilePage() {
   const { profile } = useAuth();
 

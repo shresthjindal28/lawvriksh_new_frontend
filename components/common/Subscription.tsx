@@ -8,7 +8,7 @@ import { useToast } from '@/lib/contexts/ToastContext';
 import { workspaceService } from '@/lib/api/workSpaceService';
 import { useAuth } from '@/lib/contexts/AuthContext';
 import { MobileHeader } from '@/components/common/MobileHeader';
-
+import '@/styles/common-styles/subscription.css';
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {

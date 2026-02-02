@@ -6,7 +6,7 @@ import Dialog from './Dialog';
 import { useToast } from '@/lib/contexts/ToastContext';
 import { referenceManagerService } from '@/lib/api/referenceManagerService';
 import { Document } from '@/types/library';
-
+import '@/styles/ui-styles/document-dialog.css';
 interface DocumentUploadDialogProps {
   isOpen: boolean;
   onClose: () => void;

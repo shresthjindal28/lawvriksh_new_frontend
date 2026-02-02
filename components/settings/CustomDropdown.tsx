@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { ChevronDown, Check } from 'lucide-react';
-
+import '@/styles/common-styles/custom-dropdown.css';
 interface DropdownOption {
   value: string;
   label: string;

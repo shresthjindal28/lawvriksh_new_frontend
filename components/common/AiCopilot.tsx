@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useState } from 'react';
 import { ChevronRight, FileSearch, Shield, X } from 'lucide-react';
 import { ArgumentLogic, Compliance, FactChecker, FactCheckSummary } from '@/types/copilot';
 import { truncateText } from '@/lib/utils/helpers';
-
+import '@/styles/common-styles/ai-copilot.css';
 interface AiCopilotProps {
   percentage: number;
   fact?: FactChecker | FactChecker[] | null;

@@ -6,7 +6,7 @@ import { ReferenceItem } from '@/types/reference-manager';
 import { useReferenceStore } from '@/store/zustand/useReferenceStore';
 import { ReferenceRow } from './ReferenceRow';
 import { Skeleton } from '@/components/ui/skeleton';
-
+import '@/styles/reference-manager/referenceTable.css';
 const ROW_HEIGHT = 56; // Estimated row height in pixels
 const OVERSCAN = 10; // Number of items to render outside visible area
 

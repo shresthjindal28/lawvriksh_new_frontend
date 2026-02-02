@@ -6,7 +6,7 @@ import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Edit2, Trash2 } from 'lucide-react';
 import { Tag } from '@/types/reference-manager';
-
+import '@/styles/reference-manager/tagMenu.css';
 export default function TagMenu({
   anchorRect,
   tag,

@@ -47,6 +47,9 @@ import UnsavedChangesModal from '@/components/ui/UnsavedChangesModal';
 import Loader from '@/components/ui/Loader';
 import DeleteProjectDialog from '@/components/common/DeleteProjectDialog';
 import { useDeleteModalStore } from '@/store/zustand/useDeleteModalStore';
+import '@/styles/writing-page/editor-base.css';
+import '@/styles/writing-page/tiptap-editor.css';
+import '@/styles/writing-page/ai-drafting-page.css';
 
 // Editor Skeleton Component
 const EditorSkeleton = () => (

@@ -1,5 +1,6 @@
 export type ApplicationStatus = 'pending' | 'approved' | 'rejected';
-export type UserRole = 'user' | 'student' | 'professional' | 'admin';
+export type UserRole = 'user' | 'student' | 'professional' | 'admin' | 'creator';
+export type UserStatus = 'active' | 'suspended' | 'banned' | 'deleted' | 'inactive';
 
 export interface ApplicationsResponse {
   applications: CreatorApplication[];
@@ -34,7 +35,7 @@ export interface UserDetails {
   name: string;
   username: string;
   role: UserRole;
-  status: 'active' | 'suspended' | 'banned' | 'deleted';
+  status: UserStatus;
   is_verified: boolean;
   is_profile_complete: boolean;
   risk_score: number;
@@ -75,7 +76,7 @@ export interface UserDetailsForAdmin {
   picture: string;
   provider: string;
   role: UserRole;
-  status: 'active' | 'suspended' | 'banned' | 'deleted';
+  status: UserStatus;
   is_verified: boolean;
   two_fa_enabled: boolean;
   is_profile_complete: boolean;

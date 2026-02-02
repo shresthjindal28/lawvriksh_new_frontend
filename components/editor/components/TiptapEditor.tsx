@@ -15,7 +15,7 @@ import { TextStyle } from '@tiptap/extension-text-style';
 import Highlight from '@tiptap/extension-highlight';
 import Image from '@tiptap/extension-image';
 import { useEffect, useCallback, forwardRef, useRef } from 'react';
-
+import '@/styles/writing-page/tiptap-editor.css';
 import { FontSizeExtension } from '../extensions/FontSizeExtension';
 import { VariableExtension } from '../extensions/VariableExtension';
 import { AnalysisHighlight } from '../extensions/AnalysisHighlight';

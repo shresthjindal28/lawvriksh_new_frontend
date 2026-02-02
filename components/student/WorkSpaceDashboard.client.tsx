@@ -15,7 +15,8 @@ import { useDeleteModalStore } from '@/store/zustand/useDeleteModalStore';
 import { ProjectCategory } from '@/types/project';
 import { ProjectCreationOptions } from '@/lib/config/projectConfig';
 import SearchComponent from '../layout/SearchInterface.client';
-
+import '@/styles/dashboard-styles/user-dashboard.css';
+import '@/styles/dashboard-styles/dashboard-home.css';
 // Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },

@@ -1,0 +1,132 @@
+/* user-dashboard.css - Legacy Dashboard Styles for LawVriksh */
+/* NOTE: Main dashboard styles are in dashboard-home.css */
+/* This file contains only legacy/fallback styles and non-duplicate classes */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Main layout */
+.main-container {
+  min-height: 100vh;
+  width: 100%;
+}
+
+.page-wrapper {
+  margin: 0;
+  display: flex;
+  min-height: 100vh;
+  max-width: 100%;
+}
+
+.content-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Legacy support - Main content */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: clamp(1rem, 2vw, 2rem);
+}
+
+.blog-content-wrapper {
+  margin: clamp(1rem, 2vw, 2rem) auto;
+  max-width: 100%;
+  padding: 0 clamp(0.5rem, 1vw, 1rem);
+}
+
+@media (min-width: 640px) {
+  .blog-content-wrapper {
+    padding: 0;
+  }
+}
+
+.content-wrapper {
+  margin: 0 auto;
+  margin-top: clamp(1.5rem, 2.5vw, 2rem);
+  max-width: 100%;
+}
+
+.page-title-home {
+  font-family: 'Playfair Display';
+  font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+  font-weight: 500;
+  color: var(--text);
+  text-wrap: balance;
+}
+
+/* Legacy projects grid support */
+.projects-grid {
+  margin-top: clamp(1.5rem, 2.5vw, 2rem);
+  display: grid;
+  gap: clamp(1rem, 1.5vw, 1.5rem);
+  grid-template-columns: 1fr;
+  margin-bottom: clamp(2rem, 3vw, 3rem);
+}
+
+@media (min-width: 480px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(clamp(280px, 20vw, 320px), 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  }
+}
+
+/* Legacy add project card support */
+.add-project-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  height: clamp(12rem, 15vw, 14rem);
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius);
+  background-color: var(--background);
+  color: var(--text);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.project-card-article {
+  background-color: #fff9db;
+}
+
+.project-card-assignment {
+  background-color: #e3f0fb;
+}
+
+.project-card-research_paper {
+  background-color: #e6f4ea;
+}
+
+.add-project-card p {
+  font-size: clamp(1rem, 1.5vw, 1.2rem);
+  font-weight: 600;
+  color: #787878;
+  font-family: 'Playfair Display';
+}
+
+.add-project-card:hover {
+  background-color: var(--muted);
+}
+
+.add-project-card:active {
+  transform: scale(0.98);
+}
+
+.plus-icon {
+  height: clamp(2.5rem, 3vw, 3rem);
+  width: clamp(2.5rem, 3vw, 3rem);
+  stroke-width: 1.5;
+  margin-top: 0.5rem;
+  stroke: #787878;
+}

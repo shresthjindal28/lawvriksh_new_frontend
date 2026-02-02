@@ -11,7 +11,7 @@ import { motion } from 'framer-motion';
 import ComplianceHoverCard from '../ComplianceHoverCard';
 import FactHoverCard from '../FactHoverCard';
 import ArgumentHoverCard from '../ArgumentHoverCard';
-
+import '@/styles/writing-page/analysis-sidebar.css';
 // Hooks
 import { ExploreMoreService } from '@/features/explore-more/services/ExploreMore';
 import { useLibraryDocuments } from '@/hooks/common/useLibraryDocuments';

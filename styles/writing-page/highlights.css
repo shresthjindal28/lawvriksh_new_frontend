@@ -1,0 +1,164 @@
+/*grammer and spellcheck*/
+.highlighted-word {
+  background-color: #fff7a5;
+  /* soft yellow highlight */
+  padding: 0 2px;
+  border-radius: 4px;
+  transition: background-color 0.8s ease;
+}
+
+.fade-out {
+  background-color: transparent;
+}
+
+/* violation*/
+.violation-highlight {
+  background-color: rgb(240, 122, 122) !important;
+  color: black !important;
+  line-height: 1.6 !important;
+  padding: 0.1em 0.5em !important;
+
+  -webkit-box-decoration-break: clone !important;
+  box-decoration-break: clone !important;
+}
+
+/* Fact Checker Highlight - Blue theme */
+.fact-checker-highlight {
+  background-color: rgba(59, 130, 246, 0.1);
+  padding-left: 12px;
+  transition: all 0.3s ease;
+  animation: pulseFactChecker 2s ease-in-out infinite;
+}
+
+.fact-checker-highlight:hover {
+  background-color: rgba(59, 130, 246, 0.15);
+}
+
+@keyframes pulseFactChecker {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(59, 130, 246, 0);
+  }
+}
+
+/* Compliance Highlight - Orange/Yellow theme */
+.compliance-highlight {
+  background-color: rgba(251, 191, 36, 0.1);
+  padding-left: 12px;
+  transition: all 0.3s ease;
+  animation: pulseCompliance 2s ease-in-out infinite;
+}
+
+.compliance-highlight:hover {
+  background-color: rgba(251, 191, 36, 0.15);
+}
+
+@keyframes pulseCompliance {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(251, 191, 36, 0);
+  }
+}
+
+/* Argument Logic Highlight - Purple theme */
+.argument-logic-highlight {
+  background-color: rgba(168, 85, 247, 0.1);
+  padding-left: 12px;
+  transition: all 0.3s ease;
+  animation: pulseArgumentLogic 2s ease-in-out infinite;
+}
+
+.argument-logic-highlight:hover {
+  background-color: rgba(168, 85, 247, 0.15);
+}
+
+@keyframes pulseArgumentLogic {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(168, 85, 247, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 8px rgba(168, 85, 247, 0);
+  }
+}
+
+/* Add cursor pointer to highlighted blocks */
+.fact-checker-highlight,
+.compliance-highlight,
+.argument-logic-highlight {
+  cursor: pointer;
+}
+
+/* Add a subtle scale effect on hover */
+.fact-checker-highlight:hover,
+.compliance-highlight:hover,
+.argument-logic-highlight:hover {
+  transform: scale(1.002);
+}
+
+.fact-checker-text-highlight {
+  text-decoration: underline;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  text-decoration-color: red;
+  text-decoration-thickness: 2px;
+}
+
+.fact-checker-text-highlight:hover {
+  text-decoration-color: red;
+}
+
+.compliance-text-highlight {
+  background-color: rgba(33, 150, 243, 0.3);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.compliance-text-highlight:hover {
+  background-color: rgba(33, 150, 243, 0.5);
+}
+
+.argument-logic-text-highlight {
+  background-color: rgba(156, 39, 176, 0.3);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.argument-logic-text-highlight-b {
+  background-color: rgba(219, 38, 38, 0.3);
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.argument-logic-text-highlight:hover {
+  background-color: rgba(156, 39, 176, 0.5);
+}
+
+.grammar-correction-highlight {
+  background-color: rgba(34, 197, 94, 0.2);
+  border-bottom: 2px solid #22c55e;
+  padding: 2px 4px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  position: relative;
+  cursor: help;
+}
+
+.grammar-correction-highlight:hover {
+  background-color: rgba(34, 197, 94, 0.3);
+}
+
+.grammar-correction-highlight.fade-out {
+  opacity: 0;
+  background-color: transparent;
+  border-bottom-color: transparent;
+}

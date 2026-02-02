@@ -3,7 +3,7 @@
 import React from 'react';
 import { useToast } from '@/lib/contexts/ToastContext';
 import { Toast } from './Toast';
-
+import '@/styles/ui-styles/toast.css';
 export function ToastContainer() {
   const { toasts } = useToast();
 

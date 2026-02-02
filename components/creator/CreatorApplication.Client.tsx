@@ -6,7 +6,12 @@ import ProgressBar from '../ui/ProgressBar';
 import CreatorApplicationForm from './CreatorApplicationForm';
 import { creatorService } from '@/lib/api/creatorService';
 import { containerVariants, formVariants, itemVariants } from '@/lib/constants/animation-variants';
-
+import '@/styles/auth-styles/base.auth.css';
+import '@/styles/auth-styles/mobile.auth.css';
+import '@/styles/auth-styles/layout.auth.css';
+import '@/styles/auth-styles/setup-group.auth.css';
+import '@/styles/auth-styles/auth-group.auth.css';
+import '@/styles/auth-styles/group-specific.auth.css';
 type PageMode = 'education' | 'practise-area' | 'year-of-passing';
 
 const CreatorApplication = () => {

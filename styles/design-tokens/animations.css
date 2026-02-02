@@ -1,0 +1,247 @@
+/* animations.css - Design Token System for LawVriksh */
+/* Single source of truth for all animation definitions */
+
+:root {
+  /* Duration Scale */
+  --duration-instant: 0.075s; /* For micro-interactions */
+  --duration-fast: 0.15s; /* For quick feedback */
+  --duration-base: 0.2s; /* Default transition */
+  --duration-moderate: 0.3s; /* For medium transitions */
+  --duration-slow: 0.4s; /* For larger elements */
+  --duration-slower: 0.5s; /* For complex animations */
+  --duration-slowest: 0.7s; /* For dramatic effects */
+
+  /* Easing Functions */
+  --ease-linear: linear;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Custom Easing - Premium feel */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1); /* Bouncy spring effect */
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1); /* Smooth deceleration */
+  --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Slight overshoot */
+  --ease-anticipate: cubic-bezier(0.68, -0.6, 0.32, 1.6); /* Anticipation effect */
+
+  /* Semantic Transitions */
+  --transition-colors:
+    color var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out),
+    border-color var(--duration-fast) var(--ease-out);
+  --transition-opacity: opacity var(--duration-base) var(--ease-out);
+  --transition-transform: transform var(--duration-base) var(--ease-spring);
+  --transition-shadow: box-shadow var(--duration-base) var(--ease-out);
+  --transition-all: all var(--duration-base) var(--ease-out);
+
+  /* Common Component Transitions */
+  --transition-button:
+    transform var(--duration-fast) var(--ease-spring),
+    box-shadow var(--duration-fast) var(--ease-out),
+    background-color var(--duration-fast) var(--ease-out);
+  --transition-card:
+    transform var(--duration-moderate) var(--ease-spring),
+    box-shadow var(--duration-moderate) var(--ease-out);
+  --transition-input:
+    border-color var(--duration-fast) var(--ease-out),
+    box-shadow var(--duration-fast) var(--ease-out);
+  --transition-modal:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-moderate) var(--ease-spring);
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+  }
+  50% {
+    transform: translateY(-25%);
+    animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+  }
+}
+
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-3deg);
+  }
+  75% {
+    transform: rotate(3deg);
+  }
+}
+
+/* Animation Utility Classes */
+.animate-fade-in {
+  animation: fadeIn var(--duration-base) var(--ease-out) forwards;
+}
+
+.animate-fade-out {
+  animation: fadeOut var(--duration-base) var(--ease-in) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp var(--duration-moderate) var(--ease-spring) forwards;
+}
+
+.animate-slide-down {
+  animation: slideDown var(--duration-moderate) var(--ease-spring) forwards;
+}
+
+.animate-scale-in {
+  animation: scaleIn var(--duration-base) var(--ease-spring) forwards;
+}
+
+.animate-scale-out {
+  animation: scaleOut var(--duration-base) var(--ease-in) forwards;
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.animate-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-200) 0%,
+    var(--color-gray-100) 50%,
+    var(--color-gray-200) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-
+import '@/styles/ui-styles/waitlist-dialog.css';
 const WaitlistDialog: React.FC = () => {
   return (
     <div className="waitlist-dialog">

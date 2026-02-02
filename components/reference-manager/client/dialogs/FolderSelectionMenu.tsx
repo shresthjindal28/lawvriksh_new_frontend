@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CornerDownRight, Folder } from 'lucide-react';
 import { Collection, Folder as FolderType } from '@/store/zustand/useReferenceStore';
+import '@/styles/reference-manager/referenceTable.css'; // Ensure we have the styles
 
 interface Props {
   isOpen: boolean;

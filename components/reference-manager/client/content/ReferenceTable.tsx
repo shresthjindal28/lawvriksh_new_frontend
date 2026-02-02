@@ -14,7 +14,7 @@ import ReferenceTags from '../tags/ReferenceTags';
 import { useQuery } from '@tanstack/react-query';
 import { referenceKeys } from '@/lib/api/queries/reference-manager/keys';
 import EmptyStateAnimation from './EmptyStateAnimation';
-
+import '@/styles/reference-manager/referenceTable.css';
 export const Menu = ({
   onClick,
 }: {

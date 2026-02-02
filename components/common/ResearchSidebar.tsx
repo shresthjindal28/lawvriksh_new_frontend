@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { ChevronsRight, X } from 'lucide-react';
 import ResearchSidebarFooter from './ResearchSidebarFooter';
 import { SelectedContext } from '@/types/editor';
-
+import '@/styles/common-styles/research-sidebar.css';
 interface ResearchSidebarProps {
   selectedContext: SelectedContext | null;
   onClearContext: () => void;

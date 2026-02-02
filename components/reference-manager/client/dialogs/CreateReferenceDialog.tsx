@@ -6,7 +6,7 @@ import { referenceDialogOptions } from '@/lib/config/referenceConfig';
 import Image from 'next/image';
 import { JSX, useState, useEffect } from 'react';
 import { ReferenceType } from '@/types/reference-manager';
-
+import '@/styles/reference-manager/create-reference-dialog.css';
 interface Props {
   isOpen: boolean;
   onClose: () => void;

@@ -3,7 +3,7 @@
 import type React from 'react';
 import { CircleCheck, X } from 'lucide-react';
 import { ArgumentLogic, Compliance, FactChecker } from '@/types/copilot';
-
+import '@/styles/ui-styles/copilot-card.css';
 export type CardMode = 'fact-checker' | 'compliance' | 'argument';
 
 interface ModeCardProps {

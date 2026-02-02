@@ -5,7 +5,7 @@ import { createPortal } from 'react-dom';
 import { DialogProps } from '@/types/ui';
 import { useFocusTrap } from '@/hooks/common/useFocusTrap';
 import { cn } from '@/lib/utils';
-
+import '@/styles/ui-styles/dialog.css';
 const sizeClasses = {
   sm: 'max-w-sm',
   md: 'max-w-[550px]',

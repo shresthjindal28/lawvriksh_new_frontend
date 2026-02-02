@@ -1,0 +1,204 @@
+.search-container {
+  position: relative;
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid var(--color-grey-90, #e5e5e5);
+  padding: 0 12px;
+  height: 40px;
+  transition: all 0.2s ease;
+}
+
+.search-bar:focus-within {
+  border-color: #9ca3af;
+  box-shadow: 0 0 0 1px #e5e7eb;
+}
+
+.search-bar svg {
+  color: #9ca3af;
+  flex-shrink: 0;
+}
+
+.search-bar input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 14px;
+  color: #111827;
+  margin-left: 8px;
+  background: transparent;
+  min-width: 0;
+  padding: 8px 0;
+}
+
+.results-list {
+  position: absolute;
+  top: 60px;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #eee;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  overflow: hidden;
+  padding: 10px 0;
+}
+
+.result-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 20px;
+  border-bottom: 1px solid #f1f1f1;
+  transition: background 0.2s;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.result-item:hover {
+  background: #fafafa;
+}
+
+.result-item:last-child {
+  border-bottom: none;
+}
+
+.file-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.file-name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #222;
+}
+
+.file-tag {
+  font-size: 13px;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.file-tag.article {
+  background: #b0745a;
+  color: #ffffff;
+}
+
+.file-tag.research_paper,
+.file-tag.research-paper {
+  background: #5d8060;
+  color: #ffffff;
+}
+
+.file-tag.ideation {
+  background: #78716c;
+  color: #ffffff;
+}
+
+.file-tag.assignment {
+  background: #6c74a1;
+  color: #ffffff;
+}
+
+.file-tag.draft {
+  background: #627c7d;
+  color: #ffffff;
+}
+
+.file-meta {
+  font-size: 13px;
+  color: #666;
+  white-space: nowrap;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.loading-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  color: #666;
+}
+
+/* Empty state styles */
+.no-results {
+  text-align: center;
+  padding: 40px 20px;
+  color: #555;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.no-results svg {
+  color: #999;
+  margin-bottom: 10px;
+}
+
+.no-results h4 {
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #222;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.no-results p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+}
+
+.no-results .create-link {
+  color: #666;
+  text-decoration: underline;
+}
+
+.no-results .create-link:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------- */
+/* 📱 Responsive adjustments */
+/* ------------------------- */
+
+@media (max-width: 768px) {
+  .search-bar {
+    height: 36px;
+    padding: 0 10px;
+  }
+
+  .search-bar input {
+    font-size: 13px;
+  }
+
+  .results-list {
+    top: 42px;
+  }
+
+  .result-item {
+    padding: 10px 12px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

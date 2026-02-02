@@ -7,7 +7,7 @@ import { useAuth } from '@/lib/contexts/AuthContext';
 import { MobileHeader } from '@/components/common/MobileHeader';
 import { motion, AnimatePresence } from 'framer-motion';
 import { formatShortcutDisplay, isMacOS } from '@/hooks/common/useKeyboardShortcuts';
-
+import '@/styles/common-styles/settings-page.css';
 // State Management
 import { useSettingsUiStore } from '@/store/zustand/settingsUiStore';
 import { useSettingsQuery, useUpdateSettingsMutation } from '@/hooks/common/useSettingsQuery';

@@ -1,4 +1,5 @@
 import { CreatorApplication } from '@/types/creator';
+import '@/styles/creator-styles/my-applications.css';
 
 interface UserApplicationsCompProps {
   userApplications: CreatorApplication[];

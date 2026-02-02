@@ -11,7 +11,7 @@ import ReferenceTable, { UploadMenu } from '../content/ReferenceTable';
 import InfoPanel from './InfoPanel';
 import UnifiedUploadDialog from '../dialogs/UnifiedUploadDialog';
 import AddTagMenu from '../tags/AddTag';
-
+import '@/styles/reference-manager/reference.base.css';
 // Hooks
 import { useReferenceContext } from '@/hooks/editor/useReferenceContext';
 import { useReferenceInitialization } from '@/app/references/hooks/useReferenceInitialization';

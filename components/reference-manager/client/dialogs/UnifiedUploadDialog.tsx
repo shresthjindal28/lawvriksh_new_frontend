@@ -4,7 +4,7 @@ import { useRef, useState } from 'react';
 import { FileUp } from 'lucide-react';
 import { primeNotificationSound } from '@/lib/utils/notificationSound';
 import { useSettings } from '@/lib/contexts/SettingsContext';
-
+import '@/styles/reference-manager/unified-dialog.css';
 export default function UnifiedUploadDialog(props: {
   open: boolean;
   onClose: () => void;

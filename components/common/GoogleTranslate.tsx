@@ -3,7 +3,7 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
 import { Languages } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import '@/styles/common-styles/google-translate.css';
 declare global {
   interface Window {
     __GOOGLE_TRANSLATION_CONFIG__?: {

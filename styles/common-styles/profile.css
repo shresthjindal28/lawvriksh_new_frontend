@@ -1,0 +1,806 @@
+.user-profile {
+  width: min(90%, 800px);
+  margin: 2rem auto;
+  padding: 0;
+  background: #ffffff;
+  border-radius: 24px;
+  font-family:
+    NyghtSerif-Light,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Arial,
+    sans-serif;
+  position: relative;
+  overflow: hidden;
+  border: none;
+}
+
+.user-profile > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* Header Section */
+.profile-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 0;
+  padding: 3rem 2.5rem 2rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+  position: relative;
+}
+
+.profile-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 2.5rem;
+  right: 2.5rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #d4af37 20%, #d4af37 80%, transparent 100%);
+  opacity: 0.5;
+}
+
+.profile-avatar {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile-avatar::before {
+  content: '';
+  position: absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 136px;
+  height: 136px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #d4af37, #f4e27c, #d4af37);
+  opacity: 0.3;
+  z-index: 0;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.2);
+}
+
+.avatar-container {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.avatar-container:hover .avatar-overlay {
+  opacity: 1;
+}
+
+.avatar-container.uploading .avatar-overlay {
+  opacity: 1;
+  background: rgba(212, 175, 55, 0.9);
+}
+
+.avatar-image {
+  position: relative;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.avatar-container:hover .avatar-image {
+  transform: scale(1.05);
+  border-color: rgba(212, 175, 55, 0.5);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.avatar-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+}
+
+.upload-icon {
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.upload-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: 2px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.avatar-upload-btn {
+  padding: 0.5rem;
+  background: linear-gradient(135deg, #d4af37, #f4e27c);
+  border: 1px solid #d4af37;
+  border-radius: 12px;
+  color: #333333;
+  font-size: 0.8125rem;
+  font-family:
+    NyghtSerif-LightItalic,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Arial,
+    sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.3px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+}
+
+.avatar-upload-btn:hover {
+  background: linear-gradient(135deg, #b8860b, #d4af37);
+  border-color: #b8860b;
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.avatar-upload-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.avatar-upload-btn:disabled:hover {
+  background: linear-gradient(135deg, #d4af37, #f4e27c);
+  color: #333333;
+  transform: none;
+}
+
+.avatar-file-input {
+  display: none;
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-family:
+    NyghtSerif-LightItalic,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Arial,
+    sans-serif;
+  font-size: 2.25rem;
+  font-weight: 300;
+  color: #333333;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.profile-email {
+  color: #666666;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  font-weight: 300;
+  opacity: 0.9;
+}
+
+.profile-role {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: capitalize;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid;
+  letter-spacing: 0.3px;
+}
+
+.profile-role.user {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(248, 249, 250, 0.9));
+  border-color: rgba(212, 175, 55, 0.3);
+  color: #495057;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.1);
+}
+
+.profile-role.admin {
+  background: linear-gradient(135deg, rgba(255, 248, 225, 0.95), rgba(255, 236, 179, 0.95));
+  border-color: #d4af37;
+  color: #b8860b;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.2);
+}
+
+.profile-role.creator {
+  background: linear-gradient(135deg, rgba(252, 228, 236, 0.95), rgba(248, 187, 208, 0.95));
+  border-color: rgba(212, 175, 55, 0.4);
+  color: #ad1457;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.1);
+}
+
+/* Personal Details Section */
+.Personal-Details {
+  padding: 2rem 2.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.personal-title {
+  font-family:
+    NyghtSerif-LightItalic,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Arial,
+    sans-serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  margin-bottom: 2rem;
+  color: #2b2a2a;
+  position: relative;
+  padding-bottom: 0.75rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.personal-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, #d4af37, #f4e27c);
+  border-radius: 1px;
+  box-shadow: 0 2px 4px rgba(212, 175, 55, 0.3);
+}
+
+/* Detail Sections */
+.profile-details {
+  padding: 0 2.5rem;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.detail-section {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.detail-section:last-child {
+  border-bottom: none;
+}
+
+.detail-section:hover {
+  background: rgba(212, 175, 55, 0.03);
+  transform: translateY(-1px);
+}
+
+.detail-section h3 {
+  font-family:
+    NyghtSerif-LightItalic,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Arial,
+    sans-serif;
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #333333;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  opacity: 1;
+}
+
+.detail-section p {
+  font-family:
+    NyghtSerif-LightItalic,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Arial,
+    sans-serif;
+  font-size: 1rem;
+  color: #333333;
+  margin: 0;
+  line-height: 1.6;
+  font-weight: 300;
+  letter-spacing: 0.2px;
+}
+
+/* Interests */
+.interests-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  padding: 1rem;
+  background: rgba(212, 175, 55, 0.05);
+  border-radius: 16px;
+  border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.interest-tag {
+  background: linear-gradient(135deg, #333333, #555555);
+  color: #ffffff;
+  padding: 0.375rem 0.875rem;
+  border-radius: 20px;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  letter-spacing: 0.2px;
+}
+
+.interest-tag:hover {
+  background: linear-gradient(135deg, #d4af37, #f4e27c);
+  color: #333333;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+/* Form Inputs */
+.profile-info input,
+.profile-details input,
+.profile-details textarea,
+.inputGroup input,
+.inputGroup textarea {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 16px;
+  font-size: 1rem;
+  font-family:
+    NyghtSerif-LightItalic,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Arial,
+    sans-serif;
+  color: #333333;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(212, 175, 55, 0.1);
+}
+
+.profile-info input:focus,
+.profile-details input:focus,
+.profile-details textarea:focus {
+  border-color: #d4af37;
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(212, 175, 55, 0.15),
+    0 4px 12px rgba(212, 175, 55, 0.2);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.profile-info input::placeholder,
+.profile-details input::placeholder,
+.profile-details textarea::placeholder {
+  color: rgba(102, 102, 102, 0.6);
+  font-style: italic;
+}
+
+.profile-details textarea {
+  min-height: 120px;
+  resize: vertical;
+  line-height: 1.6;
+  font-family: inherit;
+}
+
+/* Account Info */
+.account-info {
+  margin-top: 0;
+  padding: 2rem 2.5rem;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  /* background: rgba(250, 250, 250, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); */
+}
+
+.account-info h3 {
+  font-family:
+    NyghtSerif-LightItalic,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Arial,
+    sans-serif;
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+  color: #333333;
+  letter-spacing: 0.5px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row span:first-child {
+  font-family:
+    NyghtSerif-LightItalic,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Arial,
+    sans-serif;
+  font-weight: 400;
+  color: #666666;
+  letter-spacing: 0.3px;
+}
+
+.info-row span:last-child {
+  font-family: 'SF Mono', 'Monaco', 'Cascadia Code', monospace;
+  color: #333333;
+  font-size: 0.9375rem;
+  background: rgba(212, 175, 55, 0.1);
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+}
+
+/* Action Buttons */
+.profile-actions {
+  padding: 2rem 2.5rem;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.profile-actions button {
+  padding: 0.75rem 1.5rem;
+  border: 1px solid;
+  border-radius: 5px;
+  font-size: 0.9375rem;
+  font-family:
+    NyghtSerif-Light,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Arial,
+    sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.3px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.btn-edit {
+  background: black;
+  color: #ffffff;
+}
+
+.btn-edit:hover {
+  background: linear-gradient(135deg, #d4af37, #f4e27c);
+  border-color: #d4af37;
+  color: #333333;
+  transform: translateY(-2px);
+}
+
+.btn-save {
+  background: black;
+  color: #ffffff;
+}
+
+.btn-save:hover {
+  background: linear-gradient(135deg, #b8860b, #d4af37);
+  border-color: #b8860b;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+}
+
+.btn-cancel {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(212, 175, 55, 0.3);
+  color: #666666;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-cancel:hover {
+  background: rgba(248, 249, 250, 0.95);
+  border-color: rgba(212, 175, 55, 0.5);
+  color: #333333;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .user-profile {
+    width: min(92vw, 100vw);
+    margin: 0;
+    border-radius: 20px;
+  }
+
+  .profile-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 2rem 1.5rem;
+  }
+
+  .profile-header::after {
+    left: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .avatar-image {
+    width: 100px;
+    height: 100px;
+  }
+
+  .profile-name {
+    font-size: clamp(1.8rem, 5vw, 2rem);
+  }
+
+  .Personal-Details,
+  .profile-details,
+  .account-info,
+  .profile-actions {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  .profile-actions {
+    flex-direction: column-reverse;
+  }
+
+  .profile-actions button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .interests-list {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .user-profile {
+    width: min(95vw, 360px);
+    margin: 0;
+  }
+
+  .profile-header {
+    padding: 1.5rem 1rem;
+  }
+
+  .Personal-Details,
+  .profile-details,
+  .account-info,
+  .profile-actions {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .profile-name {
+    font-size: clamp(1.6rem, 4.5vw, 1.8rem);
+  }
+
+  .personal-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .user-profile {
+    width: 320px;
+    margin: 0;
+  }
+
+  .profile-name {
+    font-size: 1.5rem;
+  }
+
+  .personal-title {
+    font-size: 1.1rem;
+  }
+}
+
+/* Focus styles for accessibility */
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #d4af37;
+  outline-offset: 2px;
+}
+
+/* Enhanced animations matching auth theme */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.stagger-children > * {
+  animation: slideUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.stagger-children > *:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.stagger-children > *:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.stagger-children > *:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.stagger-children > *:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+.stagger-children > *:nth-child(5) {
+  animation-delay: 0.5s;
+}
+
+/* --- Add this to your profile.css --- */
+
+.profile-completion {
+  padding: 1.5rem 2.5rem;
+  margin: 0;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.profile-completion h3 {
+  font-family:
+    NyghtSerif-LightItalic,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Arial,
+    sans-serif;
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  opacity: 1;
+}
+
+.progress-bar-container {
+  width: 100%;
+  height: 12px;
+  background-color: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.15);
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 0.5rem;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 20px;
+  background: linear-gradient(90deg, #d4af37 0%, #f4e27c 100%);
+  box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.profile-completion span {
+  font-family:
+    NyghtSerif-LightItalic,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Arial,
+    sans-serif;
+  font-size: 0.9rem;
+  color: #555;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+  display: block;
+  /* Ensures it sits nicely below the bar */
+  text-align: right;
+}
+
+/* --- Responsive adjustments --- */
+@media (max-width: 768px) {
+  .profile-completion {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-completion {
+    padding: 1.25rem 1rem;
+  }
+}
+
+/* --- Add these new styles for the Update Form --- */
+
+.profile-details-form {
+  padding: 2rem 2.5rem;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+}
+
+/* Ensure the form's action buttons use the full space when inside the form */
+.profile-details-form .profile-actions {
+  border-top: 1px solid rgba(212, 175, 55, 0.2);
+  margin: 2rem -2.5rem -2rem;
+  /* Extends to the edges of the form padding */
+}

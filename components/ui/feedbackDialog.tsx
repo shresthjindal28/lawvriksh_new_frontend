@@ -1,7 +1,7 @@
 'use client';
 
 import type React from 'react';
-
+import '@/styles/ui-styles/feedback-dialog.css';
 interface FeedbackDialogProps {
   isOpen: boolean;
   onClose: () => void;

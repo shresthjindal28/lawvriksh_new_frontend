@@ -12,7 +12,7 @@ import StudentProjectCard from '../student/ProjectCard';
 import { ProjectCategory } from '@/types/project';
 import { ProjectCreationOptions } from '@/lib/config/projectConfig';
 import SearchComponent from '../layout/SearchInterface.client';
-
+import '@/styles/dashboard-styles/user-dashboard.css';
 const MemoizedProjectCard = memo(StudentProjectCard);
 
 export default function WorkspaceDashboard() {

@@ -4,7 +4,7 @@ import { SearchProject } from '@/types/project';
 import { debounce, formatTimeAgo } from '@/lib/utils/helpers';
 import Link from 'next/link';
 import VideoLoader from '../ui/VideoLoader';
-
+import '@/styles/common-styles/search-interface.css';
 interface SearchInterfaceProps {
   onSearch: (query: string) => void;
   searchedProjects: SearchProject[] | null;

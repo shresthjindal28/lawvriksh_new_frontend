@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ExportOptions } from '@/types/project';
 import { gmailService } from '@/lib/api/gmailService';
 import { exportContentToDocx, exportContentToPdf } from '@/lib/utils/pdfExport';
-
+import '@/styles/ui-styles/export-dialog.css';
 export type ExportType =
   | 'assignment'
   | 'research_paper'

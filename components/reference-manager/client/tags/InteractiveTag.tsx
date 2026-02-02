@@ -7,7 +7,7 @@ import { Pencil, Trash2 } from 'lucide-react';
 import { referenceManagerService } from '@/lib/api/referenceManagerService';
 import { referenceKeys } from '@/lib/api/queries/reference-manager/keys';
 import { useReferenceContext } from '@/hooks/editor/useReferenceContext';
-
+import '@/styles/reference-manager/interactive-tag.css';
 const TAG_COLORS = [
   '#EF4444', // Red
   '#3B82F6', // Blue

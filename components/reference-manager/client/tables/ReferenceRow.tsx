@@ -4,7 +4,7 @@ import React, { memo, useCallback, CSSProperties } from 'react';
 import Image from 'next/image';
 import { FileText, Trash2 } from 'lucide-react';
 import { ReferenceItem } from '@/types/reference-manager';
-
+import '@/styles/reference-manager/referenceTable.css';
 interface ReferenceRowProps {
   reference: ReferenceItem;
   isSelected: boolean;

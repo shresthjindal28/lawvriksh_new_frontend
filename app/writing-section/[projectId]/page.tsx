@@ -46,7 +46,9 @@ import UnsavedChangesModal from '@/components/ui/UnsavedChangesModal';
 import Loader from '@/components/ui/Loader';
 import DeleteProjectDialog from '@/components/common/DeleteProjectDialog';
 import { useDeleteModalStore } from '@/store/zustand/useDeleteModalStore';
-
+import '@/styles/writing-page/editor-base.css';
+import '@/styles/writing-page/tiptap-editor.css';
+import '@/styles/writing-page/editor-layout.css';
 // Helper function to detect page number from editor cursor position
 const getPageNumberAtPositionFromEditor = (editor: any, pos: number): number => {
   if (!editor?.view) return 1;

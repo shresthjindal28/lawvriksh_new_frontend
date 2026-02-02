@@ -18,7 +18,7 @@ import { Annotation } from '@/types/reference-manager';
 import { isTempAnnotationId } from '@/lib/utils/helpers';
 import { useNotificationSound } from '@/hooks/common/useNotificationSound';
 import { useAutoAnnotationInputStore } from '@/store/zustand/useAutoAnnotationInputStore';
-
+import '@/styles/reference-manager/document-viewer.css';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { referenceKeys } from '@/lib/api/queries/reference-manager/keys';

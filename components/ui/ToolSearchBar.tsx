@@ -8,7 +8,7 @@ import {
 import type { AnalysisShortcutActions } from '@/types/analysis-sidebar';
 import type { Editor } from '@tiptap/react';
 import DropdownPortal from './dropdown-portal';
-
+import '@/styles/writing-page/tool-search-bar.css';
 interface ToolSearchBarProps {
   editor: Editor | null;
   onAi?: (e?: React.MouseEvent) => void;

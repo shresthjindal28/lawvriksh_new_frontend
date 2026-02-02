@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { UserProfile } from '@/types';
-
+import '@/styles/user-styles/profile-form.css';
 const formItemVariants = {
   hidden: { opacity: 0, y: 10 },
   visible: (delay: number) => ({

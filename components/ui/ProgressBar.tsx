@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-
+import '@/styles/auth-styles/progressbar.auth.css';
 interface ProgressBarProps {
   progress: number;
   isVisible: boolean;

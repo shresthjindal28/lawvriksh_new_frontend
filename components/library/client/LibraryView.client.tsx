@@ -15,7 +15,7 @@ import { MobileHeader } from '@/components/common/MobileHeader';
 import { useCreateProject, useDeleteProject, useProjects } from '@/lib/api/queries/workspace';
 import { useToast } from '@/lib/contexts/ToastContext';
 import { useLibraryUIStore } from '@/store/zustand/library/useLibraryUIStore';
-
+import '@/styles/common-styles/library.css';
 const MemoizedProjectCard = memo(ProjectCard);
 
 const containerVariants = {

@@ -5,7 +5,7 @@ import { ReferenceItem } from '@/types/reference-manager';
 import { referenceManagerService } from '@/lib/api/referenceManagerService';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useMutation } from '@tanstack/react-query';
-
+import '@/styles/reference-manager/timeline-sidebar.css';
 interface TimelineEvent {
   event: string;
   description: string;

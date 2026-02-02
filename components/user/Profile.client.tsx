@@ -13,7 +13,7 @@ import { authService } from '@/lib/api/authService';
 import { MobileHeader } from '@/components/common/MobileHeader';
 import { Camera, Trash2, User, Upload } from 'lucide-react';
 import ImageEditorDialog from './ImageEditorDialog.client';
-
+import '@/styles/user-styles/profile-new.css';
 const DEFAULT_AVATAR = '/assets/images/logos/lawVriksh-logo.png';
 const DEFAULT_COVER = '/assets/images/background-image/backgroundImage.png';
 

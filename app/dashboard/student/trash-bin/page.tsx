@@ -11,7 +11,7 @@ import { SkeletonLoader } from '@/components/ui/Loader';
 import ConfirmModal from '@/components/ui/ConfirmModal';
 import EmptyTrashState from '@/components/dashboard/trash/EmptyTrashState';
 import { MobileHeader } from '@/components/common/MobileHeader';
-
+import '@/styles/trash-bin/trash-bin.css';
 const MemoizedProjectCard = memo(ProjectCard);
 
 // Animation variants

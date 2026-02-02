@@ -25,7 +25,7 @@ import { darken } from '@/lib/utils/helpers';
 import { ReferenceTypeEnum } from '@/types/reference-manager-api';
 import { Skeleton } from '@/components/ui/skeleton';
 import { useTypewriter } from '@/hooks/common/useTypewriter';
-
+import '@/styles/reference-manager/tagMenu.css';
 export default function Sidebar({
   collections,
   expandedFolders,

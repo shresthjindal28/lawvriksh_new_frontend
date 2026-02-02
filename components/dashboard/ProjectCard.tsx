@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MoreVertical, Trash2, Edit, Share, Download, Eye, RotateCcw } from 'lucide-react';
 import { useState, useRef, useEffect, memo } from 'react';
 import { useRouter } from 'next/navigation';
-
+import '@/styles/dashboard-styles/project-card.css';
 interface ProjectCardProps {
   project: any;
   onDelete?: (projectId: string) => void;

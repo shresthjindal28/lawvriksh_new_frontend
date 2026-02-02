@@ -2,7 +2,7 @@
 import { useAuth } from '@/lib/contexts/AuthContext';
 import Profile from '@/components/user/Profile.client';
 import VideoLoader from '@/components/ui/VideoLoader';
-
+import '@/styles/user-styles/user-profile-page.css';
 export default function ProfessionalProfilePage() {
   const { profile } = useAuth();
 

@@ -26,7 +26,7 @@ import projectService from '@/lib/api/projectService';
 import { createProjectRequestSchema } from '@/lib/validators/project/project.schemas';
 import { useStudentDialogUIStore } from '@/store/zustand/useStudentDialogUIStore';
 import { cn } from '@/lib/utils';
-
+import styles from './StudentDialog.module.css';
 interface SingleFile {
   name: string;
   size: number;

@@ -1,7 +1,7 @@
 'use client';
 import { Paperclip, Globe, CircleArrowRight, X } from 'lucide-react';
 import { SelectedContext } from '@/types/editor';
-
+import '@/styles/common-styles/research-sidebar-footer.css';
 interface ResearchSidebarFooterProps {
   message: string;
   setMessage: (message: string) => void;

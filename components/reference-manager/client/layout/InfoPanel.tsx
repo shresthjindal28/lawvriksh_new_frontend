@@ -34,7 +34,7 @@ import { useReferenceDocumentIdQuery } from '@/lib/api/queries/reference-manager
 import { useReferenceDocumentQuery } from '@/lib/api/queries/reference-manager/useReferenceDocumentQuery';
 import InteractiveTag from '@/components/reference-manager/client/tags/InteractiveTag';
 import { referenceManagerService } from '@/lib/api/referenceManagerService';
-
+import '@/styles/reference-manager/InfoPanel.css';
 import { useReferenceContext } from '@/hooks/editor/useReferenceContext';
 import { useAutoAnnotationInputStore } from '@/store/zustand/useAutoAnnotationInputStore';
 

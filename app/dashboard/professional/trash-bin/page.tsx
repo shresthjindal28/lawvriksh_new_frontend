@@ -9,7 +9,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { SkeletonLoader } from '@/components/ui/Loader';
 import ConfirmModal from '@/components/ui/ConfirmModal';
 import EmptyTrashState from '@/components/dashboard/trash/EmptyTrashState';
-
+import '@/styles/trash-bin/trash-bin.css';
 const MemoizedProjectCard = memo(ProjectCard);
 
 // Animation variants

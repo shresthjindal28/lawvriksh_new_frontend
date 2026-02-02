@@ -1,6 +1,6 @@
 import type React from 'react';
 import { Compass } from 'lucide-react';
-
+import '@/styles/ui-styles/explore-more-button.css';
 export type ExploreMoreButtonProps = {
   label?: string;
   onClickHandler: () => void;

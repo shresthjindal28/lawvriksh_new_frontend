@@ -3,7 +3,7 @@
 import { SafeDynamicIcon } from './SafeDynamicIcon';
 import { useState } from 'react';
 import { allIconNames } from '@/lib/config/referenceManagerConfig';
-
+import '@/styles/reference-manager/icon.css';
 export function IconPicker({ onPick }: { onPick: (iconName: string) => void }) {
   const [search, setSearch] = useState('');
 

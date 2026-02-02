@@ -20,7 +20,8 @@ import { Annotation } from '@/types/reference-manager';
 import { highlightColors } from '../content/DocumentHeader';
 import { createTempAnnotationId, darken } from '@/lib/utils/helpers';
 import { Skeleton } from '@/components/ui/skeleton';
-
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
 // Dynamically import react-pdf to avoid SSR issues with pdfjs-dist
 const PdfDocument = dynamic(
   () =>

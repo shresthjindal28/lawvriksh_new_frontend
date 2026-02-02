@@ -7,7 +7,7 @@ import { useAuth } from '@/lib/contexts/AuthContext';
 import { useSessionManager } from '@/hooks/common/useSessionManagement';
 import { useRouter } from 'next/navigation';
 import Modal from '../ui/Modal';
-
+import '@/styles/common-styles/account-settings.css';
 type ModalType = 'confirmPassword' | 'changePassword' | 'deleteAccount' | null;
 
 export default function AccountSettings() {

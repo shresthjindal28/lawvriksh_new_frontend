@@ -1,0 +1,226 @@
+/* student-project-card.css - Student Project Card Styles for LawVriksh */
+/* Uses design tokens from dashboard.css */
+
+/* Project Card Container - Legacy support for StudentProjectCard component */
+.project-card {
+  display: flex;
+  height: var(--dashboard-project-card-height, 160px);
+  min-width: var(--dashboard-recent-card-min-width, 246px);
+  padding: 19.889px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 11px;
+  flex: 1 0 0;
+  border-radius: var(--dashboard-border-radius-sm, 7px);
+  border: var(--stroke-weight-1, 1px) solid var(--dashboard-border-light, rgba(19, 52, 53, 0.08));
+  background: var(--dashboard-card-bg, #fff);
+  box-shadow: var(--dashboard-shadow-card, 0 1px 2px 0 rgba(0, 0, 0, 0.05));
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Header Section */
+.project-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  align-self: stretch;
+}
+
+.project-title {
+  color: var(--localhost-Black, var(--color-black-solid, #000));
+  font-family: 'Playfair Display';
+  font-size: var(--dashboard-font-size-card-title, 18px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--dashboard-line-height-stat, 26px);
+  margin: 0;
+  flex: 1;
+}
+
+.lock-icon {
+  width: 1.1rem;
+  height: 1.1rem;
+  color: var(--dashboard-text-primary, #133435);
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+  opacity: 0.8;
+}
+
+/* Divider */
+.project-divider {
+  height: 1px;
+  background-color: var(--dashboard-border-light, rgba(19, 52, 53, 0.08));
+  align-self: stretch;
+}
+
+/* Content Section */
+.project-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  align-self: stretch;
+}
+
+.privacy-section {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.privacy-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 10px;
+  background-color: var(--color-grey-96, #f3f4f6);
+  color: var(--dashboard-text-primary, #133435);
+  border-radius: 9999px;
+  font-family: var(--font-instrument-sans, 'Instrument Sans');
+  font-size: var(--dashboard-font-size-small, 12px);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.2s ease-in-out;
+  width: fit-content;
+}
+
+.authors-icon,
+.subject-icon {
+  font-size: var(--dashboard-font-size-small, 12px);
+}
+
+/* Authors List */
+.authors-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.author-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 10px;
+  background-color: var(--dashboard-badge-bg, #627c7d);
+  color: #fff;
+  border-radius: 9999px;
+  font-family: var(--font-instrument-sans, 'Instrument Sans');
+  font-size: var(--dashboard-font-size-badge, 10px);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.author-badge:hover {
+  background-color: var(--dashboard-text-primary, #133435);
+}
+
+.author-badge.author-badge-green {
+  background-color: #c8ffce;
+  color: var(--dashboard-text-primary, #133435);
+}
+
+.author-badge.author-badge-yellow {
+  background-color: #ffeeb7;
+  color: var(--dashboard-text-primary, #133435);
+}
+
+.author-badge.author-badge-red {
+  background-color: #ffc4c4;
+  color: var(--dashboard-text-primary, #133435);
+}
+
+.author-badge.author-badge-purple {
+  background-color: #ebcbff;
+  color: var(--dashboard-text-primary, #133435);
+}
+
+/* Subject Display */
+.subject-display {
+  font-family: var(--font-instrument-sans, 'Instrument Sans');
+  font-size: var(--dashboard-font-size-small, 12px);
+  color: var(--dashboard-text-secondary, #627c7d);
+  font-weight: 400;
+  padding: 6px 10px;
+  background-color: var(--color-grey-96, #f3f4f6);
+  border-radius: 6px;
+  border: 1px solid var(--dashboard-border-light, rgba(19, 52, 53, 0.08));
+}
+
+/* Footer Section */
+.project-footer {
+  display: flex;
+  padding-top: 12px;
+  justify-content: space-between;
+  align-items: center;
+  align-self: stretch;
+  border-top: var(--stroke-weight-0_89, 0.889px) solid var(--color-grey-96, #f3f4f6);
+}
+
+.footer-label {
+  display: flex;
+  height: 18px;
+  padding: 2.445px 12.889px 3.555px 12.889px;
+  align-items: center;
+  border-radius: var(--dashboard-border-radius-pill, 20px);
+  border: var(--stroke-weight-1, 1px) solid var(--color-black-5, rgba(0, 0, 0, 0.05));
+  background: var(--dashboard-badge-bg, #627c7d);
+  color: #fff;
+  font-family: var(--font-instrument-sans, 'Instrument Sans');
+  font-size: var(--dashboard-font-size-badge, 10px);
+  font-style: normal;
+  font-weight: var(--font-weight-400, 400);
+  line-height: var(--dashboard-line-height-badge, 10px);
+  text-transform: capitalize;
+}
+
+.footer-label-assignment {
+  background-color: #e3f0fb;
+  color: var(--dashboard-text-primary, #133435);
+}
+
+.footer-label-research-paper {
+  background-color: #e6f4ea;
+  color: var(--dashboard-text-primary, #133435);
+}
+
+.footer-label-article {
+  background-color: #fff9db;
+  color: var(--dashboard-text-primary, #133435);
+}
+
+.footer-label-draft {
+  background-color: #f3e8ff;
+  color: var(--dashboard-text-primary, #133435);
+}
+
+.last-edited {
+  color: var(--localhost-Dove-Gray, var(--color-grey-40, #656565));
+  font-family: var(--font-instrument-sans, 'Instrument Sans');
+  font-size: var(--dashboard-font-size-badge, 10px);
+  font-style: normal;
+  font-weight: var(--font-weight-400, 400);
+  line-height: var(--dashboard-line-height-badge, 10px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .project-card {
+    height: auto;
+    min-height: var(--dashboard-project-card-height, 160px);
+    min-width: 100%;
+  }
+
+  .project-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

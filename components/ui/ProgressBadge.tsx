@@ -1,5 +1,6 @@
 import type React from 'react';
 import { cn } from '@/lib/utils';
+import '@/styles/ui-styles/progress-badge.css';
 
 export type ProgressBadgeProps = {
   value: number;

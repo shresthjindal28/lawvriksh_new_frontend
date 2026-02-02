@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Mic, MicOff } from 'lucide-react';
 import { useToast } from '@/lib/contexts/ToastContext';
-
+import './SpeechToTextButton.module.css';
 // Tailwind class mappings (converted from CSS Module)
 const styles = {
   button:

@@ -8,7 +8,12 @@ import UserSetupForm from '../auth/UserSetupForm.client';
 import ProfessionForm from '../auth/ProfessionForm.client';
 import { useAuth } from '@/lib/contexts/AuthContext';
 import { dmsImageService } from '@/lib/api/imageService';
-
+import '@/styles/auth-styles/base.auth.css';
+import '@/styles/auth-styles/mobile.auth.css';
+import '@/styles/auth-styles/layout.auth.css';
+import '@/styles/auth-styles/setup-group.auth.css';
+import '@/styles/auth-styles/auth-group.auth.css';
+import '@/styles/auth-styles/group-specific.auth.css';
 type PageMode = 'user-setup' | 'profession';
 
 const ProfileCompletionClient = () => {

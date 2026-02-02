@@ -9,7 +9,7 @@ import { useAuth } from '@/lib/contexts/AuthContext';
 import VideoLoader from '@/components/ui/VideoLoader';
 import { cn } from '@/lib/utils';
 import { useSidebarUIStore } from '@/store/zustand/useSidebarUIStore';
-
+import '@/styles/common-styles/home.css';
 interface CommonDashboardProps {
   children: ReactNode;
   className?: string;

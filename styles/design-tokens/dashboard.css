@@ -1,0 +1,71 @@
+/* dashboard.css - Dashboard-specific Design Tokens for LawVriksh */
+/* Single source of truth for all dashboard style definitions */
+
+:root {
+  /* Dashboard Colors */
+  --dashboard-bg: #fcfcf9;
+  --dashboard-text-primary: #133435;
+  --dashboard-text-secondary: #627c7d;
+  --dashboard-text-muted: rgba(98, 124, 125, 0.8);
+  --dashboard-border-light: rgba(19, 52, 53, 0.08);
+  --dashboard-border-lighter: rgba(19, 52, 53, 0.06);
+  --dashboard-card-bg: #fff;
+  --dashboard-new-project-bg: #f2efe9;
+  --dashboard-badge-bg: #627c7d;
+
+  /* Dashboard Typography */
+  --font-instrument-serif: 'Instrument Serif', Georgia, serif;
+  --font-instrument-sans: 'Instrument Sans', -apple-system, sans-serif;
+
+  /* Dashboard Spacing */
+  --dashboard-gap-lg: 69px;
+  --dashboard-gap-md: 48px;
+  --dashboard-gap-sm: 24px;
+  --dashboard-gap-xs: 19px;
+  --dashboard-gap-xxs: 12px;
+
+  /* Dashboard Dimensions */
+  --dashboard-max-width: 1920px;
+  --dashboard-content-width: 1790px;
+  --dashboard-min-height: 858px;
+  --dashboard-stat-card-height: 158px;
+  --dashboard-stat-card-min-width: 313px;
+  --dashboard-project-card-height: 160px;
+  --dashboard-new-project-min-width: 182px;
+  --dashboard-recent-card-min-width: 246px;
+  --dashboard-research-container-min-width: 367px;
+  --dashboard-research-container-height: 589.6px;
+  --dashboard-right-column-height: 641px;
+  --dashboard-reference-item-height: 111px;
+  --dashboard-reference-item-min-width: 303px;
+
+  /* Dashboard Borders */
+  --dashboard-border-radius-sm: 7px;
+  --dashboard-border-radius-md: 10px;
+  --dashboard-border-radius-lg: 14px;
+  --dashboard-border-radius-xl: 16px;
+  --dashboard-border-radius-pill: 20px;
+  --dashboard-border-radius-circle: 26843500px;
+
+  /* Dashboard Shadows */
+  --dashboard-shadow-card: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --dashboard-shadow-research: 0 2px 8px 0 rgba(19, 52, 53, 0.04);
+
+  /* Dashboard Font Sizes */
+  --dashboard-font-size-welcome: 36px;
+  --dashboard-font-size-stat-value: 50px;
+  --dashboard-font-size-card-title: 18px;
+  --dashboard-font-size-section-heading: 13px;
+  --dashboard-font-size-subtitle: 14px;
+  --dashboard-font-size-small: 12px;
+  --dashboard-font-size-xs: 11px;
+  --dashboard-font-size-badge: 10px;
+
+  /* Dashboard Line Heights */
+  --dashboard-line-height-welcome: 45px;
+  --dashboard-line-height-subtitle: 21px;
+  --dashboard-line-height-section: 19.5px;
+  --dashboard-line-height-small: 18px;
+  --dashboard-line-height-stat: 26px;
+  --dashboard-line-height-badge: 10px;
+}

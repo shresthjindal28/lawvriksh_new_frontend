@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Toast as ToastType } from '@/types/ui';
 import { useToast } from '@/lib/contexts/ToastContext';
 import { cn } from '@/lib/utils';
-
+import '@/styles/ui-styles/toast.css';
 interface ToastProps {
   toast: ToastType;
 }

@@ -12,7 +12,7 @@ import { ProjectCategory } from '@/types/project';
 import StudentDialog from '../ui/StudentDialog';
 import { useDialog } from '@/hooks/common/useDialog';
 import { useWorkspace } from '@/lib/contexts/WorkspaceContext';
-
+import '@/styles/common-styles/library-documents.css';
 export default function LibraryDocuments() {
   const { documents, loading, error, pagination, uploadDocument, deleteDocument, getViewUrl } =
     useLibraryDocuments({
