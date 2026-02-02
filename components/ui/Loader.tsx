@@ -3,8 +3,6 @@
 import type React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
-import '../../styles/common-styles/loader.css';
-import '@/styles/ui-styles/search-loader.css';
 interface LoaderProps {
   message?: string;
 }

@@ -23,7 +23,6 @@ import { DocumentType, ExportOptions } from '@/types/project';
 import Image from 'next/image';
 import { useMobileSidebar } from '@/lib/contexts/MobileSidebarContext';
 import { cn } from '@/lib/utils';
-import '@/styles/common-styles/top-bar.css';
 type TopbarMode = 'default' | 'search';
 
 interface TopbarProps {

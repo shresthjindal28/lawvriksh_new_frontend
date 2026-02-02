@@ -3,8 +3,8 @@
 import { Menu } from 'lucide-react';
 import { useMobileSidebar } from '@/lib/contexts/MobileSidebarContext';
 import { useScrollDirection } from '@/hooks/common/useScrollDirection';
-import '@/styles/common-styles/mobile-header.css';
-import '@/styles/common-styles/top-bar.css';
+import { cn } from '@/lib/utils';
+
 export function MobileHeader() {
   const { toggle } = useMobileSidebar();
   const scrollDirection = useScrollDirection();
@@ -12,24 +12,25 @@ export function MobileHeader() {
 
   return (
     <div
-      className={`mobile-header md:hidden ${!isVisible ? 'mobile-header-hidden' : ''}`}
-      style={{
-        transition: 'transform 0.3s ease-in-out',
-        transform: isVisible ? 'translateY(0)' : 'translateY(-100%)',
-      }}
+      className={cn(
+        'sticky top-0 w-full z-10 bg-white border-b border-[#e3e3e3] px-4 py-3 flex items-center gap-3 transition-transform duration-300 ease-in-out md:hidden',
+        !isVisible && '-translate-y-full'
+      )}
     >
-      <div className="mobile-header-left">
+      <div className="flex items-center gap-3">
         <button
-          className="mobile-header-hamburger"
+          className="bg-transparent border-none p-2 cursor-pointer text-[#111827] transition-colors duration-200 rounded-lg flex items-center justify-center hover:bg-[#f3f4f6] active:bg-[#e5e7eb]"
           onClick={toggle}
           aria-label="Toggle menu"
           type="button"
         >
           <Menu size={20} />
         </button>
-        <div className="topbar-brand">
-          <span className="topbar-separator" aria-hidden="true" />
-          <h1 className="topbar-logo" style={{ fontSize: '20px' }}>
+        <div className="flex items-center gap-3">
+          <span className="w-[2px] h-[32px] bg-[#d1d5dbe6] rounded-full" aria-hidden="true" />
+          <h1
+            className="font-[family-name:var(--font-instrument-serif),serif] text-[20px] font-normal leading-[1.17] tracking-[-0.025em] text-[#3d3d3d] m-0 border-b-2 border-[#d4af37] whitespace-nowrap"
+          >
             LawVriksh
           </h1>
         </div>
