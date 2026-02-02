@@ -13,7 +13,6 @@ import { authService } from '@/lib/api/authService';
 import { MobileHeader } from '@/components/common/MobileHeader';
 import { Camera, Trash2, User, Upload } from 'lucide-react';
 import ImageEditorDialog from './ImageEditorDialog.client';
-import '@/styles/user-styles/profile-new.css';
 const DEFAULT_AVATAR = '/assets/images/logos/lawVriksh-logo.png';
 const DEFAULT_COVER = '/assets/images/background-image/backgroundImage.png';
 
@@ -266,22 +265,22 @@ export default function Profile({ user }: { user: UserProfile }) {
   }, [editableUser.picture, editableUser.profile_image_urls]);
 
   const renderCoverImage = () => (
-    <div className="profile-cover-wrapper">
-      <div className="profile-cover">
+    <div className="w-full relative mb-0">
+      <div className="w-full h-[320px] overflow-hidden relative bg-gradient-to-br from-[#f5e6d3] to-[#e8d4bb] md:h-[240px] sm:h-[180px]">
         <Image
           src={editableUser.cover_image || DEFAULT_COVER}
           alt="Cover"
           fill
-          className="cover-image"
+          className="w-full h-full object-cover object-top"
         />
       </div>
     </div>
   );
 
   const renderAvatar = () => (
-    <div className="profile-avatar-wrapper" style={{ position: 'relative' }}>
+    <div className="relative shrink-0" style={{ position: 'relative' }}>
       <div
-        className={`profile-avatar ${isUploading ? 'uploading' : ''}`}
+        className={`w-[110px] h-[110px] rounded-full overflow-hidden border-4 border-white bg-white shadow-[0_4px_12px_rgba(0,0,0,0.15)] relative cursor-pointer group md:w-[100px] md:h-[100px] sm:w-[90px] sm:h-[90px]`}
         onClick={() => {
           if (isEditing) {
             setIsDropdownOpen(!isDropdownOpen);
@@ -296,20 +295,20 @@ export default function Profile({ user }: { user: UserProfile }) {
           alt={`${editableUser.name || editableUser.username}'s avatar`}
           width={120}
           height={120}
-          className="avatar-image"
+          className="w-full h-full object-cover"
           unoptimized
         />
         {isEditing && (
-          <div className="avatar-overlay">
+          <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 transition-opacity duration-200 group-hover:opacity-100">
             {isUploadingAvatar ? (
-              <div className="upload-spinner">
-                <div className="spinner"></div>
+              <div className="text-white flex flex-col items-center">
+                <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                 <span style={{ fontSize: '12px', marginTop: '4px' }}>
                   {Math.round(avatarProgress)}%
                 </span>
               </div>
             ) : (
-              <div className="upload-icon">
+              <div className="text-white">
                 <Camera size={20} />
               </div>
             )}
@@ -324,7 +323,7 @@ export default function Profile({ user }: { user: UserProfile }) {
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            className="profile-image-dropdown"
+            className="absolute top-[calc(100%+12px)] left-0 w-[320px] bg-white/95 backdrop-blur-md rounded-[20px] shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2),0_8px_16px_-4px_rgba(0,0,0,0.1)] p-6 z-[100] border border-white/20"
             onClick={(e) => e.stopPropagation()}
             style={{
               position: 'absolute',
@@ -334,28 +333,28 @@ export default function Profile({ user }: { user: UserProfile }) {
               zIndex: 100,
             }}
           >
-            <div className="dropdown-header">
-              <div className="dropdown-avatar-preview">
+            <div className="flex flex-col items-center gap-4 pb-5 text-center">
+              <div className="w-[160px] h-[160px] rounded-full overflow-hidden border-4 border-white shadow-[0_4px_12px_rgba(0,0,0,0.15)]">
                 <Image
                   src={avatarSrc}
                   alt="Preview"
                   width={160}
                   height={160}
-                  className="preview-image"
+                  className="w-full h-full object-cover"
                   unoptimized
                 />
               </div>
-              <div className="dropdown-user-info">
-                <span className="dropdown-user-name">
+              <div className="flex flex-col">
+                <span className="font-semibold text-[15px] text-[#111827]">
                   {editableUser.name || editableUser.username}
                 </span>
-                <span className="dropdown-user-role">{editableUser.role}</span>
+                <span className="text-xs text-gray-500">{editableUser.role}</span>
               </div>
             </div>
-            <div className="dropdown-divider" />
-            <div className="dropdown-actions-list">
+            <div className="h-px bg-gray-100 mx-[-16px] my-2" />
+            <div className="flex flex-col gap-1">
               <button
-                className="dropdown-action-item"
+                className="flex items-center gap-2.5 p-[10px_12px] rounded-lg border-none bg-transparent text-gray-700 text-sm font-medium cursor-pointer transition-all w-full text-left hover:bg-gray-50 hover:text-gray-900"
                 onClick={(e) => {
                   e.stopPropagation();
                   setIsImageModalOpen(true);
@@ -366,7 +365,7 @@ export default function Profile({ user }: { user: UserProfile }) {
                 <span>View Profile Picture</span>
               </button>
               <button
-                className="dropdown-action-item"
+                className="flex items-center gap-2.5 p-[10px_12px] rounded-lg border-none bg-transparent text-gray-700 text-sm font-medium cursor-pointer transition-all w-full text-left hover:bg-gray-50 hover:text-gray-900"
                 onClick={(e) => {
                   e.stopPropagation();
                   fileInputRef.current?.click();
@@ -377,7 +376,7 @@ export default function Profile({ user }: { user: UserProfile }) {
                 <span>Update Profile Picture</span>
               </button>
               <button
-                className="dropdown-action-item text-red-600"
+                className="flex items-center gap-2.5 p-[10px_12px] rounded-lg border-none bg-transparent text-red-600 text-sm font-medium cursor-pointer transition-all w-full text-left hover:bg-red-50"
                 onClick={async (e) => {
                   e.stopPropagation();
                   try {
@@ -426,7 +425,7 @@ export default function Profile({ user }: { user: UserProfile }) {
     <>
       <MobileHeader />
       <motion.div
-        className="profile-container-new"
+        className="w-full m-0 p-0 bg-[#f9fafb] min-h-screen"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -434,14 +433,7 @@ export default function Profile({ user }: { user: UserProfile }) {
         {/* Error Display */}
         {(error || avatarError || coverError) && (
           <div
-            className="error-banner"
-            style={{
-              padding: '12px',
-              backgroundColor: '#fee',
-              color: '#c00',
-              borderRadius: '8px',
-              marginBottom: '16px',
-            }}
+            className="p-3 bg-[#fee] text-[#c00] rounded-lg mb-4"
           >
             {error || avatarError || coverError}
           </div>
@@ -451,18 +443,18 @@ export default function Profile({ user }: { user: UserProfile }) {
         {renderCoverImage()}
 
         {/* Profile Card */}
-        <div className="profile-card">
+        <div className="bg-transparent p-0 relative max-w-[1200px] mx-auto">
           {/* Avatar and Header */}
-          <div className="profile-header-section">
-            <div className="profile-info-wrapper">
-              <div className="profile-avatar-name-group">
+          <div className="flex items-end justify-between px-10 pb-8 mt-[-50px] relative z-10 md:px-6 md:pb-8 md:flex-col md:items-start md:w-full md:gap-5 sm:px-4 sm:pb-6 sm:mt-[-40px]">
+            <div className="w-full flex justify-between items-end min-w-0 md:flex-col md:items-start md:w-full md:gap-5">
+              <div className="flex flex-col items-start gap-4 md:items-start">
                 {renderAvatar()}
-                <div className="profile-name-section">
-                  <h1 className="profile-name">
+                <div className="flex flex-col gap-1.5 min-w-0 md:items-start">
+                  <h1 className="text-[28px] font-bold text-[#1a1a1a] m-0 leading-[1.2] font-serif md:text-[22px] sm:text-[20px]">
                     {editableUser.name || editableUser.username || 'N/A'}
                   </h1>
-                  <p className="profile-email">{editableUser.email}</p>
-                  <span className="profile-role-badge">{editableUser.role}</span>
+                  <p className="text-[15px] text-gray-500 m-[0_0_8px_0] leading-[1.4] sm:text-[14px]">{editableUser.email}</p>
+                  <span className="inline-block px-4 py-[6px] bg-[#d1d5db] text-[#1f2937] rounded-[20px] text-xs font-medium capitalize w-fit">{editableUser.role}</span>
                 </div>
               </div>
             </div>

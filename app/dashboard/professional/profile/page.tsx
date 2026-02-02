@@ -2,30 +2,21 @@
 import { useAuth } from '@/lib/contexts/AuthContext';
 import Profile from '@/components/user/Profile.client';
 import VideoLoader from '@/components/ui/VideoLoader';
-import '@/styles/user-styles/user-profile-page.css';
-export default function ProfessionalProfilePage() {
+
+export default function AdminProfilePage() {
   const { profile } = useAuth();
 
   if (!profile) {
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minHeight: '100vh',
-          gap: '16px',
-        }}
-      >
+      <div className="flex flex-col items-center justify-center min-h-screen gap-4">
         <VideoLoader width={150} height={150} />
-        <p style={{ color: '#6F7A8F', fontSize: '16px' }}>Loading Profile...</p>
+        <p className="text-[#6F7A8F] text-base">Loading Profile...</p>
       </div>
     );
   }
 
   return (
-    <div className="profilePage">
+    <div className="m-0 flex flex-col items-center justify-center">
       <Profile user={profile} />
     </div>
   );

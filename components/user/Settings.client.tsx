@@ -7,7 +7,6 @@ import { useAuth } from '@/lib/contexts/AuthContext';
 import { MobileHeader } from '@/components/common/MobileHeader';
 import { motion, AnimatePresence } from 'framer-motion';
 import { formatShortcutDisplay, isMacOS } from '@/hooks/common/useKeyboardShortcuts';
-import '@/styles/common-styles/settings-page.css';
 // State Management
 import { useSettingsUiStore } from '@/store/zustand/settingsUiStore';
 import { useSettingsQuery, useUpdateSettingsMutation } from '@/hooks/common/useSettingsQuery';
@@ -182,20 +181,20 @@ export default function Settings() {
           <section
             key="workspace"
             id="workspace"
-            className="settings-section"
+            className="pt-[clamp(1.8rem,2.7vh,2.25rem)] pb-[clamp(12rem,18vh,15rem)] border-t border-[#f1f5f9] overflow-visible first-of-type:pt-0 first-of-type:border-t-0"
             aria-labelledby="workspace-heading"
             aria-hidden={false}
           >
-            <div className="settings-section-header">
-              <h2 id="workspace-heading" className="settings-section-title">
+            <div className="mb-[clamp(1.4rem,2vh,1.75rem)]">
+              <h2 id="workspace-heading" className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]">
                 Workspace Preference
               </h2>
-              <p className="settings-section-description">
+              <p className="text-[#64748b] text-[clamp(0.87rem,1.2vw,0.95rem)] max-w-[clamp(28rem,38vw,34rem)]">
                 Choose how your workspace looks and behaves by default.
               </p>
             </div>
 
-            <div className="settings-card-grid-logout">
+            <div className="flex flex-col gap-[clamp(1.2rem,1.8vw,1.5rem)] overflow-visible">
               <ToggleControl
                 label="Auto-save"
                 description="Automatically save documents while you edit."
@@ -203,14 +202,18 @@ export default function Settings() {
                 onChange={() => toggleSetting('workspace', 'autoSave')}
               />
 
-              <div className="settings-field">
-                <label className="settings-field__label">Language</label>
+              <div className="flex flex-col gap-[clamp(0.5rem,0.7vw,0.6rem)]">
+                <label className="font-medium text-[#0f172a] text-[clamp(0.87rem,1.2vw,0.95rem)]">Language</label>
                 <div style={{ width: '100%' }}>
                   <GoogleTranslate dropdownPosition="bottom" />
                 </div>
               </div>
 
-              <button type="button" className="logout-btn" onClick={handleLogout}>
+              <button
+                type="button"
+                className="w-[clamp(90px,11vw,100px)] h-[clamp(36px,4.8vh,40px)] px-[clamp(0.85rem,1.2vw,1rem)] py-[clamp(0.15rem,0.24vh,0.2rem)] rounded-[clamp(4px,0.6vw,5px)] border border-white bg-black text-white text-[clamp(0.8rem,1.05vw,0.85rem)] font-medium cursor-pointer transition-colors duration-150"
+                onClick={handleLogout}
+              >
                 Logout
               </button>
             </div>
@@ -222,20 +225,20 @@ export default function Settings() {
           <section
             key="editor"
             id="editor"
-            className="settings-section"
+            className="pt-[clamp(1.8rem,2.7vh,2.25rem)] pb-[clamp(12rem,18vh,15rem)] border-t border-[#f1f5f9] overflow-visible first-of-type:pt-0 first-of-type:border-t-0"
             aria-labelledby="editor-heading"
             aria-hidden={false}
           >
-            <div className="settings-section-header">
-              <h2 id="editor-heading" className="settings-section-title">
+            <div className="mb-[clamp(1.4rem,2vh,1.75rem)]">
+              <h2 id="editor-heading" className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]">
                 Editor Settings
               </h2>
-              <p className="settings-section-description">
+              <p className="text-[#64748b] text-[clamp(0.87rem,1.2vw,0.95rem)] max-w-[clamp(28rem,38vw,34rem)]">
                 Configure how the writing editor behaves while you work.
               </p>
             </div>
 
-            <div className="settings-card-grid">
+            <div className="grid gap-[clamp(1.2rem,1.8vw,1.5rem)] grid-cols-[repeat(auto-fit,minmax(clamp(240px,28vw,260px),1fr))] overflow-visible">
               <div style={{ width: '100%' }}>
                 <div
                   style={{
@@ -247,11 +250,11 @@ export default function Settings() {
                   }}
                 >
                   <div style={{ marginBottom: '16px' }}>
-                    <h3 className="settings-section-title" style={{ margin: 0, fontSize: '20px' }}>
+                    <h3 className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]" style={{ margin: 0, fontSize: '20px' }}>
                       Toolbar shortcut
                     </h3>
                     <p
-                      className="settings-section-description"
+                      className="text-[#64748b] text-[clamp(0.87rem,1.2vw,0.95rem)] max-w-[clamp(28rem,38vw,34rem)]"
                       style={{ margin: '8px 0 0', color: '#475569' }}
                     >
                       Set your preferred modifier key combo for opening the toolbar shortcut dialog.
@@ -365,20 +368,20 @@ export default function Settings() {
           <section
             key="ai"
             id="ai"
-            className="settings-section"
+            className="pt-[clamp(1.8rem,2.7vh,2.25rem)] pb-[clamp(12rem,18vh,15rem)] border-t border-[#f1f5f9] overflow-visible first-of-type:pt-0 first-of-type:border-t-0"
             aria-labelledby="ai-heading"
             aria-hidden={false}
           >
-            <div className="settings-section-header">
-              <h2 id="ai-heading" className="settings-section-title">
+            <div className="mb-[clamp(1.4rem,2vh,1.75rem)]">
+              <h2 id="ai-heading" className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]">
                 AI Assistance
               </h2>
-              <p className="settings-section-description">
+              <p className="text-[#64748b] text-[clamp(0.87rem,1.2vw,0.95rem)] max-w-[clamp(28rem,38vw,34rem)]">
                 Enable intelligent checks that support your legal writing workflow.
               </p>
             </div>
 
-            <div className="settings-card-grid">
+            <div className="grid gap-[clamp(1.2rem,1.8vw,1.5rem)] grid-cols-[repeat(auto-fit,minmax(clamp(240px,28vw,260px),1fr))] overflow-visible">
               <ToggleControl
                 label="Smart Key Point Suggestion"
                 description="Get intelligent key points and drafting suggestions while your write."
@@ -411,20 +414,20 @@ export default function Settings() {
           <section
             key="notifications"
             id="notifications"
-            className="settings-section"
+            className="pt-[clamp(1.8rem,2.7vh,2.25rem)] pb-[clamp(12rem,18vh,15rem)] border-t border-[#f1f5f9] overflow-visible first-of-type:pt-0 first-of-type:border-t-0"
             aria-labelledby="notifications-heading"
             aria-hidden={false}
           >
-            <div className="settings-section-header">
-              <h2 id="notifications-heading" className="settings-section-title">
+            <div className="mb-[clamp(1.4rem,2vh,1.75rem)]">
+              <h2 id="notifications-heading" className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]">
                 Notifications
               </h2>
-              <p className="settings-section-description">
+              <p className="text-[#64748b] text-[clamp(0.87rem,1.2vw,0.95rem)] max-w-[clamp(28rem,38vw,34rem)]">
                 Manage how notification feedback is delivered across the workspace.
               </p>
             </div>
 
-            <div className="settings-card-grid">
+            <div className="grid gap-[clamp(1.2rem,1.8vw,1.5rem)] grid-cols-[repeat(auto-fit,minmax(clamp(240px,28vw,260px),1fr))] overflow-visible">
               <ToggleControl
                 label="Sound alerts"
                 description="Play a short sound when notes are created or uploads succeed."
@@ -436,13 +439,13 @@ export default function Settings() {
                   void toggleSetting('notifications', 'soundEnabled');
                 }}
               />
-              <div className="settings-field">
-                <label htmlFor="sound-choice" className="settings-field__label">
+              <div className="flex flex-col gap-[clamp(0.5rem,0.7vw,0.6rem)]">
+                <label htmlFor="sound-choice" className="font-medium text-[#0f172a] text-[clamp(0.87rem,1.2vw,0.95rem)]">
                   Sound choice
                 </label>
                 <select
                   id="sound-choice"
-                  className="settings-select"
+                  className="appearance-none py-[clamp(0.6rem,0.85vh,0.7rem)] pl-[clamp(0.7rem,1vw,0.85rem)] pr-[clamp(2.2rem,3vw,2.5rem)] rounded-[clamp(6px,0.9vw,8px)] border-[1.5px] border-[#d1d5db] bg-[#ffffff] text-[#0f172a] text-[clamp(0.87rem,1.2vw,0.95rem)] font-medium cursor-pointer transition-all duration-200 bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2220%22 height=%2220%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%23475569%22 stroke-width=%222%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22><polyline points=%226 9 12 15 18 9%22></polyline></svg>')] bg-no-repeat bg-[right_clamp(0.6rem,0.85vw,0.7rem)_center] bg-[size:clamp(16px,2.1vw,18px)_clamp(16px,2.1vw,18px)] hover:border-[#9ca3af] hover:bg-[#f9fafb] focus:outline-none focus:border-[#111827] focus:ring-[3px] focus:ring-[#111827]/10 focus:bg-[#ffffff]"
                   value={settings.notifications.soundChoice}
                   onChange={(event) => {
                     const value = event.target.value as NotificationSettings['soundChoice'];
@@ -468,21 +471,21 @@ export default function Settings() {
 
   if (!profile) {
     return (
-      <main className="main-container settings-main">
-        <div className="page-wrapper">
-          <section className="content-section">
-            <div className="settings-layout">
-              <aside className="settings-nav">
+      <main className="min-h-screen">
+        <div className="w-full h-full">
+          <section className="font-sans antialiased text-[#0f172a]">
+            <div className="grid grid-cols-1 lg:grid-cols-[clamp(240px,18vw,260px)_1fr] gap-[clamp(1.5rem,2.5vw,2rem)] p-[clamp(1.4rem,2.1vw,1.75rem)] lg:p-[clamp(1.5rem,2.5vw,2rem)_clamp(2rem,3vw,2.5rem)_clamp(3rem,5vh,4rem)]">
+              <aside className="static flex flex-row overflow-x-auto p-[clamp(0.85rem,1.2vw,1rem)] bg-[#ffffff] rounded-[clamp(10px,1.4vw,12px)] border border-[#d1d5db] lg:sticky lg:top-[clamp(5rem,7vh,6rem)] lg:flex-col lg:overflow-visible lg:self-start lg:gap-[clamp(0.4rem,0.6vw,0.5rem)] lg:p-[clamp(1.2rem,1.8vw,1.5rem)_clamp(0.8rem,1.2vw,1rem)]">
                 {[1, 2, 3].map((i) => (
                   <SkeletonLoader key={i} height="40px" style={{ marginBottom: '8px' }} />
                 ))}
               </aside>
-              <div className="settings-content">
-                <div className="settings-page-header">
+              <div className="bg-[#ffffff] rounded-[clamp(12px,1.8vw,16px)] border border-[#d1d5db] padding-[clamp(1.6rem,2.4vw,2rem)] lg:padding-[clamp(2rem,3vw,2.5rem)] overflow-x-hidden relative">
+                <div className="flex flex-col items-start gap-[clamp(1.2rem,1.8vw,1.5rem)] mb-[clamp(2rem,3vh,2.5rem)] lg:flex-row lg:items-start lg:justify-between">
                   <SkeletonLoader height="32px" width="150px" style={{ marginBottom: '8px' }} />
                   <SkeletonLoader height="20px" width="300px" />
                 </div>
-                <div className="settings-card-grid">
+                <div className="grid gap-[clamp(1.2rem,1.8vw,1.5rem)] grid-cols-[repeat(auto-fit,minmax(clamp(240px,28vw,260px),1fr))] overflow-visible">
                   {[1, 2, 3].map((i) => (
                     <SkeletonLoader key={i} height="80px" style={{ borderRadius: '12px' }} />
                   ))}
@@ -496,37 +499,37 @@ export default function Settings() {
   }
 
   return (
-    <main className="main-container settings-main">
+    <main className="min-h-screen">
       <MobileHeader />
-      <div className="page-wrapper">
-        <section className="content-section">
-          <div className="settings-layout">
-            <aside className="settings-nav" aria-label="Settings sections">
+      <div className="w-full h-full">
+        <section className="font-sans antialiased text-[#0f172a]">
+          <div className="grid grid-cols-1 lg:grid-cols-[clamp(240px,18vw,260px)_1fr] gap-[clamp(1.5rem,2.5vw,2rem)] p-[clamp(1.4rem,2.1vw,1.75rem)] lg:p-[clamp(1.5rem,2.5vw,2rem)_clamp(2rem,3vw,2.5rem)_clamp(3rem,5vh,4rem)]">
+            <aside className="static flex flex-row overflow-x-auto p-[clamp(0.85rem,1.2vw,1rem)] bg-[#ffffff] rounded-[clamp(10px,1.4vw,12px)] border border-[#d1d5db] lg:sticky lg:top-[clamp(5rem,7vh,6rem)] lg:flex-col lg:overflow-visible lg:self-start lg:gap-[clamp(0.4rem,0.6vw,0.5rem)] lg:p-[clamp(1.2rem,1.8vw,1.5rem)_clamp(0.8rem,1.2vw,1rem)]" aria-label="Settings sections">
               {NAV_ITEMS.map(({ id, label, icon: Icon }) => (
                 <button
                   key={id}
                   type="button"
-                  className={`settings-nav__link ${activeSection === id ? 'settings-nav__link--active' : ''}`}
+                  className={`group flex items-center gap-[clamp(0.6rem,0.9vw,0.75rem)] px-[clamp(0.7rem,1vw,0.85rem)] py-[clamp(0.55rem,0.8vw,0.65rem)] border-none bg-transparent rounded-[clamp(6px,0.9vw,8px)] text-[#475569] text-[clamp(0.87rem,1.2vw,0.95rem)] font-medium cursor-pointer transition-colors duration-200 text-left decoration-0 hover:bg-slate-900/5 hover:text-[#1f2937] ${activeSection === id ? '!bg-[#111827] !text-white' : ''}`}
                   onClick={() => handleNavClick(id)}
                   aria-current={activeSection === id}
                 >
-                  <Icon size={18} />
+                  <Icon size={18} className={`text-[#94a3b8] group-hover:text-[#1f2937] ${activeSection === id ? '!text-white' : ''}`} />
                   <span>{label}</span>
                 </button>
               ))}
             </aside>
 
-            <div className="settings-content">
-              <header className="settings-page-header">
+            <div className="bg-[#ffffff] rounded-[clamp(12px,1.8vw,16px)] border border-[#d1d5db] p-[clamp(1.6rem,2.4vw,2rem)] lg:p-[clamp(2rem,3vw,2.5rem)] overflow-x-hidden relative">
+              <header className="flex flex-col items-start gap-[clamp(1.2rem,1.8vw,1.5rem)] mb-[clamp(2rem,3vh,2.5rem)] lg:flex-row lg:items-start lg:justify-between">
                 <div>
-                  <h1 className="settings-page-title">Settings</h1>
-                  <p className="settings-page-description">
+                  <h1 className="font-[family-name:var(--font-playfair),serif] text-[clamp(1.6rem,2.4vw,2rem)] font-medium text-[#0f172a] mb-[clamp(0.3rem,0.4vh,0.35rem)]">Settings</h1>
+                  <p className="text-[#64748b] text-[clamp(0.87rem,1.2vw,0.95rem)] max-w-[clamp(24rem,32vw,28rem)]">
                     Fine-tune your workspace preferences, editor behaviour, and AI assistance.
                   </p>
                 </div>
                 <button
                   type="button"
-                  className="settings-reset"
+                  className="inline-flex items-center gap-[clamp(0.4rem,0.6vw,0.5rem)] px-[clamp(0.6rem,0.85vw,0.7rem)] py-[clamp(0.5rem,0.7vh,0.6rem)] rounded-full border border-[#d1d5db] bg-[#ffffff] text-[#0f172a] text-[clamp(0.6rem,0.8vw,0.65rem)] font-medium cursor-pointer transition-colors duration-150 hover:border-[#9ca3af] hover:bg-[#f9fafb] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:border-[#d1d5db] disabled:hover:bg-[#ffffff]"
                   onClick={resetToDefault}
                   disabled={!isDirty}
                 >
@@ -535,7 +538,7 @@ export default function Settings() {
                 </button>
               </header>
 
-              <div className="settings-section-stack">
+              <div className="relative grid gap-0">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={activeSection}
@@ -565,14 +568,15 @@ interface ToggleControlProps {
 
 function ToggleControl({ label, description, checked, onChange }: ToggleControlProps) {
   return (
-    <div className="settings-toggle">
-      <div className="settings-toggle__info">
-        <span className="settings-toggle__label">{label}</span>
-        {description ? <p className="settings-toggle__description">{description}</p> : null}
+    <div className="flex items-center justify-between p-[clamp(0.85rem,1.2vh,1rem)_clamp(0.95rem,1.3vw,1.1rem)] border border-[#d1d5db] rounded-[clamp(10px,1.4vw,12px)] bg-[#ffffff] w-fit">
+      <div className="flex flex-col gap-[clamp(0.3rem,0.42vh,0.35rem)] mr-[clamp(0.85rem,1.2vw,1rem)]">
+        <span className="font-medium text-[#0f172a]">{label}</span>
+        {description ? <p className="text-[clamp(0.8rem,1.05vw,0.85rem)] text-[#64748b] max-w-[clamp(16rem,21vw,18rem)]">{description}</p> : null}
       </div>
-      <label className="settings-toggle__switch">
-        <input type="checkbox" checked={checked} onChange={onChange} />
-        <span className="settings-toggle__slider" aria-hidden="true" />
+      <label className="relative w-[50px] h-[24px] cursor-pointer inline-block box-border">
+        <input type="checkbox" checked={checked} onChange={onChange} className="opacity-0 w-0 h-0 absolute" />
+        <span className="absolute cursor-pointer inset-0 bg-[#ccc] transition-[0.3s] rounded-[24px] border-2 border-black box-border before:absolute before:content-[''] before:h-[16px] before:w-[16px] before:left-[2px] before:top-1/2 before:-translate-y-1/2 before:bg-black before:transition-[0.3s] before:rounded-full before:z-[2] peer-checked:bg-black peer-checked:border-black peer-checked:before:bg-white peer-checked:before:translate-x-[26px]" aria-hidden="true" />
+        <span className={`absolute cursor-pointer inset-0 transition-[0.3s] rounded-[24px] border-2 border-black box-border before:absolute before:content-[''] before:h-[16px] before:w-[16px] before:left-[2px] before:top-1/2 before:-translate-y-1/2 before:bg-black before:transition-[0.3s] before:rounded-full before:z-[2] ${checked ? '!bg-black !border-black before:!bg-white before:!translate-x-[26px]' : '!bg-[#ccc]'}`}></span>
       </label>
     </div>
   );

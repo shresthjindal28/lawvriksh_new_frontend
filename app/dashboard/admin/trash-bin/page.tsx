@@ -10,7 +10,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { SkeletonLoader } from '@/components/ui/Loader';
 import ConfirmModal from '@/components/ui/ConfirmModal';
 import EmptyTrashState from '@/components/dashboard/trash/EmptyTrashState';
-import '@/styles/trash-bin/trash-bin.css';
+
 const MemoizedProjectCard = memo(ProjectCard);
 
 // Animation variants
@@ -88,7 +88,7 @@ export default function TrashBinPage() {
   };
 
   const renderLoadingState = () => (
-    <div className="trash-bin-grid">
+    <div className="mt-6 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full max-w-full">
       {[1, 2, 3].map((n) => (
         <div
           key={n}
@@ -110,28 +110,30 @@ export default function TrashBinPage() {
 
   if (!profile) {
     return (
-      <div className="main-container">
-        <div className="page-wrapper">
-          <section className="content-section">{renderLoadingState()}</section>
+      <div className="w-full h-full">
+        <div className="px-4 py-6 sm:px-8 lg:px-[60px] lg:py-10 bg-[#fafafa] min-h-[calc(100vh-80px)] box-border overflow-x-hidden w-full">
+          <section className="max-w-[1400px] mx-auto w-full">{renderLoadingState()}</section>
         </div>
       </div>
     );
   }
 
   return (
-    <main className="main-container">
-      <div className="page-wrapper">
-        <section className="content-section">
-          <div className="trash-bin-content-inner">
+    <main className="w-full h-full">
+      <div className="px-4 py-6 sm:px-8 lg:px-[60px] lg:py-10 bg-[#fafafa] min-h-[calc(100vh-80px)] box-border overflow-x-hidden w-full">
+        <section className="max-w-[1400px] mx-auto w-full">
+          <div className="max-w-[1400px] mx-auto w-full">
             <motion.div
-              className="trash-bin-container"
+              className="w-full px-4 py-6 sm:px-8 lg:px-[60px] lg:py-10 bg-[#fafafa] min-h-[calc(100vh-80px)] box-border overflow-x-hidden"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <div className="trash-header">
-                <h1>Trash Bin</h1>
-                <p className="trash-subtitle">
+              <div className="mb-6 pb-3 border-b border-[#eaeaea]">
+                <h1 className="font-[family-name:var(--font-playfair),serif] text-2xl sm:text-[32px] font-semibold text-[#1a1a1a] mb-2 tracking-[-0.01em]">
+                  Trash Bin
+                </h1>
+                <p className="text-sm text-[#666666] m-0">
                   Items in trash will be permanently deleted after 30 days.
                 </p>
               </div>
@@ -140,7 +142,7 @@ export default function TrashBinPage() {
                 renderLoadingState()
               ) : (
                 <motion.div
-                  className="trash-bin-grid"
+                  className="mt-6 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full max-w-full"
                   variants={containerVariants}
                   initial="hidden"
                   animate="visible"
@@ -159,13 +161,13 @@ export default function TrashBinPage() {
                       trashedProjects.map((project, index: number) => (
                         <motion.div
                           key={project.id}
-                          className="trash-card-wrapper"
+                          className="relative rounded-xl overflow-hidden group [&_.project-card]:opacity-85 [&_.project-card]:transition-opacity [&_.project-card]:duration-200 group-hover:[&_.project-card]:opacity-100"
                           variants={itemVariants}
                           layout
                         >
-                          <div className="trash-card-overlay">
+                          <div className="absolute inset-0 bg-white/90 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20 pointer-events-none group-hover:pointer-events-auto">
                             <button
-                              className="restore-btn"
+                              className="flex items-center gap-2 px-5 py-2.5 bg-[#1a1a1a] text-white border-none rounded-lg font-medium text-sm cursor-pointer translate-y-[10px] group-hover:translate-y-0 transition-all duration-200 shadow-[0_4px_12px_rgba(0,0,0,0.15)] hover:bg-[#333] hover:scale-[1.02]"
                               onClick={() => handleRestore(project.id)}
                             >
                               <RotateCcw size={14} /> Restore

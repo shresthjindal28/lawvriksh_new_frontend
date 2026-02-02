@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { MoreVertical, Trash2, Edit, Share, Download, Eye, RotateCcw } from 'lucide-react';
 import { useState, useRef, useEffect, memo } from 'react';
 import { useRouter } from 'next/navigation';
-import '@/styles/dashboard-styles/project-card.css';
+// import '@/styles/dashboard-styles/project-card.css';
 interface ProjectCardProps {
   project: any;
   onDelete?: (projectId: string) => void;
@@ -12,6 +12,7 @@ interface ProjectCardProps {
   onRestore?: (projectId: string) => void;
   index?: number;
   isTrashView?: boolean;
+  isLibraryView?: boolean;
   variants?: any;
 }
 
@@ -47,6 +48,7 @@ function ProjectCard({
   onRestore,
   index = 0,
   isTrashView = false,
+  isLibraryView = false,
   variants,
 }: ProjectCardProps) {
   const router = useRouter();
@@ -167,15 +169,21 @@ function ProjectCard({
       whileHover={{
         y: -8,
         scale: 1.02,
-        boxShadow:
-          'var(--shadow-floating, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04))',
+        boxShadow: isLibraryView 
+          ? '0 10px 30px -5px rgba(0, 0, 0, 0.1)' 
+          : 'var(--shadow-floating, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04))',
+        backgroundColor: isLibraryView ? 'rgba(255, 255, 255, 0.95)' : undefined, 
       }}
       transition={{
         type: 'spring',
         stiffness: 400,
         damping: 30,
       }}
-      className="flex h-full w-full pt-[22px] pb-[16.92px] px-[22px] flex-col items-start gap-4 rounded-[14px] bg-white text-left relative overflow-hidden box-border border border-[rgba(19,52,53,0.08)] shadow-[0_2px_4px_rgba(0,0,0,0.02)] transition-shadow duration-300"
+      className={`flex h-full w-full pt-[22px] pb-[16.92px] px-[22px] flex-col items-start gap-4 rounded-[14px] text-left relative overflow-hidden box-border border shadow-[0_2px_4px_rgba(0,0,0,0.02)] transition-shadow duration-300 ${
+        isLibraryView 
+          ? 'bg-white/85 backdrop-blur-md border-white/40' 
+          : 'bg-white border-[rgba(19,52,53,0.08)]'
+      }`}
       onClick={handleCardClick}
     >
       {/* Three-dot menu */}
