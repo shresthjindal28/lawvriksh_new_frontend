@@ -186,7 +186,10 @@ export default function Settings() {
             aria-hidden={false}
           >
             <div className="mb-[clamp(1.4rem,2vh,1.75rem)]">
-              <h2 id="workspace-heading" className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]">
+              <h2
+                id="workspace-heading"
+                className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]"
+              >
                 Workspace Preference
               </h2>
               <p className="text-[#64748b] text-[clamp(0.87rem,1.2vw,0.95rem)] max-w-[clamp(28rem,38vw,34rem)]">
@@ -203,7 +206,9 @@ export default function Settings() {
               />
 
               <div className="flex flex-col gap-[clamp(0.5rem,0.7vw,0.6rem)]">
-                <label className="font-medium text-[#0f172a] text-[clamp(0.87rem,1.2vw,0.95rem)]">Language</label>
+                <label className="font-medium text-[#0f172a] text-[clamp(0.87rem,1.2vw,0.95rem)]">
+                  Language
+                </label>
                 <div style={{ width: '100%' }}>
                   <GoogleTranslate dropdownPosition="bottom" />
                 </div>
@@ -230,7 +235,10 @@ export default function Settings() {
             aria-hidden={false}
           >
             <div className="mb-[clamp(1.4rem,2vh,1.75rem)]">
-              <h2 id="editor-heading" className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]">
+              <h2
+                id="editor-heading"
+                className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]"
+              >
                 Editor Settings
               </h2>
               <p className="text-[#64748b] text-[clamp(0.87rem,1.2vw,0.95rem)] max-w-[clamp(28rem,38vw,34rem)]">
@@ -250,7 +258,10 @@ export default function Settings() {
                   }}
                 >
                   <div style={{ marginBottom: '16px' }}>
-                    <h3 className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]" style={{ margin: 0, fontSize: '20px' }}>
+                    <h3
+                      className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]"
+                      style={{ margin: 0, fontSize: '20px' }}
+                    >
                       Toolbar shortcut
                     </h3>
                     <p
@@ -373,7 +384,10 @@ export default function Settings() {
             aria-hidden={false}
           >
             <div className="mb-[clamp(1.4rem,2vh,1.75rem)]">
-              <h2 id="ai-heading" className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]">
+              <h2
+                id="ai-heading"
+                className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]"
+              >
                 AI Assistance
               </h2>
               <p className="text-[#64748b] text-[clamp(0.87rem,1.2vw,0.95rem)] max-w-[clamp(28rem,38vw,34rem)]">
@@ -419,7 +433,10 @@ export default function Settings() {
             aria-hidden={false}
           >
             <div className="mb-[clamp(1.4rem,2vh,1.75rem)]">
-              <h2 id="notifications-heading" className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]">
+              <h2
+                id="notifications-heading"
+                className="text-[clamp(1.25rem,1.75vw,1.45rem)] font-medium text-[#0f172a] mb-[clamp(0.4rem,0.6vh,0.5rem)]"
+              >
                 Notifications
               </h2>
               <p className="text-[#64748b] text-[clamp(0.87rem,1.2vw,0.95rem)] max-w-[clamp(28rem,38vw,34rem)]">
@@ -440,7 +457,10 @@ export default function Settings() {
                 }}
               />
               <div className="flex flex-col gap-[clamp(0.5rem,0.7vw,0.6rem)]">
-                <label htmlFor="sound-choice" className="font-medium text-[#0f172a] text-[clamp(0.87rem,1.2vw,0.95rem)]">
+                <label
+                  htmlFor="sound-choice"
+                  className="font-medium text-[#0f172a] text-[clamp(0.87rem,1.2vw,0.95rem)]"
+                >
                   Sound choice
                 </label>
                 <select
@@ -504,7 +524,10 @@ export default function Settings() {
       <div className="w-full h-full">
         <section className="font-sans antialiased text-[#0f172a]">
           <div className="grid grid-cols-1 lg:grid-cols-[clamp(240px,18vw,260px)_1fr] gap-[clamp(1.5rem,2.5vw,2rem)] p-[clamp(1.4rem,2.1vw,1.75rem)] lg:p-[clamp(1.5rem,2.5vw,2rem)_clamp(2rem,3vw,2.5rem)_clamp(3rem,5vh,4rem)]">
-            <aside className="static flex flex-row overflow-x-auto p-[clamp(0.85rem,1.2vw,1rem)] bg-[#ffffff] rounded-[clamp(10px,1.4vw,12px)] border border-[#d1d5db] lg:sticky lg:top-[clamp(5rem,7vh,6rem)] lg:flex-col lg:overflow-visible lg:self-start lg:gap-[clamp(0.4rem,0.6vw,0.5rem)] lg:p-[clamp(1.2rem,1.8vw,1.5rem)_clamp(0.8rem,1.2vw,1rem)]" aria-label="Settings sections">
+            <aside
+              className="static flex flex-row overflow-x-auto p-[clamp(0.85rem,1.2vw,1rem)] bg-[#ffffff] rounded-[clamp(10px,1.4vw,12px)] border border-[#d1d5db] lg:sticky lg:top-[clamp(5rem,7vh,6rem)] lg:flex-col lg:overflow-visible lg:self-start lg:gap-[clamp(0.4rem,0.6vw,0.5rem)] lg:p-[clamp(1.2rem,1.8vw,1.5rem)_clamp(0.8rem,1.2vw,1rem)]"
+              aria-label="Settings sections"
+            >
               {NAV_ITEMS.map(({ id, label, icon: Icon }) => (
                 <button
                   key={id}
@@ -513,7 +536,10 @@ export default function Settings() {
                   onClick={() => handleNavClick(id)}
                   aria-current={activeSection === id}
                 >
-                  <Icon size={18} className={`text-[#94a3b8] group-hover:text-[#1f2937] ${activeSection === id ? '!text-white' : ''}`} />
+                  <Icon
+                    size={18}
+                    className={`text-[#94a3b8] group-hover:text-[#1f2937] ${activeSection === id ? '!text-white' : ''}`}
+                  />
                   <span>{label}</span>
                 </button>
               ))}
@@ -522,7 +548,9 @@ export default function Settings() {
             <div className="bg-[#ffffff] rounded-[clamp(12px,1.8vw,16px)] border border-[#d1d5db] p-[clamp(1.6rem,2.4vw,2rem)] lg:p-[clamp(2rem,3vw,2.5rem)] overflow-x-hidden relative">
               <header className="flex flex-col items-start gap-[clamp(1.2rem,1.8vw,1.5rem)] mb-[clamp(2rem,3vh,2.5rem)] lg:flex-row lg:items-start lg:justify-between">
                 <div>
-                  <h1 className="font-[family-name:var(--font-playfair),serif] text-[clamp(1.6rem,2.4vw,2rem)] font-medium text-[#0f172a] mb-[clamp(0.3rem,0.4vh,0.35rem)]">Settings</h1>
+                  <h1 className="font-[family-name:var(--font-playfair),serif] text-[clamp(1.6rem,2.4vw,2rem)] font-medium text-[#0f172a] mb-[clamp(0.3rem,0.4vh,0.35rem)]">
+                    Settings
+                  </h1>
                   <p className="text-[#64748b] text-[clamp(0.87rem,1.2vw,0.95rem)] max-w-[clamp(24rem,32vw,28rem)]">
                     Fine-tune your workspace preferences, editor behaviour, and AI assistance.
                   </p>
@@ -571,12 +599,26 @@ function ToggleControl({ label, description, checked, onChange }: ToggleControlP
     <div className="flex items-center justify-between p-[clamp(0.85rem,1.2vh,1rem)_clamp(0.95rem,1.3vw,1.1rem)] border border-[#d1d5db] rounded-[clamp(10px,1.4vw,12px)] bg-[#ffffff] w-fit">
       <div className="flex flex-col gap-[clamp(0.3rem,0.42vh,0.35rem)] mr-[clamp(0.85rem,1.2vw,1rem)]">
         <span className="font-medium text-[#0f172a]">{label}</span>
-        {description ? <p className="text-[clamp(0.8rem,1.05vw,0.85rem)] text-[#64748b] max-w-[clamp(16rem,21vw,18rem)]">{description}</p> : null}
+        {description ? (
+          <p className="text-[clamp(0.8rem,1.05vw,0.85rem)] text-[#64748b] max-w-[clamp(16rem,21vw,18rem)]">
+            {description}
+          </p>
+        ) : null}
       </div>
       <label className="relative w-[50px] h-[24px] cursor-pointer inline-block box-border">
-        <input type="checkbox" checked={checked} onChange={onChange} className="opacity-0 w-0 h-0 absolute" />
-        <span className="absolute cursor-pointer inset-0 bg-[#ccc] transition-[0.3s] rounded-[24px] border-2 border-black box-border before:absolute before:content-[''] before:h-[16px] before:w-[16px] before:left-[2px] before:top-1/2 before:-translate-y-1/2 before:bg-black before:transition-[0.3s] before:rounded-full before:z-[2] peer-checked:bg-black peer-checked:border-black peer-checked:before:bg-white peer-checked:before:translate-x-[26px]" aria-hidden="true" />
-        <span className={`absolute cursor-pointer inset-0 transition-[0.3s] rounded-[24px] border-2 border-black box-border before:absolute before:content-[''] before:h-[16px] before:w-[16px] before:left-[2px] before:top-1/2 before:-translate-y-1/2 before:bg-black before:transition-[0.3s] before:rounded-full before:z-[2] ${checked ? '!bg-black !border-black before:!bg-white before:!translate-x-[26px]' : '!bg-[#ccc]'}`}></span>
+        <input
+          type="checkbox"
+          checked={checked}
+          onChange={onChange}
+          className="opacity-0 w-0 h-0 absolute"
+        />
+        <span
+          className="absolute cursor-pointer inset-0 bg-[#ccc] transition-[0.3s] rounded-[24px] border-2 border-black box-border before:absolute before:content-[''] before:h-[16px] before:w-[16px] before:left-[2px] before:top-1/2 before:-translate-y-1/2 before:bg-black before:transition-[0.3s] before:rounded-full before:z-[2] peer-checked:bg-black peer-checked:border-black peer-checked:before:bg-white peer-checked:before:translate-x-[26px]"
+          aria-hidden="true"
+        />
+        <span
+          className={`absolute cursor-pointer inset-0 transition-[0.3s] rounded-[24px] border-2 border-black box-border before:absolute before:content-[''] before:h-[16px] before:w-[16px] before:left-[2px] before:top-1/2 before:-translate-y-1/2 before:bg-black before:transition-[0.3s] before:rounded-full before:z-[2] ${checked ? '!bg-black !border-black before:!bg-white before:!translate-x-[26px]' : '!bg-[#ccc]'}`}
+        ></span>
       </label>
     </div>
   );

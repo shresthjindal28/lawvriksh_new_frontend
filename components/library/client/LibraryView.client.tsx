@@ -269,7 +269,10 @@ export default function LibraryView() {
   const renderLoadingState = () => (
     <div className="grid grid-cols-3 gap-5 w-full lg:grid-cols-2 md:gap-3 sm:grid-cols-2 sm:gap-3">
       {[1, 2, 3, 4].map((n) => (
-        <div key={n} className="bg-white rounded-[14px] p-6 border border-gray-100 shadow-sm flex flex-col gap-4">
+        <div
+          key={n}
+          className="bg-white rounded-[14px] p-6 border border-gray-100 shadow-sm flex flex-col gap-4"
+        >
           <SkeletonLoader height="140px" style={{ marginBottom: '16px' }} />
           <SkeletonLoader height="20px" width="70%" style={{ marginBottom: '8px' }} />
           <SkeletonLoader height="16px" width="40%" />
@@ -312,7 +315,10 @@ export default function LibraryView() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                   />
                   {searchQuery && (
-                    <button className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-gray-400 bg-transparent border-none hover:text-gray-600" onClick={clearSearch}>
+                    <button
+                      className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-gray-400 bg-transparent border-none hover:text-gray-600"
+                      onClick={clearSearch}
+                    >
                       <X size={16} />
                     </button>
                   )}
@@ -342,7 +348,11 @@ export default function LibraryView() {
                             transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
                           />
                         )}
-                        <span className={`relative z-10 text-sm font-medium transition-colors ${isActive ? 'text-white' : 'text-gray-500'}`}>{filter.label}</span>
+                        <span
+                          className={`relative z-10 text-sm font-medium transition-colors ${isActive ? 'text-white' : 'text-gray-500'}`}
+                        >
+                          {filter.label}
+                        </span>
                       </button>
                     );
                   })}

@@ -432,9 +432,7 @@ export default function Profile({ user }: { user: UserProfile }) {
       >
         {/* Error Display */}
         {(error || avatarError || coverError) && (
-          <div
-            className="p-3 bg-[#fee] text-[#c00] rounded-lg mb-4"
-          >
+          <div className="p-3 bg-[#fee] text-[#c00] rounded-lg mb-4">
             {error || avatarError || coverError}
           </div>
         )}
@@ -453,8 +451,12 @@ export default function Profile({ user }: { user: UserProfile }) {
                   <h1 className="text-[28px] font-bold text-[#1a1a1a] m-0 leading-[1.2] font-serif md:text-[22px] sm:text-[20px]">
                     {editableUser.name || editableUser.username || 'N/A'}
                   </h1>
-                  <p className="text-[15px] text-gray-500 m-[0_0_8px_0] leading-[1.4] sm:text-[14px]">{editableUser.email}</p>
-                  <span className="inline-block px-4 py-[6px] bg-[#d1d5db] text-[#1f2937] rounded-[20px] text-xs font-medium capitalize w-fit">{editableUser.role}</span>
+                  <p className="text-[15px] text-gray-500 m-[0_0_8px_0] leading-[1.4] sm:text-[14px]">
+                    {editableUser.email}
+                  </p>
+                  <span className="inline-block px-4 py-[6px] bg-[#d1d5db] text-[#1f2937] rounded-[20px] text-xs font-medium capitalize w-fit">
+                    {editableUser.role}
+                  </span>
                 </div>
               </div>
             </div>

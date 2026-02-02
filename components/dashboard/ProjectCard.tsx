@@ -169,10 +169,10 @@ function ProjectCard({
       whileHover={{
         y: -8,
         scale: 1.02,
-        boxShadow: isLibraryView 
-          ? '0 10px 30px -5px rgba(0, 0, 0, 0.1)' 
+        boxShadow: isLibraryView
+          ? '0 10px 30px -5px rgba(0, 0, 0, 0.1)'
           : 'var(--shadow-floating, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04))',
-        backgroundColor: isLibraryView ? 'rgba(255, 255, 255, 0.95)' : undefined, 
+        backgroundColor: isLibraryView ? 'rgba(255, 255, 255, 0.95)' : undefined,
       }}
       transition={{
         type: 'spring',
@@ -180,8 +180,8 @@ function ProjectCard({
         damping: 30,
       }}
       className={`flex h-full w-full pt-[22px] pb-[16.92px] px-[22px] flex-col items-start gap-4 rounded-[14px] text-left relative overflow-hidden box-border border shadow-[0_2px_4px_rgba(0,0,0,0.02)] transition-shadow duration-300 ${
-        isLibraryView 
-          ? 'bg-white/85 backdrop-blur-md border-white/40' 
+        isLibraryView
+          ? 'bg-white/85 backdrop-blur-md border-white/40'
           : 'bg-white border-[rgba(19,52,53,0.08)]'
       }`}
       onClick={handleCardClick}

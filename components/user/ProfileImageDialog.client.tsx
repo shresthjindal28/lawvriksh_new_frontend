@@ -81,7 +81,10 @@ export default function ProfileImageDialog({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/75 flex justify-center items-center z-[1000]" onClick={onClose}>
+    <div
+      className="fixed inset-0 bg-black/75 flex justify-center items-center z-[1000]"
+      onClick={onClose}
+    >
       <motion.div
         className="bg-white p-6 rounded-xl max-w-[500px] w-[90%] flex flex-col items-center gap-5 shadow-[0_20px_25px_-5px_rgba(0,0,0,0.1),0_10px_10px_-5px_rgba(0,0,0,0.04)]"
         onClick={(e) => e.stopPropagation()}

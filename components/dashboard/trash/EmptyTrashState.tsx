@@ -62,7 +62,10 @@ const EmptyTrashState = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="col-span-full flex flex-col items-center justify-center py-20 px-6 bg-white rounded-2xl border border-[#f0f0f0] text-center w-full min-h-[400px]">
+    <div
+      ref={containerRef}
+      className="col-span-full flex flex-col items-center justify-center py-20 px-6 bg-white rounded-2xl border border-[#f0f0f0] text-center w-full min-h-[400px]"
+    >
       <div className="flex flex-col items-center justify-center max-w-md w-full">
         <div ref={iconWrapperRef} className="relative mb-6">
           <div className="relative z-10 w-24 h-24 rounded-full bg-gray-50 flex items-center justify-center border-2 border-gray-100 shadow-sm">
@@ -71,8 +74,16 @@ const EmptyTrashState = () => {
           <div className="absolute -bottom-2 -right-2 bg-green-100 text-green-600 p-1.5 rounded-full border-2 border-white z-20 shadow-sm">
             <CheckCircle2 className="" size={20} />
           </div>
-          <Sparkles ref={sparkleRef1} className="absolute -top-4 -right-4 text-yellow-400" size={24} />
-          <Sparkles ref={sparkleRef2} className="absolute top-1/2 -left-8 text-blue-400" size={20} />
+          <Sparkles
+            ref={sparkleRef1}
+            className="absolute -top-4 -right-4 text-yellow-400"
+            size={24}
+          />
+          <Sparkles
+            ref={sparkleRef2}
+            className="absolute top-1/2 -left-8 text-blue-400"
+            size={20}
+          />
         </div>
 
         <div ref={textRef} className="flex flex-col items-center gap-2">

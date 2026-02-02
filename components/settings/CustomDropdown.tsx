@@ -60,7 +60,9 @@ export default function CustomDropdown({ label, value, options, onChange }: Cust
                 key={option.value}
                 type="button"
                 className={`flex items-center justify-between w-full px-4 py-3 bg-white border-0 border-b border-gray-100 text-[0.9375rem] font-medium text-gray-800 text-left cursor-pointer transition-colors duration-150 last:border-b-0 hover:bg-gray-50 md:px-[0.85rem] md:py-[0.65rem] md:text-[0.875rem] ${
-                  option.value === value ? 'bg-blue-100 text-blue-800 font-semibold hover:bg-blue-100' : ''
+                  option.value === value
+                    ? 'bg-blue-100 text-blue-800 font-semibold hover:bg-blue-100'
+                    : ''
                 }`}
                 onClick={() => handleOptionClick(option.value)}
               >

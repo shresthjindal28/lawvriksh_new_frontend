@@ -109,7 +109,9 @@ export default function LibraryDocuments() {
                 </button>
               </div>
               <div className="hidden md:grid md:grid-cols-[1fr_1fr_60px] md:p-[12px_22px] items-center p-[12px_16px] bg-[#e8e8ec] rounded-t-lg font-medium text-gray-500">
-                <div className="flex items-center text-sm text-black md:text-base">Document Name</div>
+                <div className="flex items-center text-sm text-black md:text-base">
+                  Document Name
+                </div>
                 <div className="flex items-center text-sm text-black md:text-base">Last Edited</div>
                 <div className="hidden md:flex"></div>
               </div>
