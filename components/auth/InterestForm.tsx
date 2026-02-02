@@ -20,7 +20,7 @@ const InterestsForm = ({
   return (
     <>
       <motion.h2
-         className="font-serif text-[clamp(1.5rem,4vh,2.5rem)] font-light mb-4 mt-0 text-black text-center leading-tight md:text-[3rem]"
+        className="font-serif text-[clamp(1.5rem,4vh,2.5rem)] font-light mb-4 mt-0 text-black text-center leading-tight md:text-[3rem]"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -55,7 +55,7 @@ const InterestsForm = ({
       >
         {error && (
           <div className="w-full flex items-center justify-center">
-             <motion.p
+            <motion.p
               className="w-[350px] text-[#d32f2f] bg-[#ffcdd2] p-3 rounded-lg mb-4 text-center border border-[#d32f2f]"
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -115,7 +115,7 @@ const InterestsForm = ({
                 <motion.button
                   key={interest}
                   type="button"
-                   className={`
+                  className={`
                     px-4 py-3 text-sm rounded-[20px] border-2 border-[#e9ecef] whitespace-nowrap cursor-pointer transition-all duration-300 font-medium text-center inline-flex items-center justify-center h-10 min-w-[5rem] max-w-[12rem] bg-white text-black font-serif
                     md:px-8 md:py-4 md:text-base md:rounded-[25px] md:border-none md:h-auto md:min-w-[120px] md:max-w-[160px]
                     hover:bg-[#e9ecef] hover:-translate-y-px 
@@ -199,8 +199,8 @@ const InterestsForm = ({
           </div>
         </motion.div>
 
-        <motion.div 
-           className="absolute bottom-20 right-8 flex justify-end items-end gap-2.5 
+        <motion.div
+          className="absolute bottom-20 right-8 flex justify-end items-end gap-2.5 
             md:static md:mt-12 md:w-full md:px-8 md:justify-end sm:static sm:mt-12 sm:px-4 sm:justify-end"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}

@@ -93,7 +93,12 @@ const LoginForm = ({
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <label htmlFor="email" className="block mb-2 font-medium text-black text-sm text-left font-sans">Email</label>
+          <label
+            htmlFor="email"
+            className="block mb-2 font-medium text-black text-sm text-left font-sans"
+          >
+            Email
+          </label>
           <motion.input
             type="email"
             id="email"
@@ -113,7 +118,12 @@ const LoginForm = ({
           animate={{ opacity: 1, x: 0, height: 'auto' }}
           transition={{ duration: 0.4, delay: 0.1 }}
         >
-          <label htmlFor="password" className="block mb-2 font-medium text-black text-sm text-left font-sans">Password</label>
+          <label
+            htmlFor="password"
+            className="block mb-2 font-medium text-black text-sm text-left font-sans"
+          >
+            Password
+          </label>
           <div className="relative flex items-center">
             <motion.input
               type={showPassword ? 'text' : 'password'}

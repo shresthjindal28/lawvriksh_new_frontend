@@ -142,7 +142,10 @@ const OTPForm = ({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <label htmlFor="email" className="block mb-2 font-medium text-black text-sm text-left font-sans">
+            <label
+              htmlFor="email"
+              className="block mb-2 font-medium text-black text-sm text-left font-sans"
+            >
               Email
             </label>
             <motion.input
@@ -164,7 +167,9 @@ const OTPForm = ({
           exit={{ opacity: 0, x: -20, height: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
         >
-          <label className="block mb-2 font-medium text-black text-sm text-left font-sans">OTP</label>
+          <label className="block mb-2 font-medium text-black text-sm text-left font-sans">
+            OTP
+          </label>
           <div className="flex justify-between gap-2">
             {otp.map((digit, index) => (
               <motion.input

@@ -78,17 +78,18 @@ function ToolSearchBar({
     const resultsStyle =
       variant === 'header' && dropdownPosition
         ? {
-          position: 'fixed' as const,
-          top: dropdownPosition.top,
-          left: dropdownPosition.left,
-          width: dropdownPosition.width,
-          maxHeight: '400px',
-          zIndex: 99999,
-        }
+            position: 'fixed' as const,
+            top: dropdownPosition.top,
+            left: dropdownPosition.left,
+            width: dropdownPosition.width,
+            maxHeight: '400px',
+            zIndex: 99999,
+          }
         : undefined;
 
     // Common Tailwind classes for the results container
-    const containerClasses = "bg-white border border-slate-200 rounded-lg shadow-xl overflow-y-auto overflow-x-hidden animate-in fade-in zoom-in-95 duration-100 max-h-[400px]";
+    const containerClasses =
+      'bg-white border border-slate-200 rounded-lg shadow-xl overflow-y-auto overflow-x-hidden animate-in fade-in zoom-in-95 duration-100 max-h-[400px]';
 
     if (!hasActions) {
       const emptyContent = (

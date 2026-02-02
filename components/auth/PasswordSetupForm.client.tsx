@@ -87,7 +87,10 @@ const PasswordSetupForm = ({
           animate={{ opacity: 1, x: 0, height: 'auto' }}
           transition={{ duration: 0.4, delay: 0.1 }}
         >
-          <label htmlFor="newPassword" className="block mb-2 font-medium text-black text-sm text-left font-sans">
+          <label
+            htmlFor="newPassword"
+            className="block mb-2 font-medium text-black text-sm text-left font-sans"
+          >
             Enter Password
           </label>
           <div className="relative flex items-center">
@@ -144,7 +147,10 @@ const PasswordSetupForm = ({
           animate={{ opacity: 1, x: 0, height: 'auto' }}
           transition={{ duration: 0.4, delay: 0.2 }}
         >
-          <label htmlFor="confirmPassword" className="block mb-2 font-medium text-black text-sm text-left font-sans">
+          <label
+            htmlFor="confirmPassword"
+            className="block mb-2 font-medium text-black text-sm text-left font-sans"
+          >
             Confirm Password
           </label>
           <div className="relative flex items-center">

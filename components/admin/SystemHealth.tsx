@@ -227,16 +227,11 @@ export default function SystemHealthComponent() {
 
               <div className="grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 md:grid-cols-[repeat(auto-fit,minmax(150px,1fr))] min-[480px]:grid-cols-1">
                 {Object.entries(healthData.health.metrics).map(([key, value]) => (
-                  <div
-                    key={key}
-                    className="text-center p-4 bg-white rounded border border-[#eee]"
-                  >
+                  <div key={key} className="text-center p-4 bg-white rounded border border-[#eee]">
                     <div className="text-2xl font-semibold text-black mb-1">
                       {typeof value === 'number' ? value.toLocaleString() : value}
                     </div>
-                    <div className="text-sm text-[#555] capitalize">
-                      {key.replace(/_/g, ' ')}
-                    </div>
+                    <div className="text-sm text-[#555] capitalize">{key.replace(/_/g, ' ')}</div>
                   </div>
                 ))}
               </div>

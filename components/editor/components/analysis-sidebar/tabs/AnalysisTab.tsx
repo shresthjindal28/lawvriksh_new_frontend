@@ -148,10 +148,11 @@ export default function AnalysisTab({
         {/* Feature Tabs */}
         <div className="grid grid-cols-3 gap-3 mb-6">
           <button
-            className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl transition-all duration-200 ${analysisSubTab === 'facts'
-              ? 'bg-[#6B8E7E] text-white shadow-sm'
-              : 'bg-[#F5F5F7] text-gray-500 hover:bg-gray-200/50'
-              }`}
+            className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl transition-all duration-200 ${
+              analysisSubTab === 'facts'
+                ? 'bg-[#6B8E7E] text-white shadow-sm'
+                : 'bg-[#F5F5F7] text-gray-500 hover:bg-gray-200/50'
+            }`}
             onClick={() => {
               setAnalysisSubTab('facts');
               toggleSection('factChecker');
@@ -170,10 +171,11 @@ export default function AnalysisTab({
           </button>
 
           <button
-            className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl transition-all duration-200 ${analysisSubTab === 'compliances'
-              ? 'bg-[#6B8E7E] text-white shadow-sm'
-              : 'bg-[#F5F5F7] text-gray-500 hover:bg-gray-200/50'
-              }`}
+            className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl transition-all duration-200 ${
+              analysisSubTab === 'compliances'
+                ? 'bg-[#6B8E7E] text-white shadow-sm'
+                : 'bg-[#F5F5F7] text-gray-500 hover:bg-gray-200/50'
+            }`}
             onClick={() => {
               setAnalysisSubTab('compliances');
               if (showPlagiarismButton && setPlagiarismView) {
@@ -190,9 +192,7 @@ export default function AnalysisTab({
                 <Copy
                   size={20}
                   strokeWidth={1.5}
-                  className={
-                    analysisSubTab === 'compliances' ? 'text-white' : 'text-gray-500'
-                  }
+                  className={analysisSubTab === 'compliances' ? 'text-white' : 'text-gray-500'}
                 />
               ) : (
                 <Image
@@ -210,10 +210,11 @@ export default function AnalysisTab({
           </button>
 
           <button
-            className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl transition-all duration-200 ${analysisSubTab === 'argument'
-              ? 'bg-[#6B8E7E] text-white shadow-sm'
-              : 'bg-[#F5F5F7] text-gray-500 hover:bg-gray-200/50'
-              }`}
+            className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl transition-all duration-200 ${
+              analysisSubTab === 'argument'
+                ? 'bg-[#6B8E7E] text-white shadow-sm'
+                : 'bg-[#F5F5F7] text-gray-500 hover:bg-gray-200/50'
+            }`}
             onClick={() => {
               setAnalysisSubTab('argument');
               toggleSection('argumentLogic');
@@ -235,7 +236,7 @@ export default function AnalysisTab({
         {showPlagiarismButton && analysisSubTab === 'compliances' ? (
           <PlagiarismTab
             plagiarismView={plagiarismView || 'check'}
-            setPlagiarismView={setPlagiarismView || (() => { })}
+            setPlagiarismView={setPlagiarismView || (() => {})}
             wordCount={wordCount}
             handleAnalyze={handleAnalyze}
             handleClear={handleClear}
@@ -246,9 +247,9 @@ export default function AnalysisTab({
             plagiarismTotalWords={plagiarismTotalWords || 0}
             plagiarismTextWordCounts={plagiarismTextWordCounts || 0}
             expandedPlagiarismItems={expandedPlagiarismItems || {}}
-            setExpandedPlagiarismItems={setExpandedPlagiarismItems || (() => { })}
+            setExpandedPlagiarismItems={setExpandedPlagiarismItems || (() => {})}
             plagiarismUnifiedSourcesOpen={plagiarismUnifiedSourcesOpen || false}
-            setPlagiarismUnifiedSourcesOpen={setPlagiarismUnifiedSourcesOpen || (() => { })}
+            setPlagiarismUnifiedSourcesOpen={setPlagiarismUnifiedSourcesOpen || (() => {})}
             aiDetectionLoading={aiDetectionLoading || false}
             showAiDetectionResults={showAiDetectionResults || false}
             aiDetectionScore={aiDetectionScore || 0}
@@ -256,9 +257,9 @@ export default function AnalysisTab({
             aiDetectionTotalWords={aiDetectionTotalWords || 0}
             aiDetectionTextWordCounts={aiDetectionTextWordCounts || 0}
             expandedAiDetectionItems={expandedAiDetectionItems || {}}
-            setExpandedAiDetectionItems={setExpandedAiDetectionItems || (() => { })}
+            setExpandedAiDetectionItems={setExpandedAiDetectionItems || (() => {})}
             aiDetectionUnifiedSourcesOpen={aiDetectionUnifiedSourcesOpen || false}
-            setAiDetectionUnifiedSourcesOpen={setAiDetectionUnifiedSourcesOpen || (() => { })}
+            setAiDetectionUnifiedSourcesOpen={setAiDetectionUnifiedSourcesOpen || (() => {})}
           />
         ) : (
           <>
@@ -275,8 +276,12 @@ export default function AnalysisTab({
                       </p>
                     </div>
                     <div className="flex flex-col items-end shrink-0">
-                      <p className="text-[28px] font-bold text-gray-900 leading-none">{wordCount}</p>
-                      <p className="text-dashboard-section-heading text-gray-500 font-medium mt-1">words</p>
+                      <p className="text-[28px] font-bold text-gray-900 leading-none">
+                        {wordCount}
+                      </p>
+                      <p className="text-dashboard-section-heading text-gray-500 font-medium mt-1">
+                        words
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -297,8 +302,8 @@ export default function AnalysisTab({
                   >
                     <Lightbulb size={16} className="text-blue-500 shrink-0 mt-0.5" />
                     <p style={{ fontSize: '12px', color: '#64748B', lineHeight: '1.5', margin: 0 }}>
-                      You can add your own rules by uploading the document with Compliance type in the{' '}
-                      <strong>Documents</strong> tab.
+                      You can add your own rules by uploading the document with Compliance type in
+                      the <strong>Documents</strong> tab.
                     </p>
                   </div>
                 )}
@@ -306,10 +311,10 @@ export default function AnalysisTab({
                 {/* Loader Section */}
                 {((analysisSubTab === 'compliances' && complianceLoading) ||
                   (analysisSubTab === 'argument' && argumentLoading)) && (
-                    <div className="flex justify-center my-8">
-                      <VideoLoader width={80} height={80} />
-                    </div>
-                  )}
+                  <div className="flex justify-center my-8">
+                    <VideoLoader width={80} height={80} />
+                  </div>
+                )}
 
                 {/* Action Buttons */}
                 <div className="mt-auto flex gap-3 pt-6 border-t border-gray-100">
@@ -323,8 +328,9 @@ export default function AnalysisTab({
 
                   {analysisSubTab === 'facts' && (
                     <button
-                      className={`flex-[1.2] h-[48px] px-4 rounded-xl text-white text-sm font-semibold transition-all flex items-center justify-center gap-2 ${factsLoading ? 'bg-black/80 cursor-wait' : 'bg-black hover:bg-black/90'
-                        }`}
+                      className={`flex-[1.2] h-[48px] px-4 rounded-xl text-white text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
+                        factsLoading ? 'bg-black/80 cursor-wait' : 'bg-black hover:bg-black/90'
+                      }`}
                       disabled={factsLoading}
                       onClick={() => handleAnalyze('facts')}
                     >
@@ -334,10 +340,9 @@ export default function AnalysisTab({
 
                   {analysisSubTab === 'compliances' && (
                     <button
-                      className={`flex-[1.2] h-[48px] px-4 rounded-xl text-white text-sm font-semibold transition-all flex items-center justify-center gap-2 ${complianceLoading
-                        ? 'bg-black/80 cursor-wait'
-                        : 'bg-black hover:bg-black/90'
-                        }`}
+                      className={`flex-[1.2] h-[48px] px-4 rounded-xl text-white text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
+                        complianceLoading ? 'bg-black/80 cursor-wait' : 'bg-black hover:bg-black/90'
+                      }`}
                       disabled={complianceLoading}
                       onClick={() => handleAnalyze('compliances')}
                     >
@@ -347,8 +352,9 @@ export default function AnalysisTab({
 
                   {analysisSubTab === 'argument' && (
                     <button
-                      className={`flex-[1.2] h-[48px] px-4 rounded-xl text-white text-sm font-semibold transition-all flex items-center justify-center gap-2 ${argumentLoading ? 'bg-black/80 cursor-wait' : 'bg-black hover:bg-black/90'
-                        }`}
+                      className={`flex-[1.2] h-[48px] px-4 rounded-xl text-white text-sm font-semibold transition-all flex items-center justify-center gap-2 ${
+                        argumentLoading ? 'bg-black/80 cursor-wait' : 'bg-black hover:bg-black/90'
+                      }`}
                       disabled={argumentLoading}
                       onClick={() => handleAnalyze('argumentLogic')}
                     >

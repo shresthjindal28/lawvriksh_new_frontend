@@ -162,13 +162,17 @@ export default function UserDetailsComp({ userId }: UserDetailsCompProps) {
   if (error)
     return (
       <div className="p-8 font-sans text-black max-w-[1200px] mx-auto md:p-8 p-4">
-        <div className="p-4 my-4 border font-medium bg-red-50 text-red-700 border-red-700">Error: {error}</div>
+        <div className="p-4 my-4 border font-medium bg-red-50 text-red-700 border-red-700">
+          Error: {error}
+        </div>
       </div>
     );
   if (!user)
     return (
       <div className="p-8 font-sans text-black max-w-[1200px] mx-auto md:p-8 p-4">
-        <div className="p-4 my-4 border font-medium bg-red-50 text-red-700 border-red-700">User not found.</div>
+        <div className="p-4 my-4 border font-medium bg-red-50 text-red-700 border-red-700">
+          User not found.
+        </div>
       </div>
     );
 
@@ -284,7 +288,9 @@ export default function UserDetailsComp({ userId }: UserDetailsCompProps) {
           </div>
 
           <div className="border border-[#ddd] p-6 bg-[#f9f9f9]">
-            <h2 className="mt-0 border-b border-[#ccc] pb-2 mb-4 text-xl">Security & Risk Scores</h2>
+            <h2 className="mt-0 border-b border-[#ccc] pb-2 mb-4 text-xl">
+              Security & Risk Scores
+            </h2>
             <p className="my-3 leading-relaxed">
               <strong>Risk Score:</strong>{' '}
               <span className="font-bold font-mono">{user.risk_score || 0}</span>

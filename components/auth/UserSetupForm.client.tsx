@@ -105,9 +105,7 @@ const UserSetupForm = ({
               onChange={(e) => onShowDpSetupChange(e.target.checked)}
               className="w-auto mr-2 accent-black"
             />
-            <span className="text-sm text-gray-600">
-              Do you want to setup your DP?
-            </span>
+            <span className="text-sm text-gray-600">Do you want to setup your DP?</span>
           </label>
         </motion.div>
 
@@ -149,8 +147,8 @@ const UserSetupForm = ({
           </motion.div>
         )}
 
-        <motion.div 
-            className="absolute bottom-20 right-8 flex justify-end items-end gap-2.5 
+        <motion.div
+          className="absolute bottom-20 right-8 flex justify-end items-end gap-2.5 
             md:static md:mt-12 md:w-full md:px-8 md:justify-end sm:static sm:mt-12 sm:px-4 sm:justify-end"
         >
           <motion.button

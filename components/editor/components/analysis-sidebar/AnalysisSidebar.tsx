@@ -991,13 +991,13 @@ export default function AnalysisSidebar({
       if (isHighlight) {
         const span =
           target.matches('.analysis-highlight') ||
-            target.matches('.fact-underline') ||
-            target.matches('.compliance-underline') ||
-            target.matches('.argument-highlight')
+          target.matches('.fact-underline') ||
+          target.matches('.compliance-underline') ||
+          target.matches('.argument-highlight')
             ? target
             : ((target.closest('.analysis-highlight') ||
-              target.closest('.fact-underline') ||
-              target.closest('.compliance-underline')) as HTMLElement);
+                target.closest('.fact-underline') ||
+                target.closest('.compliance-underline')) as HTMLElement);
         if (!span) return;
 
         let type = span.getAttribute('data-highlight-type');
@@ -1623,10 +1623,11 @@ export default function AnalysisSidebar({
       <div className="px-5 pt-4 pb-0 bg-white border-b border-gray-100 shadow-[0_2px_10px_rgba(0,0,0,0.02)] z-10">
         <div className={`flex items-center gap-7 ${isAIDrafting ? 'justify-between' : ''}`}>
           <button
-            className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${mainTab === 'analysis'
+            className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${
+              mainTab === 'analysis'
                 ? 'text-gray-900 font-semibold'
                 : 'text-gray-500 hover:text-gray-700'
-              }`}
+            }`}
             onClick={() => setMainTab('analysis')}
           >
             <Sparkles
@@ -1646,10 +1647,11 @@ export default function AnalysisSidebar({
           </button>
 
           <button
-            className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${mainTab === 'discover'
+            className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${
+              mainTab === 'discover'
                 ? 'text-gray-900 font-semibold'
                 : 'text-gray-500 hover:text-gray-700'
-              }`}
+            }`}
             onClick={() => setMainTab('discover')}
           >
             <Search
@@ -1669,8 +1671,9 @@ export default function AnalysisSidebar({
           </button>
 
           <button
-            className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${mainTab === 'ai' ? 'text-gray-900 font-semibold' : 'text-gray-500 hover:text-gray-700'
-              }`}
+            className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${
+              mainTab === 'ai' ? 'text-gray-900 font-semibold' : 'text-gray-500 hover:text-gray-700'
+            }`}
             onClick={() => setMainTab('ai')}
           >
             <Sparkles
@@ -1690,10 +1693,11 @@ export default function AnalysisSidebar({
           </button>
 
           <button
-            className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${mainTab === 'plagiarism'
+            className={`flex items-center gap-2 pb-3 text-sm font-medium transition-colors relative ${
+              mainTab === 'plagiarism'
                 ? 'text-gray-900 font-semibold'
                 : 'text-gray-500 hover:text-gray-700'
-              }`}
+            }`}
             onClick={() => {
               setMainTab('plagiarism');
               setPlagiarismView('ai-detection');
@@ -1798,7 +1802,7 @@ export default function AnalysisSidebar({
             plagiarismView={plagiarismView}
             setPlagiarismView={setPlagiarismView}
             wordCount={wordCount}
-            handleClear={onClear || (() => { })}
+            handleClear={onClear || (() => {})}
             showPlagiarismResults={showPlagiarismResults}
             plagiarismLoading={plagiarismLoading}
             plagiarismScore={plagiarismScore}

@@ -317,7 +317,7 @@ export function Topbar({
               className={cn(
                 'inline-flex items-center justify-center gap-2.5 py-2 px-4 rounded-lg border border-gray-300/85 bg-transparent cursor-pointer shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] transition-all duration-200',
                 isExportDropdownOpen &&
-                'bg-gray-100/95 shadow-[inset_0_0_0_1px_rgba(148,163,184,0.25)]',
+                  'bg-gray-100/95 shadow-[inset_0_0_0_1px_rgba(148,163,184,0.25)]',
                 'hover:bg-gray-100/95 hover:shadow-[inset_0_0_0_1px_rgba(148,163,184,0.25)]'
               )}
               onClick={(e) => {

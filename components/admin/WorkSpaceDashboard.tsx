@@ -67,7 +67,6 @@ export default function WorkspaceDashboard() {
   }, [fetchStudentProjects]);
 
   return (
-
     <>
       <main className="min-h-screen w-full">
         <div className="m-0 flex min-h-screen max-w-full">

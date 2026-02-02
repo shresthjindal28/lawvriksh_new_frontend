@@ -353,7 +353,7 @@ const LoginClientPage = () => {
             />
             {/* Gradient Overlay */}
             <div className="absolute bottom-4 left-4 right-4 h-40 bg-gradient-to-b from-transparent to-black/80 rounded-b-xl pointer-events-none" />
-            
+
             <motion.div
               className="absolute bottom-20 left-20 text-white max-w-sm z-10"
               initial={{ opacity: 0, y: 30 }}
@@ -374,8 +374,8 @@ const LoginClientPage = () => {
                 transition={{ duration: 0.6, delay: 0.7 }}
                 className="text-sm opacity-90 leading-relaxed font-sans"
               >
-                Your peers are about to start producing high-value content in minutes, not days. Don't
-                get left behind.
+                Your peers are about to start producing high-value content in minutes, not days.
+                Don't get left behind.
               </motion.p>
             </motion.div>
           </motion.div>
@@ -396,8 +396,7 @@ const LoginClientPage = () => {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-             {/* Desktop Title shown in form section */}
-
+            {/* Desktop Title shown in form section */}
 
             <AnimatePresence mode="wait">
               <motion.div
@@ -410,8 +409,6 @@ const LoginClientPage = () => {
                 transition={{ duration: 0.6, ease: 'easeOut' }}
               >
                 {renderCurrentForm()}
-
-                
 
                 {/* Social Buttons */}
                 {/* <div className="flex gap-4 justify-between mt-4 w-[80%] mx-auto">
@@ -437,9 +434,6 @@ const LoginClientPage = () => {
                         LinkedIn
                     </button>
                 </div> */}
-
-               
-
               </motion.div>
             </AnimatePresence>
           </motion.div>

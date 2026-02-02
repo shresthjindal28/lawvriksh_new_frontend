@@ -88,17 +88,21 @@ const ProfessionForm = ({
               }}
             >
               {/* Gradient overlay for desktop cards (implied by previous CSS linear-gradient::before) */}
-               <div className="hidden md:block absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/90 z-10 pointer-events-none" />
-              
-              <div className="
+              <div className="hidden md:block absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/90 z-10 pointer-events-none" />
+
+              <div
+                className="
                 absolute bottom-[-7%] left-1/2 -translate-x-1/2 w-full bg-white p-4 pb-4 z-20 block
                 md:bottom-0 md:bg-transparent md:flex md:items-end md:justify-center md:h-full md:p-0
-              ">
-                <div className="
+              "
+              >
+                <div
+                  className="
                     font-serif text-base font-semibold text-[#333] px-3 py-2
                     md:font-light md:text-[1.05rem] md:w-full md:m-0 md:bg-gradient-to-b md:from-transparent md:to-white/40 md:p-3 md:rounded-b-xl md:shadow-sm
-                ">
-                    {profession.title}
+                "
+                >
+                  {profession.title}
                 </div>
               </div>
             </motion.div>
@@ -106,7 +110,7 @@ const ProfessionForm = ({
         </motion.div>
 
         <motion.div
-           className="absolute bottom-[-4rem] right-4 flex justify-end items-center gap-2.5 
+          className="absolute bottom-[-4rem] right-4 flex justify-end items-center gap-2.5 
            md:static md:w-full md:justify-center md:mt-4
            sm:static sm:mt-12 sm:px-4 sm:justify-end"
           initial={{ opacity: 0, y: 20 }}

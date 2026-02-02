@@ -298,62 +298,61 @@ const RegistrationPage = () => {
       animate="visible"
       variants={containerVariants}
     >
-
-        {/* Left Image Section - Desktop Only */}
-        <AnimatePresence>
-          <motion.div
-            className="hidden lg:block relative w-1/2 h-full bg-[#f7f3ed] p-16 shrink-0 overflow-hidden"
-            variants={itemVariants}
-            exit={{ opacity: 0, x: -100 }}
-            transition={{ duration: 0.5, ease: 'easeOut' }}
-          >
-            <MotionImage
-              className="w-full h-full object-cover rounded-xl"
-              src="/assets/images/background-image/backgroundImage.png"
-              alt="Lawvriksh Tree"
-              width={900}
-              height={900}
-              initial={{ scale: 1.1, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1, ease: 'easeOut' }}
-            />
-            {/* Gradient Overlay */}
-            <div className="absolute bottom-16 left-16 right-16 h-40 bg-gradient-to-b from-transparent to-black/80 rounded-b-xl pointer-events-none" />
-
-            <motion.div
-              className="absolute bottom-24 left-24 text-white max-w-sm z-10"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-            >
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="font-['NyghtSerif-LightItalic'] text-4xl mb-4 leading-tight font-normal"
-              >
-                For your rightful place in the creator economy.
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.7 }}
-                className="text-sm opacity-90 leading-relaxed font-sans"
-              >
-                Your peers are about to start producing high-value content in minutes, not days. Don't
-                get left behind.
-              </motion.p>
-            </motion.div>
-          </motion.div>
-        </AnimatePresence>
-
+      {/* Left Image Section - Desktop Only */}
+      <AnimatePresence>
         <motion.div
-          className={`w-full lg:w-1/2 flex items-start lg:items-center justify-center p-0 lg:p-8 shrink-0 h-full overflow-y-auto lg:overflow-visible
-            ${isAuthGroup ? '' : ''}`}
+          className="hidden lg:block relative w-1/2 h-full bg-[#f7f3ed] p-16 shrink-0 overflow-hidden"
           variants={itemVariants}
+          exit={{ opacity: 0, x: -100 }}
           transition={{ duration: 0.5, ease: 'easeOut' }}
         >
-          {/* Mobile Logo */}
+          <MotionImage
+            className="w-full h-full object-cover rounded-xl"
+            src="/assets/images/background-image/backgroundImage.png"
+            alt="Lawvriksh Tree"
+            width={900}
+            height={900}
+            initial={{ scale: 1.1, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+          />
+          {/* Gradient Overlay */}
+          <div className="absolute bottom-16 left-16 right-16 h-40 bg-gradient-to-b from-transparent to-black/80 rounded-b-xl pointer-events-none" />
+
+          <motion.div
+            className="absolute bottom-24 left-24 text-white max-w-sm z-10"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+          >
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="font-['NyghtSerif-LightItalic'] text-4xl mb-4 leading-tight font-normal"
+            >
+              For your rightful place in the creator economy.
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.7 }}
+              className="text-sm opacity-90 leading-relaxed font-sans"
+            >
+              Your peers are about to start producing high-value content in minutes, not days. Don't
+              get left behind.
+            </motion.p>
+          </motion.div>
+        </motion.div>
+      </AnimatePresence>
+
+      <motion.div
+        className={`w-full lg:w-1/2 flex items-start lg:items-center justify-center p-0 lg:p-8 shrink-0 h-full overflow-y-auto lg:overflow-visible
+            ${isAuthGroup ? '' : ''}`}
+        variants={itemVariants}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+      >
+        {/* Mobile Logo */}
 
         <motion.div
           className={`w-full max-w-[400px] lg:max-w-[480px] relative flex flex-col justify-center 
@@ -364,7 +363,6 @@ const RegistrationPage = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           {/* Desktop Title shown in form section */}
-
 
           <AnimatePresence mode="wait">
             <motion.div

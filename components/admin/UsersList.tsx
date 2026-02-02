@@ -97,7 +97,9 @@ export default function UsersList() {
                     <td className="p-4 border-b border-[#ddd]">
                       {user.name || user.username || 'NA'}
                     </td>
-                    <td className="p-4 border-b border-[#ddd] hidden md:table-cell">{user.email}</td>
+                    <td className="p-4 border-b border-[#ddd] hidden md:table-cell">
+                      {user.email}
+                    </td>
                     <td className="p-4 border-b border-[#ddd] hidden md:table-cell">
                       <span
                         className={`px-3 py-1 rounded-full text-sm font-semibold capitalize bg-[#e8e8e8] text-[#333]`}

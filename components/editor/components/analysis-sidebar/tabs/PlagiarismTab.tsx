@@ -275,14 +275,18 @@ export default function PlagiarismTab({
             <div className="bg-[#F5F5F7] rounded-xl p-5 flex flex-col mb-4">
               <div className="flex items-center justify-between w-full text-left">
                 <div className="flex flex-col items-start max-w-[70%]">
-                  <p className="text-[17px] font-bold text-gray-900 leading-tight">Current Document</p>
+                  <p className="text-[17px] font-bold text-gray-900 leading-tight">
+                    Current Document
+                  </p>
                   <p className="text-dashboard-section-heading text-gray-500 mt-1 leading-normal">
                     The entire document content will be analyzed
                   </p>
                 </div>
                 <div className="flex flex-col items-end shrink-0">
                   <p className="text-[28px] font-bold text-gray-900 leading-none">{wordCount}</p>
-                  <p className="text-dashboard-section-heading text-gray-500 font-medium mt-1">words</p>
+                  <p className="text-dashboard-section-heading text-gray-500 font-medium mt-1">
+                    words
+                  </p>
                 </div>
               </div>
             </div>
@@ -360,14 +364,18 @@ export default function PlagiarismTab({
           <div className="bg-[#F5F5F7] rounded-xl p-5 flex flex-col mb-4">
             <div className="flex items-center justify-between w-full text-left">
               <div className="flex flex-col items-start max-w-[70%]">
-                <p className="text-[17px] font-bold text-gray-900 leading-tight">Current Document</p>
+                <p className="text-[17px] font-bold text-gray-900 leading-tight">
+                  Current Document
+                </p>
                 <p className="text-dashboard-section-heading text-gray-500 mt-1 leading-normal">
                   The entire document content will be analyzed
                 </p>
               </div>
               <div className="flex flex-col items-end shrink-0">
                 <p className="text-[28px] font-bold text-gray-900 leading-none">{wordCount}</p>
-                <p className="text-dashboard-section-heading text-gray-500 font-medium mt-1">words</p>
+                <p className="text-dashboard-section-heading text-gray-500 font-medium mt-1">
+                  words
+                </p>
               </div>
             </div>
           </div>

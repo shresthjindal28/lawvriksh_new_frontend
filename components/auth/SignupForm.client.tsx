@@ -68,7 +68,10 @@ const SignupForm = ({
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <label htmlFor="email" className="block mb-2 font-medium text-black text-sm text-left font-sans">
+          <label
+            htmlFor="email"
+            className="block mb-2 font-medium text-black text-sm text-left font-sans"
+          >
             Email
           </label>
           <motion.input

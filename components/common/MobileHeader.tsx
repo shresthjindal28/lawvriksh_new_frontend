@@ -4,7 +4,7 @@ import { Menu } from 'lucide-react';
 import { useMobileSidebar } from '@/lib/contexts/MobileSidebarContext';
 import { useScrollDirection } from '@/hooks/common/useScrollDirection';
 import '@/styles/common-styles/mobile-header.css';
-import '@/styles/common-styles/top-bar.css'; 
+import '@/styles/common-styles/top-bar.css';
 export function MobileHeader() {
   const { toggle } = useMobileSidebar();
   const scrollDirection = useScrollDirection();
