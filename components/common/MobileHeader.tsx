@@ -28,9 +28,7 @@ export function MobileHeader() {
         </button>
         <div className="flex items-center gap-3">
           <span className="w-[2px] h-[32px] bg-[#d1d5dbe6] rounded-full" aria-hidden="true" />
-          <h1
-            className="font-[family-name:var(--font-instrument-serif),serif] text-[20px] font-normal leading-[1.17] tracking-[-0.025em] text-[#3d3d3d] m-0 border-b-2 border-[#d4af37] whitespace-nowrap"
-          >
+          <h1 className="font-[family-name:var(--font-instrument-serif),serif] text-[20px] font-normal leading-[1.17] tracking-[-0.025em] text-[#3d3d3d] m-0 border-b-2 border-[#d4af37] whitespace-nowrap">
             LawVriksh
           </h1>
         </div>
